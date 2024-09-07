@@ -52,6 +52,9 @@ class StyleManager {
   static TextStyle font10Medium({Color color = ColorManager.blackColor}) =>
       TextStyle(color: color, fontSize: 10.sp, fontWeight: FontWeight.w500);
 
+  static TextStyle font24Medium({Color color = ColorManager.blackColor}) =>
+      TextStyle(color: color, fontSize: 24.sp, fontWeight: FontWeight.w500);
+
   static TextStyle font12Medium({Color color = ColorManager.blackColor}) =>
       TextStyle(color: color, fontSize: 12.sp, fontWeight: FontWeight.w400);
 
@@ -86,6 +89,7 @@ class StyleManager {
         fontSize: 16.sp,
         fontWeight: FontWeight.w600,
       );
+
   static TextStyle font20SemiBold({Color color = ColorManager.blackColor}) =>
       TextStyle(
         color: color,
