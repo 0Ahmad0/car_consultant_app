@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "396917524183",
+    "project_id": "car-consultant-e0002",
+    "storage_bucket": "car-consultant-e0002.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396917524183:android:6bbf459fbc19d367129292",
+        "android_client_info": {
+          "package_name": "com.example.car_consultant"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeVg31Ty4lJFdNZsIkiAj3dBbf0rS4OjY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
