@@ -87,7 +87,6 @@ class _AppTextFieldState extends State<AppTextField> {
       controller: widget.controller,
       cursorColor: ColorManager.primaryColor,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
         focusedBorder: _borderTextFiled(),
         border: _borderTextFiled(color: Colors.transparent),
         enabledBorder: _borderTextFiled(color: Colors.transparent),

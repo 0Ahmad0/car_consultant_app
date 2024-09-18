@@ -120,4 +120,6 @@ class StyleManager {
 
   static TextStyle font30Bold({Color color = ColorManager.blackColor}) =>
       TextStyle(color: color, fontSize: 30.sp, fontWeight: FontWeight.w700);
+  static TextStyle font40Bold({Color color = ColorManager.blackColor}) =>
+      TextStyle(color: color, fontSize: 40.sp, fontWeight: FontWeight.w700);
 }

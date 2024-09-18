@@ -60,7 +60,9 @@ class LoginScreen extends StatelessWidget {
                 ),
                 verticalSpace(20.h),
                 AppButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.pushReplacement(Routes.navbarRoute);
+                  },
                   text: StringManager.loginText,
                 ),
                 verticalSpace(20.h),

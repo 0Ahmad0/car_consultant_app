@@ -10,8 +10,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 class NoDataFoundWidget extends StatelessWidget {
   const NoDataFoundWidget({
     super.key,
-    this.image = 'AssetsManager.noDataFoundIMG',
-    this.text = 'StringManager.noDataFoundText',
+    this.image = AssetsManager.noMessagesIMG,
+    this.text = '',
     this.resultCount,
   });
 
@@ -26,11 +26,14 @@ class NoDataFoundWidget extends StatelessWidget {
       children: [
         SvgPicture.asset(
           image,
+          width: 100.w,
+          height: 100.h,
+          color: ColorManager.primaryColor,
           fit: BoxFit.cover,
         ),
         verticalSpace(12.h),
         Text(
-          'StringManager.noDataFoundText',
+          text,
           style: StyleManager.font20SemiBold(
               color: ColorManager.blackColor),
         )

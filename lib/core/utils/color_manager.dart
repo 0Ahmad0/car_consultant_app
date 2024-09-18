@@ -15,4 +15,14 @@ class ColorManager{
 
   static const Color successColor =  Color(0xFF62B587);
 
+
+  static Color unselectedItemColor =  Colors.grey.shade300;
+
+  static Color shadowColor =  Color(0xffE0E0E0);
+
+
+  static Color rateStarColor =  Color(0xfffdf301);
+
+
+
 }
