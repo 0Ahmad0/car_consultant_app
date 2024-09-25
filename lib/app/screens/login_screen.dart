@@ -10,85 +10,101 @@ import 'package:car_consultant/core/widgets/app_textfield.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../controllers/auth_controller.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final authController = Get.put(AuthController());
+    authController.init();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: AppPaddingWidget(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                verticalSpace(20.h),
-                Text(
-                  StringManager.goodToSeeYouText,
-                  style: StyleManager.font24Medium(),
+            child: Form(
+              key: authController.formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  verticalSpace(20.h),
+                  Text(
+                    StringManager.goodToSeeYouText,
+                    style: StyleManager.font24Medium(),
 
-                ),
-                verticalSpace(14.h),
-                Text(
-                  StringManager.loginToYourAccountText,
-                  style: StyleManager.font16Regular(),
-                ),
-                verticalSpace(40.h),
-                AppTextField(
-                  iconData: Icons.call_outlined,
-                  hintText: StringManager.enterEmailHintText,
-                ),
-                verticalSpace(20.h),
-                AppTextField(
-                  obscureText: true,
-                  suffixIcon: true,
-                  hintText: StringManager.enterPasswordHintText,
-                ),
-                verticalSpace(10.h),
-                Align(
-                  alignment: AlignmentDirectional.centerEnd,
-                  child: TextButton(
-                    onPressed: () {
-                      context.pushNamed(Routes.forgotPasswordRoute);
-                    },
-                    child: Text(
-                      StringManager.forgotPasswordLoginText,
-                      style: StyleManager.font16Regular(),
-                    ),
                   ),
-                ),
-                verticalSpace(20.h),
-                AppButton(
-                  onPressed: () {
-                    context.pushReplacement(Routes.navbarRoute);
-                  },
-                  text: StringManager.loginText,
-                ),
-                verticalSpace(20.h),
-                Text.rich(
-                  TextSpan(children: [
-                    TextSpan(
-                      text: StringManager.doNotHaveAnAccountText + " ",
-                      style: StyleManager.font14Regular(
-                        color: ColorManager.blackColor,
+                  verticalSpace(14.h),
+                  Text(
+                    StringManager.loginToYourAccountText,
+                    style: StyleManager.font16Regular(),
+                  ),
+                  verticalSpace(40.h),
+                  AppTextField(
+                    iconData: Icons.call_outlined,
+                   controller:  authController.emailController,
+                    hintText: StringManager.enterEmailHintText,
+                      validator: (value)=>authController.validateEmail(value??'')
+                  ),
+                  verticalSpace(20.h),
+                  AppTextField(
+                    controller: authController.passwordController,
+                    obscureText: true,
+                    suffixIcon: true,
+                    validator: (value)=>authController.validatePassword(value??''),
+                    hintText: StringManager.enterPasswordHintText,
+                  ),
+                  verticalSpace(10.h),
+                  Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: TextButton(
+                      onPressed: () {
+                        context.pushNamed(Routes.forgotPasswordRoute);
+                      },
+                      child: Text(
+                        StringManager.forgotPasswordLoginText,
+                        style: StyleManager.font16Regular(),
                       ),
                     ),
-                    TextSpan(
-                        text: StringManager.signUpText,
-                        style: StyleManager.font14Bold(
-                          color: ColorManager.primaryColor,
-                        ).copyWith(
-                            decoration: TextDecoration.underline,
-                            decorationColor: ColorManager.primaryColor,
-                            decorationThickness: 1),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            context.pushReplacement(Routes.signUpRoute);
-                          }),
-                  ]),
-                )
-              ],
+                  ),
+                  verticalSpace(20.h),
+                  AppButton(
+                    onPressed: () {
+                      // context.pushReplacement(Routes.navbarRoute);
+                      if (authController.formKey.currentState!.validate()) {
+                      authController.login(context);}
+
+                    },
+                    text: StringManager.loginText,
+                  ),
+                  verticalSpace(20.h),
+                  Text.rich(
+                    TextSpan(children: [
+                      TextSpan(
+                        text: StringManager.doNotHaveAnAccountText + " ",
+                        style: StyleManager.font14Regular(
+                          color: ColorManager.blackColor,
+                        ),
+                      ),
+                      TextSpan(
+                          text: StringManager.signUpText,
+                          style: StyleManager.font14Bold(
+                            color: ColorManager.primaryColor,
+                          ).copyWith(
+                              decoration: TextDecoration.underline,
+                              decorationColor: ColorManager.primaryColor,
+                              decorationThickness: 1),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              context.pushReplacement(Routes.signUpRoute);
+                            }),
+                    ]),
+                  )
+                ],
+              ),
             ),
           ),
         ),

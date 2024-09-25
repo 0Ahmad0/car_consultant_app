@@ -6,7 +6,10 @@ import 'package:car_consultant/core/utils/style_manager.dart';
 import 'package:car_consultant/core/widgets/app_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
+import '../../controllers/auth_controller.dart';
 import 'widgets/about_section_widget.dart';
 import 'widgets/profile_item_lIst_tile_widget.dart';
 
@@ -67,12 +70,15 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.logout,
                 title: StringManager.signOutText,
                 onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (_) => Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
+                  Get.lazyPut(() => AuthController());
+                  AuthController.instance.signOut(context);
+
+                  // showDialog(
+                  //   context: context,
+                  //   builder: (_) => Center(
+                  //     child: CircularProgressIndicator(),
+                  //   ),
+                  // );
                 },
               ),
               ProfileItemLIstTileWidget(

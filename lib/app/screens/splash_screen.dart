@@ -9,6 +9,10 @@ import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:car_consultant/core/utils/style_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../controllers/splash_controller.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -26,7 +30,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    _goToNextScreen();
+    // _goToNextScreen();
+    Get.put(SplashController()).initSplash(context);
     super.initState();
   }
   @override

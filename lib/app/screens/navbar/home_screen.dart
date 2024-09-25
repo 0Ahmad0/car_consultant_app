@@ -9,8 +9,12 @@ import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:car_consultant/core/utils/style_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import '../../../core/widgets/app_padding.dart';
+import '../../controllers/profile_controller.dart';
 import 'widgets/home_service_full_width_widget.dart';
 import 'widgets/home_service_widget.dart';
 
@@ -50,10 +54,13 @@ class HomeScreen extends StatelessWidget {
                               color: ColorManager.hintTextColor),
                         ),
                         verticalSpace(10.h),
-                        Text(
-                          'User Name',
+    GetBuilder<ProfileController>(
+   init: Get.put(ProfileController()),
+    builder: (controller) {
+                       return Text(
+                         controller.currentUser.value?.name??  'User Name',
                           style: StyleManager.font16Regular(),
-                        ),
+                        );}),
                       ],
                     ),
                   )

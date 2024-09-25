@@ -7,8 +7,11 @@ import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:car_consultant/core/utils/style_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'app/controllers/profile_controller.dart';
 import 'core/routing/app_router.dart';
 import 'core/routing/routes.dart';
 import 'core/utils/color_manager.dart';
@@ -22,6 +25,7 @@ class CarConsultantApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.put(ProfileController());
     return ScreenUtilInit(
         minTextAdapt: true,
         designSize: const Size(
@@ -29,7 +33,7 @@ class CarConsultantApp extends StatelessWidget {
           ConstValueManager.heightSize,
         ),
         builder: (context, child) {
-          return MaterialApp(
+          return GetMaterialApp(
             title: StringManager.appName,
             theme: ThemeData(
                 dividerColor: ColorManager.hintTextColor,
