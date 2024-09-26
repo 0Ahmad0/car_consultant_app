@@ -1,3 +1,5 @@
+import 'package:car_consultant/core/helpers/extensions.dart';
+import 'package:car_consultant/core/routing/routes.dart';
 import 'package:car_consultant/core/utils/const_value_manager.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:car_consultant/core/widgets/no_data_found_widget.dart';
@@ -14,6 +16,16 @@ class PaymentOptionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(StringManager.paymentOptionText),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.pushNamed(Routes.addNewCardRoute);
+            },
+            icon: Icon(
+              Icons.add,
+            ),
+          )
+        ],
       ),
       body: ConstValueManager.paymentList.isEmpty
           ? NoDataFoundWidget()
@@ -27,4 +39,3 @@ class PaymentOptionScreen extends StatelessWidget {
     );
   }
 }
-

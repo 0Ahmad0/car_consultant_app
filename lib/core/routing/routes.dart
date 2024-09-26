@@ -15,8 +15,13 @@ class Routes {
   static const String addNewCardRoute = '/addNewCardScreen';
   static const String reviewRoute = '/reviewScreen';
   static const String consultantServiceRoute = '/consultantServiceScreen';
+  static const String serviceProviderRoute = '/serviceProviderScreen';
   static const String detailsConsultantServiceRoute = '/detailsConsultantServiceScreen';
   static const String orderDetailsRoute = '/orderDetailsScreen';
+  static const String paymentSuccessfulRoute = '/paymentSuccessfulScreen';
+  static const String educationalResourcesRoute = '/educationalResourcesScreen';
+  static const String emergencyServicesRoute = '/emergencyServicesScreen';
+  static const String freelanceOpportunitiesRoute = '/freelanceOpportunitiesScreen';
 
 
 

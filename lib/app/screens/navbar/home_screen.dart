@@ -105,6 +105,7 @@ class HomeScreen extends StatelessWidget {
                     child: HomeServiceWidget(
                       image: AssetsManager.serviceProviderIMG,
                       text: StringManager.serviceProviderText,
+                      route: Routes.serviceProviderRoute,
                     ),
                   ),
                 ],
@@ -116,6 +117,8 @@ class HomeScreen extends StatelessWidget {
                     child: HomeServiceWidget(
                       image: AssetsManager.educationalResourcesIMG,
                       text: StringManager.educationalResourcesText,
+                      route: Routes.educationalResourcesRoute,
+
                     ),
                   ),
                   horizontalSpace(28.w),
@@ -123,6 +126,7 @@ class HomeScreen extends StatelessWidget {
                     child: HomeServiceWidget(
                       image: AssetsManager.emergencyServicesIMG,
                       text: StringManager.emergencyServicesText,
+                      route: Routes.emergencyServicesRoute,
                     ),
                   ),
                 ],
@@ -132,6 +136,7 @@ class HomeScreen extends StatelessWidget {
                 image: AssetsManager.freelanceOpportunitiesIMG,
                 title: StringManager.freelanceOpportunitiesText,
                 subTitle: StringManager.becomeCarText,
+                route: Routes.freelanceOpportunitiesRoute,
               ),
             ],
           ),

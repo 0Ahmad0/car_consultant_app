@@ -31,7 +31,7 @@ class StringManager {
   static const String pleaseEnterValidEmailText =
       'Please enter your valid email. we will send you a email link to verify your account';
 
-  ///ForgotPassword Screen
+  ///Check inbox Screen
   static const String checkYourInboxText = 'Check Your Inbox';
   static const String sentEmailVerifyToResetPasswordText =
       'We will sent you a link to Reset Password';
@@ -75,7 +75,13 @@ class StringManager {
   ///Consultant Service Screen
   static const String sortByText = 'Sort By';
 
+  ///Service Provider Screen
+  static const String kmFromLocation = 'km from Location';
+
   /// Details Consultant Service Screen
+
+  ///EducationalResources Screen
+  static const String educationalContentText = 'Educational Content';
   static const String detailsText = 'Details';
   static const String professionalismText = 'Professionalism';
   static const String timeScaleText = 'Timescale';
@@ -84,6 +90,7 @@ class StringManager {
   static const String ordersCompletedText = 'Orders Completed';
   static const String aboutMeText = 'About Me';
   static const String expertiseText = 'Expertise';
+  static const String likesText = 'likes';
 
   /// Order Details Screen
   static const String orderDetailsText = 'Order Details';
@@ -97,6 +104,9 @@ class StringManager {
 
   /// payment Option Screen
   static const String paymentOptionText = 'payment Option';
+  static const String visaText = 'Visa';
+  static const String masterCardText = 'Master card';
+  static const String sadadText = 'Sadad';
 
   /// payment Invoice Screen
   static const String paymentInvoiceText = 'Payment Invoice';
@@ -113,6 +123,20 @@ class StringManager {
     ' Payments\n',
     '* Search The Above Reference Number'
   ];
+
+  ///Add New Card Screen
+  static const String addNewCardText = 'Add New Card';
+  static const String cardNumberText = 'Card Number';
+  static const String cardHolderNameText = 'Card Holder Name ';
+  static const String expirationDateText = 'Expiration Date';
+  static const String cvvText = 'CVV';
+  static const String payText = 'Pay';
+  static const String expirationDateHintText = 'MM/YY';
+
+  ///PaymentSuccessful Screen
+  static const String paymentSuccessfulText = 'Payment Successful';
+  static const String goBackToHomeText = 'Go Back to Home';
+
 
   /// Message Screen
   static const String searchMessageText = 'search Message..';

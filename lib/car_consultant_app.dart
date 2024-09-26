@@ -2,6 +2,7 @@ import 'package:car_consultant/app/screens/consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/details_consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/payment_invoice_screen.dart';
 import 'package:car_consultant/app/screens/payment_option_screen.dart';
+import 'package:car_consultant/app/screens/service_provider_screen.dart';
 import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:car_consultant/core/utils/style_manager.dart';
@@ -71,7 +72,8 @@ class CarConsultantApp extends StatelessWidget {
                   ConstValueManager.heightButtonSize,
                 ))),
             ),
-            initialRoute: Routes.initialRoute,
+            home: ServiceProviderScreen(),
+            // initialRoute: Routes.initialRoute,
             onGenerateRoute: appRouter.generateRoute,
             routes: {
               Routes.consultantServiceRoute: (_)=>ConsultantServiceScreen(),

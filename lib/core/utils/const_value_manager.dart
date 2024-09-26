@@ -4,6 +4,8 @@ import 'package:car_consultant/app/screens/navbar/messages_screen.dart';
 import 'package:car_consultant/app/screens/navbar/profile_screen.dart';
 import 'package:car_consultant/app/screens/navbar/notification_screen.dart';
 import 'package:car_consultant/core/routing/routes.dart';
+import 'package:car_consultant/core/utils/assets_manager.dart';
+import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -82,11 +84,18 @@ class ConstValueManager {
         toTime: DateTime.now()),
   ];
 
-  static const List<String> paymentList = [
-    'Master Card',
-    'Visa',
-    'Sadad',
+  static List<PaymentOption> paymentList = [
+    PaymentOption(text: StringManager.visaText, icon: AssetsManager.visaIcon),
+    PaymentOption(text: StringManager.masterCardText, icon: AssetsManager.masterCardIcon),
+    PaymentOption(text: StringManager.sadadText, icon: AssetsManager.sadadIcon),
   ];
+}
+
+class PaymentOption {
+  final String text;
+  final String icon;
+
+  PaymentOption({required this.text, required this.icon});
 }
 
 class NavbarItem {

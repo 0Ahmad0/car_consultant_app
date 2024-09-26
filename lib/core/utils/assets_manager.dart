@@ -16,6 +16,10 @@ class AssetsManager {
   ///<==== Svg ====>
   static const eyePasswordIcon = '$_pathSVGs/eye.svg';
   static const arrowRightIcon = '$_pathSVGs/arrow_right.svg';
+  static const visaIcon = '$_pathSVGs/visa.png';
+  static const sadadIcon = '$_pathSVGs/sadad.png';
+  static const masterCardIcon = '$_pathSVGs/mastercard.png';
+  static const checkIcon = '$_pathSVGs/check.svg';
 
 
   ///<==== Json ====>
