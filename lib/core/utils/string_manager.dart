@@ -137,6 +137,26 @@ class StringManager {
   static const String paymentSuccessfulText = 'Payment Successful';
   static const String goBackToHomeText = 'Go Back to Home';
 
+  ///EmergencyServices Screen
+
+  static const String emergencyServicesContentText = 'Emergency Content';
+
+  /// Freelance Opportunities Screen
+
+  static const String name = 'Name';
+  static const String enterNameHint = 'Name';
+  static const String tellUsText = 'Tell us about your Self';
+  static const String tellUsHintText = 'Description';
+  static const String tellUsHelperText = 'At least 300 characters';
+  static const String uploadFilesText = 'Upload files';
+  static const String clickToUploadFilesText =
+      'Click to browse or  drag and drop your files';
+  static const String categoryText = 'Category';
+  static const String categoryConsultantText = 'Consultant';
+  static const String categoryEmergencyText = 'Emergency Consultant';
+
+  static const String salaryText = 'Salary';
+  static const String salaryHintText = 'Enter salary';
 
   /// Message Screen
   static const String searchMessageText = 'search Message..';
@@ -144,10 +164,9 @@ class StringManager {
   static const String startChatText =
       'Start a conversation with proofreaders,\nand get the job done';
 
-
-///<Message Firebase>//
-static const message_success= "Success";
-static const message_failure= "Failure";
-static const message_successful_login= "Successful login";
-static const message_successfully_update= "Successful update";
+  ///<Message Firebase>//
+  static const message_success = "Success";
+  static const message_failure = "Failure";
+  static const message_successful_login = "Successful login";
+  static const message_successfully_update = "Successful update";
 }
