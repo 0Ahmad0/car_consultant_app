@@ -101,7 +101,7 @@ class ConstValueManager {
 
 class ConditionPasswordItem {
   final String text;
-  final bool isValidate;
+   bool isValidate;
 
   ConditionPasswordItem({
     required this.text,

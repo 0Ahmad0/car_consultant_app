@@ -16,10 +16,36 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../core/helpers/validator.dart';
 import '../controllers/auth_controller.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final passwordController = TextEditingController();
+  late List s;
+
+  @override
+  void initState() {
+    s = ConstValueManager.conditionPasswordList;
+    passwordController.addListener(() {
+      setState(() {
+        s = ConstValueManager.conditionPasswordList;
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,14 +93,20 @@ class SignUpScreen extends StatelessWidget {
                   AppTextField(
                     obscureText: true,
                     suffixIcon: true,
-                    controller: authController.passwordController,
-                    validator: (value) =>
-                        authController.validatePassword(value ?? ''),
+                    controller: passwordController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return StringManager.requiredField;
+                      } else {
+                        s = Validator.validatePassword(value);
+                      }
+                      return null;
+                    },
                     hintText: StringManager.enterSetPasswordHintText,
                   ),
                   verticalSpace(10.h),
                   Visibility(
-                    visible: authController.passwordController.text.isEmpty,
+                    visible: passwordController.value.text.isNotEmpty,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -84,17 +116,16 @@ class SignUpScreen extends StatelessWidget {
                         ),
                         verticalSpace(10.h),
                         Column(
-                          children: ConstValueManager.conditionPasswordList
+                          children: s
                               .map((e) => Row(
                                     children: [
                                       Icon(
                                         e.isValidate
                                             ? Icons.check_circle
-                                            : Icons
-                                                .check_box_outline_blank_sharp,
+                                            : Icons.circle,
                                         color: e.isValidate
                                             ? ColorManager.primaryColor
-                                            : ColorManager.hintTextColor,
+                                            : ColorManager.grayColor,
                                         size: 18.sp,
                                       ),
                                       horizontalSpace(8.w),

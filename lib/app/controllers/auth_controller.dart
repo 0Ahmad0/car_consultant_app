@@ -280,6 +280,10 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     _initPageView();
+    passwordController.addListener(() {
+      update();
+    });
+
     super.onInit();
   }
 

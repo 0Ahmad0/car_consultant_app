@@ -6,6 +6,7 @@ class AssetsManager {
   ///<==== Images ====>
   static const logoIMG = '$_pathImages/logo.png';
   static const noMessagesIMG = '$_pathImages/no_messages.png';
+  static const noAppointmentsIMG = '$_pathImages/no_appointments.png';
   static const noNotificationIMG = '$_pathImages/no_notification.png';
   static const consultantServiceIMG = '$_pathImages/consultant_service.png';
   static const educationalResourcesIMG = '$_pathImages/educational_resources.png';

@@ -7,6 +7,7 @@ class StringManager {
   static const String submitText = 'Submit';
   static const String continueText = 'Continue';
   static const String errorText = 'Error';
+  static const String noText = 'No';
 
   ///Splash Screen
   static const String splashScreenText = 'Your Car\'s Health Is Our Priority';
@@ -77,6 +78,7 @@ class StringManager {
 
   /// Appointments Screen
   static const String appointmentsText = 'Appointments';
+  static const String currentlyYouDoNotHaveText = 'Currently you don’t have any';
 
   ///Consultant Service Screen
   static const String sortByText = 'Sort By';
