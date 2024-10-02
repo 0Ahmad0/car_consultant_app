@@ -86,9 +86,27 @@ class ConstValueManager {
 
   static List<PaymentOption> paymentList = [
     PaymentOption(text: StringManager.visaText, icon: AssetsManager.visaIcon),
-    PaymentOption(text: StringManager.masterCardText, icon: AssetsManager.masterCardIcon),
+    PaymentOption(
+        text: StringManager.masterCardText, icon: AssetsManager.masterCardIcon),
     PaymentOption(text: StringManager.sadadText, icon: AssetsManager.sadadIcon),
   ];
+
+  static List<ConditionPasswordItem> conditionPasswordList = [
+    ConditionPasswordItem(text: StringManager.condition1Text),
+    ConditionPasswordItem(text: StringManager.condition2Text),
+    ConditionPasswordItem(text: StringManager.condition3Text),
+    ConditionPasswordItem(text: StringManager.condition4Text),
+  ];
+}
+
+class ConditionPasswordItem {
+  final String text;
+  final bool isValidate;
+
+  ConditionPasswordItem({
+    required this.text,
+    this.isValidate = false
+  });
 }
 
 class PaymentOption {

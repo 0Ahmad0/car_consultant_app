@@ -6,6 +6,7 @@ class StringManager {
   static const String signUpText = 'Signup';
   static const String submitText = 'Submit';
   static const String continueText = 'Continue';
+  static const String errorText = 'Error';
 
   ///Splash Screen
   static const String splashScreenText = 'Your Car\'s Health Is Our Priority';
@@ -25,6 +26,11 @@ class StringManager {
   static const String enterSetPasswordHintText = 'Set Password';
   static const String enterConfirmPasswordHintText = 'Confirm Password';
   static const String allReadyHaveAnAccountText = 'All Ready have account ? ';
+  static const String conditionPasswordText = 'YOUR PASSWORD MUST CONTAIN :';
+  static const String condition1Text = 'At least 8 characters';
+  static const String condition2Text = '1 uppercase letter';
+  static const String condition3Text = '1 number';
+  static const String condition4Text = '1 special character';
 
   ///ForgotPassword Screen
   static const String forgotPasswordText = 'Forgot Password';

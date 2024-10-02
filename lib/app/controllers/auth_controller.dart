@@ -1,5 +1,5 @@
-
 import 'package:car_consultant/core/helpers/extensions.dart';
+import 'package:car_consultant/core/helpers/validator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,16 +31,20 @@ class AuthController extends GetxController {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  init(){
+  init() {
     nameController.clear();
     emailController.clear();
     phoneController.clear();
     passwordController.clear();
     confirmPasswordController.clear();
   }
+
   int currentIndex = 0;
   late final PageController pageController;
-  final List<String> tabsList = [StringManager.loginText, StringManager.signUpText];
+  final List<String> tabsList = [
+    StringManager.loginText,
+    StringManager.signUpText
+  ];
 
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -55,20 +59,13 @@ class AuthController extends GetxController {
     update();
   }
 
-
-
   validatePassword(String value) {
     RegExp regex =
         RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
     if (value.isEmpty) {
       return StringManager.requiredField;
     } else {
-
-      if (!regex.hasMatch(value)) {
-
-
-        return 'Error';
-      }
+      Validator.validatePassword(value);
       return null;
     }
   }
@@ -151,12 +148,14 @@ class AuthController extends GetxController {
         context.pop();
         // Get.back();
         if (profileController.currentUser.value?.isAdmin ?? false)
-          context.pushAndRemoveUntil(Routes.navbarRoute, predicate: (Route<dynamic> route) =>false);
+          context.pushAndRemoveUntil(Routes.navbarRoute,
+              predicate: (Route<dynamic> route) => false);
 
         // Get.offAll(NavbarScreen());
-          // Get.offAll(NavBarAdminScreen());
+        // Get.offAll(NavBarAdminScreen());
         else
-          context.pushAndRemoveUntil(Routes.navbarRoute, predicate: (Route<dynamic> route) =>false);
+          context.pushAndRemoveUntil(Routes.navbarRoute,
+              predicate: (Route<dynamic> route) => false);
 
         // Get.offAll(NavbarScreen());
       });
@@ -211,12 +210,14 @@ class AuthController extends GetxController {
       profileController.currentUser.value = user;
       // if(profileController.currentUser.value?.isAdmin??false)
       if (user.isAdmin)
-        context.pushAndRemoveUntil(Routes.navbarRoute, predicate: (Route<dynamic> route) =>false);
+        context.pushAndRemoveUntil(Routes.navbarRoute,
+            predicate: (Route<dynamic> route) => false);
 
       // Get.offAll(NavbarScreen());
-        // Get.offAll(NavBarAdminScreen());
+      // Get.offAll(NavBarAdminScreen());
       else
-        context.pushAndRemoveUntil(Routes.navbarRoute, predicate: (Route<dynamic> route) =>false);
+        context.pushAndRemoveUntil(Routes.navbarRoute,
+            predicate: (Route<dynamic> route) => false);
 
       // Get.offAll(NavbarScreen());
     } on FirebaseAuthException catch (e) {
@@ -258,7 +259,7 @@ class AuthController extends GetxController {
     return userName;
   }
 
-  void signOut(BuildContext context,{bool deleteFromAuth = false}) async {
+  void signOut(BuildContext context, {bool deleteFromAuth = false}) async {
     await auth.signOut().then((value) async {
       if (deleteFromAuth) {
         auth.currentUser?.delete();
@@ -270,7 +271,8 @@ class AuthController extends GetxController {
       //  await AppStorage.storageDelete(key:AppConstants.PASSWORD_KEY);
       //  await AppStorage.storageDelete(key:AppConstants.USER_NAME_KEY);
     });
-    context.pushAndRemoveUntil(Routes.initialRoute, predicate: (Route<dynamic> route) =>false);
+    context.pushAndRemoveUntil(Routes.initialRoute,
+        predicate: (Route<dynamic> route) => false);
 
     // Get.offAll(SplashScreen());
   }

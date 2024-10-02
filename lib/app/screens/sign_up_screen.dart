@@ -1,3 +1,5 @@
+import 'package:car_consultant/core/utils/const_value_manager.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/helpers/spacing.dart';
@@ -36,27 +38,29 @@ class SignUpScreen extends StatelessWidget {
                   Text(
                     StringManager.createAccountText,
                     style: StyleManager.font24Medium(),
-
                   ),
                   verticalSpace(40.h),
                   AppTextField(
                     iconData: Icons.person_outline,
                     controller: authController.nameController,
-                    validator: (value)=>authController.validateFullName(value??''),
+                    validator: (value) =>
+                        authController.validateFullName(value ?? ''),
                     hintText: StringManager.enterNameHintText,
                   ),
                   verticalSpace(20.h),
                   AppTextField(
                     iconData: Icons.email_outlined,
                     controller: authController.emailController,
-                    validator: (value)=>authController.validateEmail(value??''),
+                    validator: (value) =>
+                        authController.validateEmail(value ?? ''),
                     hintText: StringManager.enterEmailHintText,
                   ),
                   verticalSpace(20.h),
                   AppTextField(
                     iconData: Icons.call_outlined,
                     controller: authController.phoneController,
-                    validator: (value)=>authController.validatePhoneNumber(value??''),
+                    validator: (value) =>
+                        authController.validatePhoneNumber(value ?? ''),
                     hintText: StringManager.enterPhoneHintText,
                   ),
                   verticalSpace(20.h),
@@ -64,23 +68,70 @@ class SignUpScreen extends StatelessWidget {
                     obscureText: true,
                     suffixIcon: true,
                     controller: authController.passwordController,
-                    validator: (value)=>authController.validatePassword(value??''),
+                    validator: (value) =>
+                        authController.validatePassword(value ?? ''),
                     hintText: StringManager.enterSetPasswordHintText,
+                  ),
+                  verticalSpace(10.h),
+                  Visibility(
+                    visible: authController.passwordController.text.isEmpty,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          StringManager.conditionPasswordText,
+                          style: StyleManager.font14SemiBold(),
+                        ),
+                        verticalSpace(10.h),
+                        Column(
+                          children: ConstValueManager.conditionPasswordList
+                              .map((e) => Row(
+                                    children: [
+                                      Icon(
+                                        e.isValidate
+                                            ? Icons.check_circle
+                                            : Icons
+                                                .check_box_outline_blank_sharp,
+                                        color: e.isValidate
+                                            ? ColorManager.primaryColor
+                                            : ColorManager.hintTextColor,
+                                        size: 18.sp,
+                                      ),
+                                      horizontalSpace(8.w),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 2.h),
+                                        child: Text(
+                                          e.text,
+                                          style: StyleManager.font12Regular(
+                                            color: e.isValidate
+                                                ? ColorManager.primaryColor
+                                                : ColorManager.hintTextColor,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ))
+                              .toList(),
+                        ),
+                      ],
+                    ),
                   ),
                   verticalSpace(20.h),
                   AppTextField(
                     obscureText: true,
                     suffixIcon: true,
                     controller: authController.confirmPasswordController,
-                    validator: (value)=>authController.validatePassword(value??''),
-
+                    validator: (value) =>
+                        authController.validatePassword(value ?? ''),
                     hintText: StringManager.enterConfirmPasswordHintText,
                   ),
                   verticalSpace(40.h),
                   AppButton(
                     onPressed: () {
                       if (authController.formKey.currentState!.validate()) {
-                        authController.signUp(context);}
+                        authController.signUp(context);
+                      }
                     },
                     text: StringManager.signUpText,
                   ),
@@ -113,7 +164,6 @@ class SignUpScreen extends StatelessWidget {
           ),
         ),
       ),
-
     );
   }
 }
