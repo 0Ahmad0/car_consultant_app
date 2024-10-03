@@ -1,4 +1,6 @@
 
+import 'package:bcrypt/bcrypt.dart';
+
 import '../utils/app_constant.dart';
 
 class UserModel {
@@ -38,12 +40,12 @@ class UserModel {
       uid: json["uid"],
       name: json["name"],
       phoneNumber: json["phoneNumber"],
-      userName: json["userName"],
+      // userName: json["userName"],
       email: json["email"],
       photoUrl: json["photoUrl"],
       typeUser: json["typeUser"],
-      gender: data["gender"],
-      //  password:json['password']
+      // gender: data["gender"],
+       password:data['password']
     );
   }
 
@@ -63,12 +65,18 @@ class UserModel {
         'uid': uid,
         'name': name,
         'email': email,
-        'userName': userName,
+        // 'userName': userName,
         'phoneNumber': phoneNumber,
         'photoUrl': photoUrl,
         'typeUser': typeUser,
-        'gender': gender,
+        // 'gender': gender,
+    'password': password==null?null:BCrypt.hashpw(password!, BCrypt.gensalt()),
+    // 'password': password,
       };
+  /// Function to check if the password matches the hashed password
+  bool checkPassword(String plainPassword) {
+    return BCrypt.checkpw(plainPassword, password??'');
+  }
 }
 
 //users

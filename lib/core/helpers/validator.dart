@@ -15,17 +15,25 @@ class Validator {
     if (password.length < 8) {
 
     }
+
+  for(ConditionPasswordItem element in  ConstValueManager.conditionPasswordList)
+    element.isValidate=false;
+
     if (password.contains(uppercaseLetterRegExp)) {
+
       ConstValueManager.conditionPasswordList[0].isValidate = true;
     }
     if (password.contains(lowercaseLetterRegExp)) {
+
       ConstValueManager.conditionPasswordList[1].isValidate = true;
 
     }
     if (password.contains(digitRegExp)) {
+
       ConstValueManager.conditionPasswordList[2].isValidate = true;
     }
     if (password.contains(specialCharacterRegExp)) {
+
       ConstValueManager.conditionPasswordList[3].isValidate = true;
     }
     return ConstValueManager.conditionPasswordList;

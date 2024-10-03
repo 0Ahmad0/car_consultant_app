@@ -35,6 +35,7 @@ dependencies:
   cloud_firestore:
   firebase_database:
   dotted_border:
+  bcrypt: ^1.1.3
 
 
 dev_dependencies:

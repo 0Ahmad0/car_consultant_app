@@ -29,9 +29,12 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final passwordController = TextEditingController();
   late List s;
-
+  late AuthController authController;
   @override
   void initState() {
+     authController = Get.put(AuthController());
+     authController.init();
+
     s = ConstValueManager.conditionPasswordList;
     passwordController.addListener(() {
       setState(() {
@@ -49,8 +52,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authController = Get.put(AuthController());
-    authController.init();
+
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -98,54 +101,60 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       if (value!.isEmpty) {
                         return StringManager.requiredField;
                       } else {
+
                         s = Validator.validatePassword(value);
                       }
                       return null;
                     },
+                    onChanged:(value)=>  s = Validator.validatePassword(value),
                     hintText: StringManager.enterSetPasswordHintText,
+
                   ),
                   verticalSpace(10.h),
                   Visibility(
                     visible: passwordController.value.text.isNotEmpty,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
                           StringManager.conditionPasswordText,
-                          style: StyleManager.font14SemiBold(),
-                        ),
-                        verticalSpace(10.h),
-                        Column(
-                          children: s
-                              .map((e) => Row(
-                                    children: [
-                                      Icon(
-                                        e.isValidate
-                                            ? Icons.check_circle
-                                            : Icons.circle,
-                                        color: e.isValidate
-                                            ? ColorManager.primaryColor
-                                            : ColorManager.grayColor,
-                                        size: 18.sp,
-                                      ),
-                                      horizontalSpace(8.w),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 2.h),
-                                        child: Text(
-                                          e.text,
-                                          style: StyleManager.font12Regular(
-                                            color: e.isValidate
-                                                ? ColorManager.primaryColor
-                                                : ColorManager.hintTextColor,
+                            style: StyleManager.font14SemiBold(),
+                          ),
+                          verticalSpace(10.h),
+                          Column(
+                            children: s
+                                .map((e) => Row(
+                                      children: [
+                                        Icon(
+                                          e.isValidate
+                                              ? Icons.check_circle
+                                              : Icons.circle,
+                                          color: e.isValidate
+                                              ? ColorManager.primaryColor
+                                              : ColorManager.grayColor,
+                                          size: 18.sp,
+                                        ),
+                                        horizontalSpace(8.w),
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.symmetric(vertical: 2.h),
+                                          child: Text(
+                                            e.text,
+                                            style: StyleManager.font12Regular(
+                                              color: e.isValidate
+                                                  ? ColorManager.primaryColor
+                                                  : ColorManager.hintTextColor,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ))
-                              .toList(),
-                        ),
-                      ],
+                                      ],
+                                    ))
+                                .toList(),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   verticalSpace(20.h),
@@ -160,7 +169,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   verticalSpace(40.h),
                   AppButton(
                     onPressed: () {
-                      if (authController.formKey.currentState!.validate()) {
+                      if (authController.formKey.currentState!.validate()&&ConstValueManager.conditionPasswordList.every((element)=>element.isValidate)) {
                         authController.signUp(context);
                       }
                     },
