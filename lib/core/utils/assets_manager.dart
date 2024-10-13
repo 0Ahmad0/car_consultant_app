@@ -21,6 +21,7 @@ class AssetsManager {
   static const sadadIcon = '$_pathSVGs/sadad.png';
   static const masterCardIcon = '$_pathSVGs/mastercard.png';
   static const checkIcon = '$_pathSVGs/check.svg';
+  static const rateIcon = '$_pathSVGs/rate_icon.png';
 
 
   ///<==== Json ====>

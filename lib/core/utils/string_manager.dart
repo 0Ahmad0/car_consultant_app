@@ -8,6 +8,8 @@ class StringManager {
   static const String continueText = 'Continue';
   static const String errorText = 'Error';
   static const String noText = 'No';
+  static const String statusText = 'Status';
+  static const String scheduleText = 'Schedule';
 
   ///Splash Screen
   static const String splashScreenText = 'Your Car\'s Health Is Our Priority';

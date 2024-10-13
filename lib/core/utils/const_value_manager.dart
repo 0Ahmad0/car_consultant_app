@@ -32,6 +32,7 @@ class ConstValueManager {
   static const String arLanguageCode = 'ar';
   static const String enLanguageCode = 'en';
 
+  static const List<String> tabs = ['Upcoming', 'Current', 'Previous'];
   static List<NavbarItem> navBarList = [
     NavbarItem(route: HomeScreen(), icon: Icons.home_outlined, label: 'Home'),
     NavbarItem(
@@ -101,12 +102,9 @@ class ConstValueManager {
 
 class ConditionPasswordItem {
   final String text;
-   bool isValidate;
+  bool isValidate;
 
-  ConditionPasswordItem({
-    required this.text,
-    this.isValidate = false
-  });
+  ConditionPasswordItem({required this.text, this.isValidate = false});
 }
 
 class PaymentOption {
