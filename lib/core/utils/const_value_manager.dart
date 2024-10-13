@@ -32,6 +32,11 @@ class ConstValueManager {
   static const String arLanguageCode = 'ar';
   static const String enLanguageCode = 'en';
 
+  static const Map aboutUsMapText = {
+    "text":"Car Consultant is your go-to solution for all car-related needs. We connect car owners with automotive consultants to diagnose vehicle issues and schedule appointments with trusted service providers for repairs and maintenance. Our platform offers expert advice and easy booking, ensuring a seamless, transparent, and reliable car care experience. We're here to simplify car ownership and keep your vehicle running smoothly."
+  };
+
+
   static const List<String> tabs = ['Upcoming', 'Current', 'Previous'];
   static List<NavbarItem> navBarList = [
     NavbarItem(route: HomeScreen(), icon: Icons.home_outlined, label: 'Home'),

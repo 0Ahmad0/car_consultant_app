@@ -28,6 +28,7 @@ class AppTextField extends StatefulWidget {
       this.onTap,
       this.autofocus = false,
       this.readOnly = false,
+      this.isMultiLine = false,
       this.maxLine = 1,
       this.minLine = 1,
       this.hintColor = ColorManager.hintTextColor,
@@ -48,6 +49,7 @@ class AppTextField extends StatefulWidget {
   final bool autofocus;
   final bool readOnly;
   bool obscureText;
+  bool isMultiLine;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
   final VoidCallback? onTap;
@@ -87,10 +89,18 @@ class _AppTextFieldState extends State<AppTextField> {
       controller: widget.controller,
       cursorColor: ColorManager.primaryColor,
       decoration: InputDecoration(
-        focusedBorder: _borderTextFiled(),
-        border: _borderTextFiled(color: Colors.transparent),
-        enabledBorder: _borderTextFiled(color: Colors.transparent),
-        errorBorder: _borderTextFiled(color: ColorManager.errorColor),
+        focusedBorder: _borderTextFiled().copyWith(
+          borderRadius: widget.isMultiLine?BorderRadius.circular(12.r):null
+        ),
+        border: _borderTextFiled(color: Colors.transparent).copyWith(
+            borderRadius: widget.isMultiLine?BorderRadius.circular(12.r):null
+        ),
+        enabledBorder: _borderTextFiled(color: Colors.transparent).copyWith(
+            borderRadius: widget.isMultiLine?BorderRadius.circular(12.r):null
+        ),
+        errorBorder: _borderTextFiled(color: ColorManager.errorColor).copyWith(
+            borderRadius: widget.isMultiLine?BorderRadius.circular(12.r):null
+        ),
         iconColor: ColorManager.grayColor,
         filled: true,
         fillColor: ColorManager.grayColor,

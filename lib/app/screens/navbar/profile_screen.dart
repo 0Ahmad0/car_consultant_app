@@ -93,13 +93,13 @@ class ProfileScreen extends StatelessWidget {
               ),
               ProfileItemLIstTileWidget(
                 icon: Icons.question_mark,
-                title: StringManager.customerSupportText,
-                route: '',
+                title: StringManager.contactUsText,
+                route: Routes.contactUsRoute,
               ),
               ProfileItemLIstTileWidget(
                 icon: Icons.info_outlined,
                 title: StringManager.aboutText,
-                route: '',
+                route: Routes.aboutUsRoute,
               ),
             ],
           ),

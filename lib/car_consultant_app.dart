@@ -1,6 +1,7 @@
 import 'package:car_consultant/app/screens/consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/details_consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/navbar/appointments_screen.dart';
+import 'package:car_consultant/app/screens/navbar/profile_screen.dart';
 import 'package:car_consultant/app/screens/payment_invoice_screen.dart';
 import 'package:car_consultant/app/screens/payment_option_screen.dart';
 import 'package:car_consultant/app/screens/service_provider_screen.dart';
@@ -73,8 +74,8 @@ class CarConsultantApp extends StatelessWidget {
                   ConstValueManager.heightButtonSize,
                 ))),
             ),
-            home: AppointmentsScreen(),
-            // initialRoute: Routes.initialRoute,
+            // home: ProfileScreen(),
+            initialRoute: Routes.initialRoute,
             onGenerateRoute: appRouter.generateRoute,
             routes: {
               Routes.consultantServiceRoute: (_)=>ConsultantServiceScreen(),

@@ -22,6 +22,8 @@ class Routes {
   static const String educationalResourcesRoute = '/educationalResourcesScreen';
   static const String emergencyServicesRoute = '/emergencyServicesScreen';
   static const String freelanceOpportunitiesRoute = '/freelanceOpportunitiesScreen';
+  static const String aboutUsRoute = '/aboutUsScreen';
+  static const String contactUsRoute = '/contactUsScreen';
 
 
 

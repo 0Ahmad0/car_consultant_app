@@ -59,8 +59,8 @@ class StringManager {
   static const String signOutText = 'SignOut';
   static const String privacyPolicyText = 'Privacy Policy';
   static const String termsAndConditionsText = 'Terms & Conditions';
-  static const String customerSupportText = 'Customer Support';
-  static const String aboutText = 'About Me';
+  static const String contactUsText = 'Contact Us';
+  static const String aboutText = 'About Us';
 
   /// Home Screen
   static const String welcomeBackText = 'Welcome Back!';
@@ -167,6 +167,17 @@ class StringManager {
 
   static const String salaryText = 'Salary';
   static const String salaryHintText = 'Enter salary';
+
+
+  /// Message Screen
+  static const String contactUsTitleText = 'Contact us directly or use the form below';
+  static const String callusText = 'Call Us';
+  static const String emailUsText = 'Email Us';
+  static const String emailUsSubTitleText = 'Our team is available 24/7 via email';
+  static const String callusSubTitleText = 'Our team is ready24/7 for your call';
+
+
+
 
   /// Message Screen
   static const String searchMessageText = 'search Message..';

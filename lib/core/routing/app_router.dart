@@ -22,6 +22,9 @@ import 'package:car_consultant/app/screens/splash_screen.dart';
 import 'package:car_consultant/core/routing/routes.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/screens/about_us_screen.dart';
+import '../../app/screens/contact_us_screen.dart';
+
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -115,6 +118,14 @@ class AppRouter {
       case Routes.freelanceOpportunitiesRoute:
         return MaterialPageRoute(
           builder: (_) => FreelanceOpportunitiesScreen(),
+        );
+        case Routes.aboutUsRoute:
+        return MaterialPageRoute(
+          builder: (_) => AboutUsScreen(),
+        );
+        case Routes.contactUsRoute:
+        return MaterialPageRoute(
+          builder: (_) => ContactUsScreen(),
         );
       default:
         return MaterialPageRoute(
