@@ -20,7 +20,7 @@ import 'profile_controller.dart';
 import '../screens/splash_screen.dart';
 
 class AuthController extends GetxController {
-  final formKey = GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
 
   static AuthController get instance => Get.find();
 
@@ -32,6 +32,7 @@ class AuthController extends GetxController {
   final confirmPasswordController = TextEditingController();
 
   init() {
+    formKey = GlobalKey<FormState>();
     nameController.clear();
     emailController.clear();
     phoneController.clear();
@@ -176,8 +177,8 @@ class AuthController extends GetxController {
     String name = nameController.value.text;
     String email = emailController.value.text;
     String phoneNumber = phoneController.value.text;
-    String password = passwordController.value.text;
-
+    // String password = passwordController.value.text;
+    String password = confirmPasswordController.value.text;
     // String name='Ahmad Mriwed';
     // String email='mr.ahmadmriwed@gmail.com';
     // String phoneNumber='0937954969';
@@ -185,6 +186,7 @@ class AuthController extends GetxController {
     try {
       ConstantsWidgets.showLoading(context);
       // String userName = await _getUserNameByName(name);
+
       UserCredential userCredential = await auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .timeout(FirebaseFun.timeOut);
@@ -279,7 +281,7 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
-    _initPageView();
+    // _initPageView();
     passwordController.addListener(() {
       update();
     });
@@ -294,6 +296,7 @@ class AuthController extends GetxController {
     phoneController.dispose();
     passwordController.dispose();
     pageController.dispose();
+
     super.onClose();
   }
 }

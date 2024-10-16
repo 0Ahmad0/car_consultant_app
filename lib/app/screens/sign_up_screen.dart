@@ -34,13 +34,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void initState() {
      authController = Get.put(AuthController());
      authController.init();
+     s = ConstValueManager.conditionPasswordList;
+     Future.delayed(Duration(seconds: 2),(){
 
-    s = ConstValueManager.conditionPasswordList;
-    passwordController.addListener(() {
-      setState(() {
-        s = ConstValueManager.conditionPasswordList;
-      });
-    });
+       passwordController.addListener(() {
+         setState(() {
+           s = ConstValueManager.conditionPasswordList;
+         });
+       });
+     });
     super.initState();
   }
 
