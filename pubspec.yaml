@@ -36,6 +36,7 @@ dependencies:
   firebase_database:
   dotted_border:
   bcrypt: ^1.1.3
+  flutter_html: ^3.0.0-beta.2
 
 
 dev_dependencies:

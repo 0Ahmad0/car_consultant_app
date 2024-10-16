@@ -60,7 +60,6 @@ class ProfileScreen extends StatelessWidget {
                 title: StringManager.notificationText,
                 route: Routes.notificationsRoute,
               ),
-              Divider(),
               ProfileItemLIstTileWidget(
                 icon: Icons.settings_outlined,
                 title: StringManager.settingText,
@@ -69,6 +68,7 @@ class ProfileScreen extends StatelessWidget {
               ProfileItemLIstTileWidget(
                 icon: Icons.logout,
                 title: StringManager.signOutText,
+                showArrow: false,
                 onTap: () {
                   Get.lazyPut(() => AuthController());
                   AuthController.instance.signOut(context);
@@ -81,15 +81,21 @@ class ProfileScreen extends StatelessWidget {
                   // );
                 },
               ),
+              Divider(),
               ProfileItemLIstTileWidget(
                 icon: Icons.privacy_tip_outlined,
                 title: StringManager.privacyPolicyText,
-                route: '',
+                route: Routes.privacyPolicyRoute,
+              ),
+              ProfileItemLIstTileWidget(
+                icon: Icons.monetization_on_outlined,
+                title: StringManager.refundAndCancellationPolicyRouteText,
+                route: Routes.refundAndCancellationPolicyRoute,
               ),
               ProfileItemLIstTileWidget(
                 icon: Icons.document_scanner,
                 title: StringManager.termsAndConditionsText,
-                route: '',
+                route: Routes.termsAndConditionsRoute,
               ),
               ProfileItemLIstTileWidget(
                 icon: Icons.question_mark,

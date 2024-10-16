@@ -59,6 +59,7 @@ class StringManager {
   static const String signOutText = 'SignOut';
   static const String privacyPolicyText = 'Privacy Policy';
   static const String termsAndConditionsText = 'Terms & Conditions';
+  static const String refundAndCancellationPolicyRouteText = 'Refund & Cancellation Policy';
   static const String contactUsText = 'Contact Us';
   static const String aboutText = 'About Us';
 
@@ -175,6 +176,10 @@ class StringManager {
   static const String emailUsText = 'Email Us';
   static const String emailUsSubTitleText = 'Our team is available 24/7 via email';
   static const String callusSubTitleText = 'Our team is ready24/7 for your call';
+
+  ///Form Submit Text
+  static const String formSubmitText = 'Form Submitted';
+  static const String formSubmitSubTitleText = 'We’ll be in touch with you soon';
 
 
 

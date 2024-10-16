@@ -5,6 +5,7 @@ import 'package:car_consultant/app/screens/details_consultant_service_screen.dar
 import 'package:car_consultant/app/screens/educational_resources_screen.dart';
 import 'package:car_consultant/app/screens/emergency_services_screen.dart';
 import 'package:car_consultant/app/screens/forgot_password_screen.dart';
+import 'package:car_consultant/app/screens/form_submitted_successfull_screen.dart';
 import 'package:car_consultant/app/screens/freelance_opportunities_screen.dart';
 import 'package:car_consultant/app/screens/login_screen.dart';
 import 'package:car_consultant/app/screens/navbar/appointments_screen.dart';
@@ -16,9 +17,12 @@ import 'package:car_consultant/app/screens/order_details_screen.dart';
 import 'package:car_consultant/app/screens/payment_invoice_screen.dart';
 import 'package:car_consultant/app/screens/payment_option_screen.dart';
 import 'package:car_consultant/app/screens/payment_successful_screen.dart';
+import 'package:car_consultant/app/screens/privacy_policy_screen.dart';
+import 'package:car_consultant/app/screens/refund_and_cancellation_policy_screen.dart';
 import 'package:car_consultant/app/screens/service_provider_screen.dart';
 import 'package:car_consultant/app/screens/sign_up_screen.dart';
 import 'package:car_consultant/app/screens/splash_screen.dart';
+import 'package:car_consultant/app/screens/terms_and_conditions_screen.dart';
 import 'package:car_consultant/core/routing/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -126,6 +130,22 @@ class AppRouter {
         case Routes.contactUsRoute:
         return MaterialPageRoute(
           builder: (_) => ContactUsScreen(),
+        );
+        case Routes.formSubmitRoute:
+        return MaterialPageRoute(
+          builder: (_) => FormSubmittedSuccessFullScreen(),
+        );
+        case Routes.privacyPolicyRoute:
+        return MaterialPageRoute(
+          builder: (_) => PrivacyPolicyScreen(),
+        );
+        case Routes.refundAndCancellationPolicyRoute:
+        return MaterialPageRoute(
+          builder: (_) => RefundAndCancellationPolicyScreen(),
+        );
+        case Routes.termsAndConditionsRoute:
+        return MaterialPageRoute(
+          builder: (_) => TermsAndConditionsScreen(),
         );
       default:
         return MaterialPageRoute(
