@@ -12,18 +12,15 @@ class Validator {
     final RegExp digitRegExp = RegExp(r'[0-9]');
     // Contains at least one special character
     final RegExp specialCharacterRegExp = RegExp(r'[!@#%^&*(),.?":{}|<>]');
-    if (password.length < 8) {
 
-    }
 
   for(ConditionPasswordItem element in  ConstValueManager.conditionPasswordList)
     element.isValidate=false;
-
-    if (password.contains(uppercaseLetterRegExp)) {
-
+    if (password.length >= 8) {
       ConstValueManager.conditionPasswordList[0].isValidate = true;
+
     }
-    if (password.contains(lowercaseLetterRegExp)) {
+    if (password.contains(uppercaseLetterRegExp)&&password.contains(lowercaseLetterRegExp)) {
 
       ConstValueManager.conditionPasswordList[1].isValidate = true;
 

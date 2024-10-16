@@ -1,3 +1,5 @@
+import 'package:car_consultant/core/helpers/extensions.dart';
+import 'package:car_consultant/core/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,6 +19,9 @@ class AboutSectionWidget extends StatelessWidget {
       children: [
         Text(StringManager.aboutText,style: StyleManager.font16SemiBold(),),
         ListTile(
+          onTap: (){
+            context.pushNamed(Routes.personalInformationRoute);
+          },
           contentPadding: EdgeInsets.zero,
           leading: Icon(Icons.person_outline),
           title: Text(StringManager.personalInformationText),

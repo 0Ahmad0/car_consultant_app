@@ -16,14 +16,21 @@ class Routes {
   static const String reviewRoute = '/reviewScreen';
   static const String consultantServiceRoute = '/consultantServiceScreen';
   static const String serviceProviderRoute = '/serviceProviderScreen';
-  static const String detailsConsultantServiceRoute = '/detailsConsultantServiceScreen';
+  static const String detailsConsultantServiceRoute =
+      '/detailsConsultantServiceScreen';
   static const String orderDetailsRoute = '/orderDetailsScreen';
   static const String paymentSuccessfulRoute = '/paymentSuccessfulScreen';
   static const String educationalResourcesRoute = '/educationalResourcesScreen';
   static const String emergencyServicesRoute = '/emergencyServicesScreen';
-  static const String freelanceOpportunitiesRoute = '/freelanceOpportunitiesScreen';
-
-
-
-
+  static const String freelanceOpportunitiesRoute =
+      '/freelanceOpportunitiesScreen';
+  static const String aboutUsRoute = '/aboutUsScreen';
+  static const String contactUsRoute = '/contactUsScreen';
+  static const String formSubmitRoute = '/formSubmitScreen';
+  static const String refundAndCancellationPolicyRoute = '/refundAndCancellationPolicyScreen';
+  static const String termsAndConditionsRoute = '/termsAndConditionsScreen';
+  static const String privacyPolicyRoute = '/privacyPolicyScreen';
+  static const String personalInformationRoute = '/personalInformationScreen';
+  static const String settingRoute = '/settingScreen';
+  static const String changePasswordRoute = '/changePasswordScreen';
 }

@@ -8,6 +8,10 @@ class StringManager {
   static const String continueText = 'Continue';
   static const String errorText = 'Error';
   static const String noText = 'No';
+  static const String statusText = 'Status';
+  static const String scheduleText = 'Schedule';
+  static const String saveChangesText = 'Save changes';
+  static const String cancelText = 'Cancel';
 
   ///Splash Screen
   static const String splashScreenText = 'Your Car\'s Health Is Our Priority';
@@ -57,8 +61,9 @@ class StringManager {
   static const String signOutText = 'SignOut';
   static const String privacyPolicyText = 'Privacy Policy';
   static const String termsAndConditionsText = 'Terms & Conditions';
-  static const String customerSupportText = 'Customer Support';
-  static const String aboutText = 'About Me';
+  static const String refundAndCancellationPolicyRouteText = 'Refund & Cancellation Policy';
+  static const String contactUsText = 'Contact Us';
+  static const String aboutText = 'About Us';
 
   /// Home Screen
   static const String welcomeBackText = 'Welcome Back!';
@@ -165,6 +170,35 @@ class StringManager {
 
   static const String salaryText = 'Salary';
   static const String salaryHintText = 'Enter salary';
+
+
+  /// Message Screen
+  static const String contactUsTitleText = 'Contact us directly or use the form below';
+  static const String callusText = 'Call Us';
+  static const String emailUsText = 'Email Us';
+  static const String emailUsSubTitleText = 'Our team is available 24/7 via email';
+  static const String callusSubTitleText = 'Our team is ready24/7 for your call';
+
+  ///Form Submit Text
+  static const String formSubmitText = 'Form Submitted';
+  static const String formSubmitSubTitleText = 'We’ll be in touch with you soon';
+
+  /// Personal Information Screen
+  static const String changeProfilePhotoText = 'Change profile photo';
+  static const String lastNameText = 'Last name';
+  static const String emailAddressText = 'Email address';
+  static const String phoneNumberText = 'Phone number';
+  static const String dateOfBirthText = 'Date of birth';
+  static const String firstNameText = 'First name';
+
+
+  /// Setting Screen
+  static const String pushNotificationText = 'Push Notification';
+  static const String  changePasswordText= 'Change Password';
+  static const String locationText = 'Location';
+  static const String languageText = 'Language';
+
+
 
   /// Message Screen
   static const String searchMessageText = 'search Message..';
