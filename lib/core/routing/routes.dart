@@ -30,4 +30,7 @@ class Routes {
   static const String refundAndCancellationPolicyRoute = '/refundAndCancellationPolicyScreen';
   static const String termsAndConditionsRoute = '/termsAndConditionsScreen';
   static const String privacyPolicyRoute = '/privacyPolicyScreen';
+  static const String personalInformationRoute = '/personalInformationScreen';
+  static const String settingRoute = '/settingScreen';
+  static const String changePasswordRoute = '/changePasswordScreen';
 }

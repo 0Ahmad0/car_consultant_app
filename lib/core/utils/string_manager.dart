@@ -10,6 +10,8 @@ class StringManager {
   static const String noText = 'No';
   static const String statusText = 'Status';
   static const String scheduleText = 'Schedule';
+  static const String saveChangesText = 'Save changes';
+  static const String cancelText = 'Cancel';
 
   ///Splash Screen
   static const String splashScreenText = 'Your Car\'s Health Is Our Priority';
@@ -181,6 +183,20 @@ class StringManager {
   static const String formSubmitText = 'Form Submitted';
   static const String formSubmitSubTitleText = 'We’ll be in touch with you soon';
 
+  /// Personal Information Screen
+  static const String changeProfilePhotoText = 'Change profile photo';
+  static const String lastNameText = 'Last name';
+  static const String emailAddressText = 'Email address';
+  static const String phoneNumberText = 'Phone number';
+  static const String dateOfBirthText = 'Date of birth';
+  static const String firstNameText = 'First name';
+
+
+  /// Setting Screen
+  static const String pushNotificationText = 'Push Notification';
+  static const String  changePasswordText= 'Change Password';
+  static const String locationText = 'Location';
+  static const String languageText = 'Language';
 
 
 

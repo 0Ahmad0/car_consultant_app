@@ -67,9 +67,9 @@ class AppointmentsScreen extends StatelessWidget {
             ),
             ListViewPreviousStatusAppointmentsWidget(
               list: [
-                ColorAppointments.Concluded,
-                ColorAppointments.Concluded,
-                ColorAppointments.Canceled,
+                // ColorAppointments.Concluded,
+                // ColorAppointments.Concluded,
+                // ColorAppointments.Canceled,
 
               ],
               emptyListText: ConstValueManager.tabs[2],

@@ -4,6 +4,7 @@ import 'package:car_consultant/app/screens/navbar/appointments_screen.dart';
 import 'package:car_consultant/app/screens/navbar/profile_screen.dart';
 import 'package:car_consultant/app/screens/payment_invoice_screen.dart';
 import 'package:car_consultant/app/screens/payment_option_screen.dart';
+import 'package:car_consultant/app/screens/personal_information_screen.dart';
 import 'package:car_consultant/app/screens/service_provider_screen.dart';
 import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
@@ -39,49 +40,59 @@ class CarConsultantApp extends StatelessWidget {
           return GetMaterialApp(
             title: StringManager.appName,
             theme: ThemeData(
-                dividerColor: ColorManager.hintTextColor,
-                primaryColor: ColorManager.primaryColor,
-                primarySwatch: ColorManager.primaryColor.toMaterialColor(),
-                colorScheme: ColorScheme.fromSeed(
-                  seedColor: ColorManager.primaryColor,
+              dividerColor: ColorManager.hintTextColor,
+              primaryColor: ColorManager.primaryColor,
+              primarySwatch: ColorManager.primaryColor.toMaterialColor(),
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: ColorManager.primaryColor,
+              ),
+              appBarTheme: AppBarTheme(
+                centerTitle: true,
+                titleTextStyle: StyleManager.font18Medium(),
+                backgroundColor: ColorManager.whiteColor,
+                elevation: 0.0,
+              ),
+              tabBarTheme: TabBarTheme(
+                labelColor: ColorManager.whiteColor,
+                indicatorSize: TabBarIndicatorSize.tab,
+                overlayColor: MaterialStateProperty.all(
+                    ColorManager.primaryColor.withOpacity(.1)),
+                unselectedLabelColor: ColorManager.primaryColor,
+                indicator: BoxDecoration(
+                    color: ColorManager.primaryColor,
+                    borderRadius: BorderRadius.circular(8.r)),
+              ),
+              inputDecorationTheme: InputDecorationTheme(
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+                suffixIconColor: ColorManager.primaryColor,
+              ),
+              scaffoldBackgroundColor: ColorManager.whiteColor,
+              fontFamily: GoogleFonts.poppins().fontFamily,
+              outlinedButtonTheme: OutlinedButtonThemeData(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(
+                    double.maxFinite,
+                    ConstValueManager.heightButtonSize,
+                  ),
                 ),
-                appBarTheme: AppBarTheme(
-                  centerTitle: true,
-                  titleTextStyle: StyleManager.font18Medium(),
-                  backgroundColor: ColorManager.whiteColor,
-                  elevation: 0.0,
-                ),
-                tabBarTheme: TabBarTheme(
-                  labelColor: ColorManager.whiteColor,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  overlayColor: MaterialStateProperty.all(
-                      ColorManager.primaryColor.withOpacity(.1)),
-                  unselectedLabelColor: ColorManager.primaryColor,
-                  indicator: BoxDecoration(
-                      color: ColorManager.primaryColor,
-                      borderRadius: BorderRadius.circular(8.r)),
-                ),
-                inputDecorationTheme: InputDecorationTheme(
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
-                ),
-                scaffoldBackgroundColor: ColorManager.whiteColor,
-                fontFamily: GoogleFonts.poppins().fontFamily,
-                elevatedButtonTheme: ElevatedButtonThemeData(
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: Size(
-                  double.maxFinite,
-                  ConstValueManager.heightButtonSize,
-                ))),
+              ),
+              elevatedButtonTheme: ElevatedButtonThemeData(
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: Size(
+                double.maxFinite,
+                ConstValueManager.heightButtonSize,
+              ))),
             ),
-            // home: ProfileScreen(),
+            // home: AppointmentsScreen(),
             initialRoute: Routes.initialRoute,
             onGenerateRoute: appRouter.generateRoute,
             routes: {
-              Routes.consultantServiceRoute: (_)=>ConsultantServiceScreen(),
-              Routes.detailsConsultantServiceRoute: (_)=>DetailsConsultantServiceScreen(),
-              Routes.paymentOptionRoute: (_)=>PaymentOptionScreen(),
-              Routes.paymentInvoiceRoute: (_)=>PaymentInvoiceScreen(),
+              Routes.consultantServiceRoute: (_) => ConsultantServiceScreen(),
+              Routes.detailsConsultantServiceRoute: (_) =>
+                  DetailsConsultantServiceScreen(),
+              Routes.paymentOptionRoute: (_) => PaymentOptionScreen(),
+              Routes.paymentInvoiceRoute: (_) => PaymentInvoiceScreen(),
             },
           );
         });

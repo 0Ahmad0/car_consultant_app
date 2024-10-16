@@ -38,8 +38,6 @@ class ConstValueManager {
 
   static const Map refundAndCancellationPolicy= {
     "text" : """ 
-  <h2>Refund & Cancellation Policy</h2>
-  <ol>
   <li><strong>Cancellations</strong>
   <ul>
   <li>Users may cancel an appointment or service booking at least 24 hours before the scheduled time to avoid any charges.</li>
@@ -68,7 +66,6 @@ class ConstValueManager {
   <li>If a user disputes a charge, they must contact customer support through the app. All disputes will be investigated, and decisions will be made on a case-by-case basis.</li>
   </ul>
   </li>
-  </ol>
   
     """
   };

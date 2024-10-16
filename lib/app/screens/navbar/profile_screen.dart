@@ -63,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
               ProfileItemLIstTileWidget(
                 icon: Icons.settings_outlined,
                 title: StringManager.settingText,
-                route: '',
+                route: Routes.settingRoute,
               ),
               ProfileItemLIstTileWidget(
                 icon: Icons.logout,

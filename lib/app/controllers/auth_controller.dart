@@ -184,7 +184,7 @@ class AuthController extends GetxController {
     // String password='12345678';
     try {
       ConstantsWidgets.showLoading(context);
-      // String userName = await _getUserNameByName(name);
+      String userName = await _getUserNameByName(name);
       UserCredential userCredential = await auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .timeout(FirebaseFun.timeOut);
