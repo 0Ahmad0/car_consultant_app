@@ -8,6 +8,7 @@ import 'package:car_consultant/app/screens/emergency_services_screen.dart';
 import 'package:car_consultant/app/screens/forgot_password_screen.dart';
 import 'package:car_consultant/app/screens/form_submitted_successfull_screen.dart';
 import 'package:car_consultant/app/screens/freelance_opportunities_screen.dart';
+import 'package:car_consultant/app/screens/language_screen.dart';
 import 'package:car_consultant/app/screens/login_screen.dart';
 import 'package:car_consultant/app/screens/navbar/appointments_screen.dart';
 import 'package:car_consultant/app/screens/navbar/home_screen.dart';
@@ -126,30 +127,31 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => FreelanceOpportunitiesScreen(),
         );
-        case Routes.aboutUsRoute:
+      case Routes.aboutUsRoute:
         return MaterialPageRoute(
           builder: (_) => AboutUsScreen(),
         );
-        case Routes.contactUsRoute:
+      case Routes.contactUsRoute:
         return MaterialPageRoute(
           builder: (_) => ContactUsScreen(),
         );
-        case Routes.formSubmitRoute:
+      case Routes.formSubmitRoute:
         return MaterialPageRoute(
           builder: (_) => FormSubmittedSuccessFullScreen(),
         );
-        case Routes.privacyPolicyRoute:
+      case Routes.privacyPolicyRoute:
         return MaterialPageRoute(
           builder: (_) => PrivacyPolicyScreen(),
         );
-        case Routes.refundAndCancellationPolicyRoute:
+      case Routes.refundAndCancellationPolicyRoute:
         return MaterialPageRoute(
           builder: (_) => RefundAndCancellationPolicyScreen(),
         );
-        case Routes.termsAndConditionsRoute:
+      case Routes.termsAndConditionsRoute:
         return MaterialPageRoute(
           builder: (_) => TermsAndConditionsScreen(),
-        );case Routes.personalInformationRoute:
+        );
+      case Routes.personalInformationRoute:
         return MaterialPageRoute(
           builder: (_) => PersonalInformationScreen(),
         );
@@ -157,10 +159,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => SettingScreen(),
         );
-        case Routes.changePasswordRoute:
+      case Routes.changePasswordRoute:
         return MaterialPageRoute(
           builder: (_) => ChangePasswordScreen(),
         );
+      case Routes.languageRoute:
+        return MaterialPageRoute(builder: (_) => LanguageScreen());
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

@@ -13,6 +13,7 @@ class AssetsManager {
   static const emergencyServicesIMG = '$_pathImages/emergency_services.png';
   static const freelanceOpportunitiesIMG = '$_pathImages/freelance_opportunities.png';
   static const serviceProviderIMG = '$_pathImages/service_provider.png';
+  static const mailBoxIMG = '$_pathImages/mail_box.json';
 
   ///<==== Svg ====>
   static const eyePasswordIcon = '$_pathSVGs/eye.svg';

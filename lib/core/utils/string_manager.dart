@@ -64,7 +64,8 @@ class StringManager {
   static const String refundAndCancellationPolicyRouteText = 'Refund & Cancellation Policy';
   static const String contactUsText = 'Contact Us';
   static const String aboutText = 'About Us';
-
+  static const String accountSettingText = 'Account Setting';
+  static const String moreText = 'More';
   /// Home Screen
   static const String welcomeBackText = 'Welcome Back!';
   static const String whatAreYouLookingText = 'what are looking for ?';
@@ -198,6 +199,15 @@ class StringManager {
   static const String locationText = 'Location';
   static const String languageText = 'Language';
 
+
+  ///Change Password Screen
+
+  static const String currentPasswordText = 'Current password';
+  static const String enterCurrentPasswordText = 'Enter your current password';
+  static const String newPasswordText = 'New password';
+  static const String enterNewPasswordText = 'Enter your new password';
+  static const String confirmNewPasswordText = 'Confirm new password';
+  static const String enterConfirmNewPasswordText = 'Re-enter your new password';
 
 
   /// Message Screen

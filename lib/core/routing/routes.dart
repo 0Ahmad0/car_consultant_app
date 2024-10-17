@@ -33,4 +33,5 @@ class Routes {
   static const String personalInformationRoute = '/personalInformationScreen';
   static const String settingRoute = '/settingScreen';
   static const String changePasswordRoute = '/changePasswordScreen';
+  static const String languageRoute = '/languageScreen';
 }

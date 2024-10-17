@@ -23,6 +23,7 @@ class ProfileItemLIstTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      dense: true,
       onTap: route == null
           ? onTap
           : () {

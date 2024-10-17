@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../controllers/auth_controller.dart';
-import 'widgets/about_section_widget.dart';
 import 'widgets/profile_item_lIst_tile_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -43,23 +42,28 @@ class ProfileScreen extends StatelessWidget {
               ),
               //
               verticalSpace(20.h),
-              AboutSectionWidget(),
-              Divider(),
+              Text(
+                StringManager.accountSettingText,
+                style: StyleManager.font14SemiBold(
+                  color: ColorManager.hintTextColor
+                ),
+              ),
+              verticalSpace(10.h),
               ProfileItemLIstTileWidget(
-                icon: Icons.message,
-                title: StringManager.messageText,
-                route: Routes.messagesRoute,
+                icon: Icons.person_outline,
+                title: StringManager.personalInformationText,
+                route: Routes.personalInformationRoute,
               ),
               ProfileItemLIstTileWidget(
                 icon: Icons.payment,
                 title: StringManager.paymentText,
-                route: Routes.messagesRoute,
+                route: Routes.paymentOptionRoute,
               ),
-              ProfileItemLIstTileWidget(
-                icon: Icons.notifications_none,
-                title: StringManager.notificationText,
-                route: Routes.notificationsRoute,
-              ),
+              // ProfileItemLIstTileWidget(
+              //   icon: Icons.notifications_none,
+              //   title: StringManager.notificationText,
+              //   route: Routes.notificationsRoute,
+              // ),
               ProfileItemLIstTileWidget(
                 icon: Icons.settings_outlined,
                 title: StringManager.settingText,
@@ -81,7 +85,17 @@ class ProfileScreen extends StatelessWidget {
                   // );
                 },
               ),
-              Divider(),
+              Divider(
+                thickness: .5,
+              ),
+              verticalSpace(10.h),
+              Text(
+                StringManager.moreText,
+                style: StyleManager.font14SemiBold(
+                    color: ColorManager.hintTextColor
+                ),
+              ),
+              verticalSpace(10.h),
               ProfileItemLIstTileWidget(
                 icon: Icons.privacy_tip_outlined,
                 title: StringManager.privacyPolicyText,
