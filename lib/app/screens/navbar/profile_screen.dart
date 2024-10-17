@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../core/dialogs/sign_out_dialog.dart';
 import '../../controllers/auth_controller.dart';
 import 'widgets/profile_item_lIst_tile_widget.dart';
 
@@ -75,14 +76,10 @@ class ProfileScreen extends StatelessWidget {
                 showArrow: false,
                 onTap: () {
                   Get.lazyPut(() => AuthController());
-                  AuthController.instance.signOut(context);
-
-                  // showDialog(
-                  //   context: context,
-                  //   builder: (_) => Center(
-                  //     child: CircularProgressIndicator(),
-                  //   ),
-                  // );
+                  showDialog(
+                    context: context,
+                    builder: (_) => SignOutDialog(),
+                  );
                 },
               ),
               Divider(
@@ -128,3 +125,4 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
+

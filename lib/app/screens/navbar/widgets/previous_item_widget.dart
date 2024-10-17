@@ -1,5 +1,7 @@
+import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/helpers/get_color_status_appointments.dart';
 import 'package:car_consultant/core/helpers/spacing.dart';
+import 'package:car_consultant/core/routing/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -115,7 +117,9 @@ class PreviousItemWidget extends StatelessWidget {
             trailing: status == ColorAppointments.Canceled
                 ? null
                 : InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(Routes.reviewRoute);
+                    },
                     child: Image.asset(
                       AssetsManager.rateIcon,
                       height: 30.h,

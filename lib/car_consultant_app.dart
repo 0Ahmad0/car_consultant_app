@@ -1,6 +1,7 @@
 import 'package:car_consultant/app/screens/consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/details_consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/navbar/appointments_screen.dart';
+import 'package:car_consultant/app/screens/navbar/messages_screen.dart';
 import 'package:car_consultant/app/screens/navbar/profile_screen.dart';
 import 'package:car_consultant/app/screens/payment_invoice_screen.dart';
 import 'package:car_consultant/app/screens/payment_option_screen.dart';
@@ -38,6 +39,7 @@ class CarConsultantApp extends StatelessWidget {
         ),
         builder: (context, child) {
           return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
             title: StringManager.appName,
             theme: ThemeData(
               dividerColor: ColorManager.hintTextColor,
@@ -76,6 +78,13 @@ class CarConsultantApp extends StatelessWidget {
                     ConstValueManager.heightButtonSize,
                   ),
                 ),
+              ),
+              floatingActionButtonTheme: FloatingActionButtonThemeData(
+                backgroundColor: ColorManager.primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100.r),
+
+                )
               ),
               elevatedButtonTheme: ElevatedButtonThemeData(
                   style: ElevatedButton.styleFrom(

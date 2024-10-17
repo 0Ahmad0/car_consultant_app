@@ -34,4 +34,6 @@ class Routes {
   static const String settingRoute = '/settingScreen';
   static const String changePasswordRoute = '/changePasswordScreen';
   static const String languageRoute = '/languageScreen';
+  static const String aiBotRoute = '/aiBotScreen';
+  static const String chatRoute = '/chatScreen';
 }

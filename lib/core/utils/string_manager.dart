@@ -12,6 +12,8 @@ class StringManager {
   static const String scheduleText = 'Schedule';
   static const String saveChangesText = 'Save changes';
   static const String cancelText = 'Cancel';
+  static const String doYouWantToSignoutText = 'Do you want to sign out?'
+      '';
 
   ///Splash Screen
   static const String splashScreenText = 'Your Car\'s Health Is Our Priority';
@@ -61,11 +63,13 @@ class StringManager {
   static const String signOutText = 'SignOut';
   static const String privacyPolicyText = 'Privacy Policy';
   static const String termsAndConditionsText = 'Terms & Conditions';
-  static const String refundAndCancellationPolicyRouteText = 'Refund & Cancellation Policy';
+  static const String refundAndCancellationPolicyRouteText =
+      'Refund & Cancellation Policy';
   static const String contactUsText = 'Contact Us';
   static const String aboutText = 'About Us';
   static const String accountSettingText = 'Account Setting';
   static const String moreText = 'More';
+
   /// Home Screen
   static const String welcomeBackText = 'Welcome Back!';
   static const String whatAreYouLookingText = 'what are looking for ?';
@@ -84,7 +88,8 @@ class StringManager {
 
   /// Appointments Screen
   static const String appointmentsText = 'Appointments';
-  static const String currentlyYouDoNotHaveText = 'Currently you don’t have any';
+  static const String currentlyYouDoNotHaveText =
+      'Currently you don’t have any';
 
   ///Consultant Service Screen
   static const String sortByText = 'Sort By';
@@ -172,17 +177,20 @@ class StringManager {
   static const String salaryText = 'Salary';
   static const String salaryHintText = 'Enter salary';
 
-
   /// Message Screen
-  static const String contactUsTitleText = 'Contact us directly or use the form below';
+  static const String contactUsTitleText =
+      'Contact us directly or use the form below';
   static const String callusText = 'Call Us';
   static const String emailUsText = 'Email Us';
-  static const String emailUsSubTitleText = 'Our team is available 24/7 via email';
-  static const String callusSubTitleText = 'Our team is ready24/7 for your call';
+  static const String emailUsSubTitleText =
+      'Our team is available 24/7 via email';
+  static const String callusSubTitleText =
+      'Our team is ready24/7 for your call';
 
   ///Form Submit Text
   static const String formSubmitText = 'Form Submitted';
-  static const String formSubmitSubTitleText = 'We’ll be in touch with you soon';
+  static const String formSubmitSubTitleText =
+      'We’ll be in touch with you soon';
 
   /// Personal Information Screen
   static const String changeProfilePhotoText = 'Change profile photo';
@@ -192,22 +200,39 @@ class StringManager {
   static const String dateOfBirthText = 'Date of birth';
   static const String firstNameText = 'First name';
 
-
   /// Setting Screen
   static const String pushNotificationText = 'Push Notification';
-  static const String  changePasswordText= 'Change Password';
+  static const String changePasswordText = 'Change Password';
   static const String locationText = 'Location';
   static const String languageText = 'Language';
 
-
   ///Change Password Screen
-
   static const String currentPasswordText = 'Current password';
   static const String enterCurrentPasswordText = 'Enter your current password';
   static const String newPasswordText = 'New password';
   static const String enterNewPasswordText = 'Enter your new password';
   static const String confirmNewPasswordText = 'Confirm new password';
-  static const String enterConfirmNewPasswordText = 'Re-enter your new password';
+  static const String enterConfirmNewPasswordText =
+      'Re-enter your new password';
+
+  ///Language Screen
+  static const String englishUSText = 'English (US)';
+  static const String englishUKText = 'English (UK)';
+
+  /// Ai Bot Screen
+  static const String consultAiText = 'Consult ai';
+  static const String consultAiTitleText =
+      'I\'m ConsultAI, your virtual assistant';
+  static const String consultAiSubTitleText =
+      'I verify consultations to help you make the best decisions';
+
+  static const String typeMessageText ='Type a message...';
+
+  /// Review Screen
+  static const String reviewText ='Review';
+  static const String rateYourExperienceText ='Rate your experience';
+  static const String writeYourReviewText ='Write Your Review';
+  static const String pleaseEnsureYourReviewText ='Please ensure your review is honest, constructive, and respectful';
 
 
   /// Message Screen

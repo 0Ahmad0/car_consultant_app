@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/helpers/spacing.dart';
+import 'package:car_consultant/core/routing/routes.dart';
 import 'package:car_consultant/core/utils/assets_manager.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:car_consultant/core/utils/style_manager.dart';
@@ -26,10 +28,24 @@ class MessagesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(StringManager.messageText),
+      floatingActionButton: FloatingActionButton(
+        isExtended: true,
+        onPressed: () {
+          context.pushNamed(Routes.aiBotRoute);
+        },
+        child: Padding(
+          padding:  EdgeInsets.all(8.sp),
+          child: Image.asset(
+            AssetsManager.aiBotIMG,
+          ),
+        ),
       ),
-      body: false
+      appBar: AppBar(
+        title: Text(
+          StringManager.messageText,
+        ),
+      ),
+      body: true
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -60,7 +76,9 @@ class MessagesScreen extends StatelessWidget {
                       thickness: .5,
                     ),
                     itemBuilder: (context, index) => ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        context.pushNamed(Routes.chatRoute);
+                      },
                       isThreeLine: true,
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 20.h, vertical: 4.h),

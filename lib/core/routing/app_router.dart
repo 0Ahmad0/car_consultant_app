@@ -1,6 +1,8 @@
 import 'package:car_consultant/app/screens/add_new_card_screen.dart';
 import 'package:car_consultant/app/screens/change_password_screen.dart';
+import 'package:car_consultant/app/screens/chat_screen.dart';
 import 'package:car_consultant/app/screens/check_inbox_screen.dart';
+import 'package:car_consultant/app/screens/consult_ai_bot_screen.dart';
 import 'package:car_consultant/app/screens/consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/details_consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/educational_resources_screen.dart';
@@ -22,6 +24,7 @@ import 'package:car_consultant/app/screens/payment_successful_screen.dart';
 import 'package:car_consultant/app/screens/personal_information_screen.dart';
 import 'package:car_consultant/app/screens/privacy_policy_screen.dart';
 import 'package:car_consultant/app/screens/refund_and_cancellation_policy_screen.dart';
+import 'package:car_consultant/app/screens/review_screen.dart';
 import 'package:car_consultant/app/screens/service_provider_screen.dart';
 import 'package:car_consultant/app/screens/setting_screen.dart';
 import 'package:car_consultant/app/screens/sign_up_screen.dart';
@@ -164,7 +167,21 @@ class AppRouter {
           builder: (_) => ChangePasswordScreen(),
         );
       case Routes.languageRoute:
-        return MaterialPageRoute(builder: (_) => LanguageScreen());
+        return MaterialPageRoute(
+          builder: (_) => LanguageScreen(),
+        );
+      case Routes.aiBotRoute:
+        return MaterialPageRoute(
+          builder: (_) => ConsultAiBotScreen(),
+        );
+        case Routes.chatRoute:
+        return MaterialPageRoute(
+          builder: (_) => ChatScreen(),
+        );
+        case Routes.reviewRoute:
+        return MaterialPageRoute(
+          builder: (_) => ReviewScreen(),
+        );
 
       default:
         return MaterialPageRoute(

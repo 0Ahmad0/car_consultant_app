@@ -22,7 +22,7 @@ class ConstValueManager {
   static const int delayedSplash = 3;
 
   /// Button Size
-  static const double heightButtonSize = 56;
+  static const double heightButtonSize = 44;
 
   /// Length  Appointments TabBar
   static const int lengthAppointmentsTabBar = 3;

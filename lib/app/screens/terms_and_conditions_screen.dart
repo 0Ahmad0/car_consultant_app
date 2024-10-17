@@ -15,7 +15,9 @@ class TermsAndConditionsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Html(data: ConstValueManager.termsAndConditions['text'])
+            Html(
+              data: ConstValueManager.termsAndConditions['text'],
+            )
           ],
         ),
       ),

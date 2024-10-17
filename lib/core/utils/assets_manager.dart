@@ -14,6 +14,7 @@ class AssetsManager {
   static const freelanceOpportunitiesIMG = '$_pathImages/freelance_opportunities.png';
   static const serviceProviderIMG = '$_pathImages/service_provider.png';
   static const mailBoxIMG = '$_pathImages/mail_box.json';
+  static const aiBotIMG = '$_pathImages/ai_bot.png';
 
   ///<==== Svg ====>
   static const eyePasswordIcon = '$_pathSVGs/eye.svg';
@@ -23,6 +24,8 @@ class AssetsManager {
   static const masterCardIcon = '$_pathSVGs/mastercard.png';
   static const checkIcon = '$_pathSVGs/check.svg';
   static const rateIcon = '$_pathSVGs/rate_icon.png';
+  static const usFlagIcon = '$_pathSVGs/us_flag.png';
+  static const ukFlagIcon = '$_pathSVGs/uk_flag.png';
 
 
   ///<==== Json ====>
