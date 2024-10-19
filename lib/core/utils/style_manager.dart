@@ -89,6 +89,12 @@ class StyleManager {
         fontSize: 16.sp,
         fontWeight: FontWeight.w600,
       );
+  static TextStyle font18SemiBold({Color color = ColorManager.blackColor}) =>
+      TextStyle(
+        color: color,
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w600,
+      );
 
   static TextStyle font20SemiBold({Color color = ColorManager.blackColor}) =>
       TextStyle(

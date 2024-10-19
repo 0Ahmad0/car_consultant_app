@@ -1,3 +1,5 @@
+import 'package:car_consultant/app/screens/admin/admin_users_screen.dart';
+import 'package:car_consultant/app/screens/admin/admine_rquests_screen.dart';
 import 'package:car_consultant/app/screens/navbar/appointments_screen.dart';
 import 'package:car_consultant/app/screens/navbar/home_screen.dart';
 import 'package:car_consultant/app/screens/navbar/messages_screen.dart';
@@ -9,6 +11,9 @@ import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/screens/admin/admin_appointments_screen.dart';
+import '../../app/screens/admin/admin_home_screen.dart';
+import '../../app/screens/admin/admin_profile_screen.dart';
 import '../../app/widgets/select_time_widget.dart';
 
 class ConstValueManager {
@@ -226,7 +231,30 @@ class ConstValueManager {
         label: 'Notifications'),
     NavbarItem(route: ProfileScreen(), icon: Icons.person, label: 'Profile'),
   ];
+  static List<NavbarItem> adminNavBarList = [
+    NavbarItem(route: AdminHomeScreen(), icon: Icons.home_outlined, label: 'Home'),
+    NavbarItem(
+        route: AdminUsersScreen(),
+        icon: Icons.group,
+        label: 'Users'),
+    NavbarItem(
+        route: AdminAppointmentsScreen(),
+        icon: Icons.date_range_outlined,
+        label: 'Appointments'),
+    NavbarItem(
+        route: AdminRequestsScreen(),
+        icon: Icons.file_open_rounded,
+        label: 'Request'),
+    NavbarItem(route: AdminProfileScreen(), icon: Icons.person, label: 'Profile'),
+  ];
 
+
+  static List<String> adminHomeDashBoardTypes=[
+    'Users',
+    'Consultants',
+    'Service Providers',
+    'Profit',
+  ];
   static List<DateTime> dateList = [
     DateTime.now(),
     DateTime(2024, 10, 19),

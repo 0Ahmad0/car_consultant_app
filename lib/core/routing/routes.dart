@@ -36,4 +36,13 @@ class Routes {
   static const String languageRoute = '/languageScreen';
   static const String aiBotRoute = '/aiBotScreen';
   static const String chatRoute = '/chatScreen';
+
+  ///Admin Routes
+  static const String adminNavbarRoute = '/adminNavbarScreen';
+  static const String adminHomeRoute = '/adminHomeScreen';
+  static const String adminUsersRoute = '/adminUsersScreen';
+  static const String adminAppointmentsRoute = '/adminAppointmentsScreen';
+  static const String adminRequestsRoute = '/adminRequestsScreen';
+  static const String adminProfileRoute = '/adminProfileScreen';
+
 }

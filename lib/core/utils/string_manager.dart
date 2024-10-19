@@ -12,8 +12,15 @@ class StringManager {
   static const String scheduleText = 'Schedule';
   static const String saveChangesText = 'Save changes';
   static const String cancelText = 'Cancel';
-  static const String doYouWantToSignoutText = 'Do you want to sign out?'
-      '';
+  static const String doYouWantToSignoutText = 'Do you want to sign out?';
+  static const String searchText = 'Search';
+  static const String newRequestText = 'New Requests';
+  static const String newAppointmentRequestsText = 'New Appointment Requests';
+  static const String newText = 'New';
+  static const String requestsText = 'Requests';
+  static const String requestedToBeText = 'Requested To Be a';
+  static const String viewText = 'View';
+  static const String dismissText = 'Dismiss';
 
   ///Splash Screen
   static const String splashScreenText = 'Your Car\'s Health Is Our Priority';

@@ -7,6 +7,8 @@ import 'package:car_consultant/core/widgets/app_padding.dart';
 import 'package:car_consultant/core/widgets/app_textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_emoji_feedback/flutter_emoji_feedback.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ReviewScreen extends StatefulWidget {
@@ -19,7 +21,7 @@ class ReviewScreen extends StatefulWidget {
 class _ReviewScreenState extends State<ReviewScreen> {
   final rateController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-
+  int currentRating = 1;
   @override
   void dispose() {
     rateController.dispose();
@@ -47,7 +49,25 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         StringManager.rateYourExperienceText,
                         style: StyleManager.font16SemiBold(),
                       ),
-                      verticalSpace(10.h),
+                      verticalSpace(20.h),
+                      StatefulBuilder(
+                        builder: (context,rateSetState) {
+                          return EmojiFeedback(
+                            rating: currentRating,
+                            animDuration: const Duration(milliseconds: 300),
+                            curve: Curves.bounceIn
+                            ,
+                            inactiveElementScale: .75,
+                            onChanged: (value) {
+                              rateSetState((){
+                              currentRating = value!;
+
+                              });
+                            },
+
+                          );
+                        }
+                      ),
                       verticalSpace(20.h),
                       Form(
                         key: formKey,
@@ -68,7 +88,6 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         style: StyleManager.font14Regular(
                             color: ColorManager.hintTextColor),
                       ),
-
                     ],
                   ),
                 ),

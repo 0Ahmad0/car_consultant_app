@@ -1,3 +1,5 @@
+import 'package:car_consultant/app/screens/admin/admin_home_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_navbar_screen.dart';
 import 'package:car_consultant/app/screens/consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/details_consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/navbar/appointments_screen.dart';
@@ -6,6 +8,7 @@ import 'package:car_consultant/app/screens/navbar/profile_screen.dart';
 import 'package:car_consultant/app/screens/payment_invoice_screen.dart';
 import 'package:car_consultant/app/screens/payment_option_screen.dart';
 import 'package:car_consultant/app/screens/personal_information_screen.dart';
+import 'package:car_consultant/app/screens/review_screen.dart';
 import 'package:car_consultant/app/screens/service_provider_screen.dart';
 import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
@@ -93,7 +96,7 @@ class CarConsultantApp extends StatelessWidget {
                 ConstValueManager.heightButtonSize,
               ))),
             ),
-            // home: AppointmentsScreen(),
+            // home: AdminNavBarScreen(),
             initialRoute: Routes.initialRoute,
             onGenerateRoute: appRouter.generateRoute,
             routes: {
