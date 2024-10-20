@@ -7,6 +7,7 @@ import 'package:car_consultant/app/screens/admin/admin_profile_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_user_info_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_users_screen.dart';
 import 'package:car_consultant/app/screens/admin/admine_rquests_screen.dart';
+import 'package:car_consultant/app/screens/admin/request_info_screen.dart';
 import 'package:car_consultant/app/screens/change_password_screen.dart';
 import 'package:car_consultant/app/screens/chat_screen.dart';
 import 'package:car_consultant/app/screens/check_inbox_screen.dart';
@@ -221,6 +222,10 @@ class AppRouter {
       case Routes.consultantInfoRoute:
         return MaterialPageRoute(
           builder: (_) => AdminConsultantInfoScreen(),
+        );
+        case Routes.requestInfoRoute:
+        return MaterialPageRoute(
+          builder: (_) => RequestInfoScreen(),
         );
 
       default:

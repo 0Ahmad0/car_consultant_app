@@ -266,6 +266,17 @@ class StringManager {
   static const consultantInfoText = "Consultant Info";
   static const providerInfoText = "Provider Info";
   static const dateText = "Date";
+  static const requestsInfoText = "Requests Info";
+  static const userInformationText = "User Information";
+  static const applicantInformationText = "Applicant Information";
+  static const uploadedFilesText = "Uploaded Files";
+  static const rejectText = "Reject";
+  static const acceptText = "Accept";
+  static const emailText = "Email";
+  static const nameText = "Name";
+  static const phoneText = "Phone";
+  static const personalBioText = "Personal Bio";
+
 
 
 }

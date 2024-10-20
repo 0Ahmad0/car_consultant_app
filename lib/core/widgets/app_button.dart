@@ -23,23 +23,27 @@ class AppButton extends StatelessWidget {
 
 class AppOutlinedButton extends StatelessWidget {
   const AppOutlinedButton(
-      {super.key, required this.onPressed, required this.text});
+      {super.key, required this.onPressed,
+        required this.text,
+         this.color = ColorManager.primaryColor});
 
   final VoidCallback onPressed;
   final String text;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
         style: ElevatedButton.styleFrom(
           side: BorderSide(
-            color: ColorManager.primaryColor
+            color: color
           )
         ),
         onPressed: onPressed,
         child: Text(
           text,
-          style: StyleManager.font16Regular(color: ColorManager.primaryColor),
+          style: StyleManager.font16Regular(
+              color: color),
         ));
   }
 }

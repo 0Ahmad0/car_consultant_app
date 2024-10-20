@@ -26,6 +26,7 @@ class AssetsManager {
   static const rateIcon = '$_pathSVGs/rate_icon.png';
   static const usFlagIcon = '$_pathSVGs/us_flag.png';
   static const ukFlagIcon = '$_pathSVGs/uk_flag.png';
+  static const pdfIcon = '$_pathSVGs/pdf_icon.png';
 
 
   ///<==== Json ====>
