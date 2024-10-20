@@ -1,4 +1,12 @@
 import 'package:car_consultant/app/screens/add_new_card_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_appointments_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_consultant_info_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_home_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_navbar_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_profile_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_user_info_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_users_screen.dart';
+import 'package:car_consultant/app/screens/admin/admine_rquests_screen.dart';
 import 'package:car_consultant/app/screens/change_password_screen.dart';
 import 'package:car_consultant/app/screens/chat_screen.dart';
 import 'package:car_consultant/app/screens/check_inbox_screen.dart';
@@ -174,13 +182,45 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => ConsultAiBotScreen(),
         );
-        case Routes.chatRoute:
+      case Routes.chatRoute:
         return MaterialPageRoute(
           builder: (_) => ChatScreen(),
         );
-        case Routes.reviewRoute:
+      case Routes.reviewRoute:
         return MaterialPageRoute(
           builder: (_) => ReviewScreen(),
+        );
+      case Routes.adminNavbarRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminNavBarScreen(),
+        );
+      case Routes.adminHomeRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminHomeScreen(),
+        );
+      case Routes.adminUsersRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminUsersScreen(),
+        );
+      case Routes.adminAppointmentsRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminAppointmentsScreen(),
+        );
+      case Routes.adminRequestsRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminRequestsScreen(),
+        );
+      case Routes.adminProfileRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminProfileScreen(),
+        );
+      case Routes.userInfoRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminUserInfoScreen(),
+        );
+      case Routes.consultantInfoRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminConsultantInfoScreen(),
         );
 
       default:

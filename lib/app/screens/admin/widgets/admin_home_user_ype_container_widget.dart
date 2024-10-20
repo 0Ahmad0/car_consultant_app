@@ -20,6 +20,9 @@ class AdminHomeUserTypeContainerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.maxFinite,
+      margin: EdgeInsets.symmetric(
+        vertical: 10.h
+      ),
       padding: EdgeInsets.symmetric(
           horizontal: 12.w, vertical: 12.h),
       decoration: BoxDecoration(

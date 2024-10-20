@@ -5,6 +5,7 @@ import 'package:car_consultant/app/screens/navbar/home_screen.dart';
 import 'package:car_consultant/app/screens/navbar/messages_screen.dart';
 import 'package:car_consultant/app/screens/navbar/profile_screen.dart';
 import 'package:car_consultant/app/screens/navbar/notification_screen.dart';
+import 'package:car_consultant/core/helpers/get_color_status_appointments.dart';
 import 'package:car_consultant/core/routing/routes.dart';
 import 'package:car_consultant/core/utils/assets_manager.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
@@ -302,6 +303,18 @@ class ConstValueManager {
     ConditionPasswordItem(text: StringManager.condition2Text),
     ConditionPasswordItem(text: StringManager.condition3Text),
     ConditionPasswordItem(text: StringManager.condition4Text),
+  ];
+
+  static List<ColorAppointments> adminAppointmentsList = [
+    ColorAppointments.Confirmed,
+    ColorAppointments.Confirmed,
+    ColorAppointments.Concluded,
+    ColorAppointments.Confirmed,
+    ColorAppointments.Confirmed,
+    ColorAppointments.Canceled,
+    ColorAppointments.Pending,
+    ColorAppointments.Concluded,
+    ColorAppointments.Confirmed,
   ];
 }
 

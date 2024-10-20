@@ -253,4 +253,19 @@ class StringManager {
   static const message_failure = "Failure";
   static const message_successful_login = "Successful login";
   static const message_successfully_update = "Successful update";
+
+
+  ///Admin
+  static const usersText = "Users";
+  static const consultantsAndProvidersText = "Consultants & Providers";
+  static const userNameText = "User name";
+  static const infoText = "Info";
+  static const activeText = "Active";
+  static const blockedText = "Blocked";
+  static const userInfoText = "User Info";
+  static const consultantInfoText = "Consultant Info";
+  static const providerInfoText = "Provider Info";
+  static const dateText = "Date";
+
+
 }

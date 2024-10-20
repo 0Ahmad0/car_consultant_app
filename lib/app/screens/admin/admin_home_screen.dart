@@ -50,6 +50,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        verticalSpace(10.h),
                         Column(
                           children: [
                             AppSearchTextFiled(),

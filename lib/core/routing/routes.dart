@@ -44,5 +44,7 @@ class Routes {
   static const String adminAppointmentsRoute = '/adminAppointmentsScreen';
   static const String adminRequestsRoute = '/adminRequestsScreen';
   static const String adminProfileRoute = '/adminProfileScreen';
+  static const String userInfoRoute = '/userInfoScreen';
+  static const String consultantInfoRoute = '/consultantInfoScreen';
 
 }
