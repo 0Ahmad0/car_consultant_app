@@ -110,13 +110,13 @@ class AdminAppointmentsSearchBarWithDate extends StatelessWidget {
               ),
               Expanded(
                   child: Text(
-                StringManager.statusText,
-                textAlign: TextAlign.start,
-                style: StyleManager.font14SemiBold(),
-              )),
+                    StringManager.dateText,
+                    textAlign: TextAlign.start,
+                    style: StyleManager.font14SemiBold(),
+                  )),
               Expanded(
                   child: Text(
-                StringManager.dateText,
+                StringManager.statusText,
                 textAlign: TextAlign.center,
                 style: StyleManager.font14SemiBold(),
               )),

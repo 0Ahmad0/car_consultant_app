@@ -3,11 +3,14 @@ import 'package:car_consultant/app/screens/admin/admin_appointments_screen.dart'
 import 'package:car_consultant/app/screens/admin/admin_consultant_info_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_home_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_navbar_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_notification_settings_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_profile_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_user_info_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_user_registration_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_users_screen.dart';
-import 'package:car_consultant/app/screens/admin/admine_rquests_screen.dart';
-import 'package:car_consultant/app/screens/admin/request_info_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_rquests_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_payment_setting_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_request_info_screen.dart';
 import 'package:car_consultant/app/screens/change_password_screen.dart';
 import 'package:car_consultant/app/screens/chat_screen.dart';
 import 'package:car_consultant/app/screens/check_inbox_screen.dart';
@@ -226,6 +229,18 @@ class AppRouter {
         case Routes.requestInfoRoute:
         return MaterialPageRoute(
           builder: (_) => RequestInfoScreen(),
+        );
+        case Routes.paymentSettingRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminPaymentSettingScreen(),
+        );
+        case Routes.notificationSettingsRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminNotificationSettingsScreen(),
+        );
+    case Routes.userRegistrationRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminUserRegistrationScreen(),
         );
 
       default:

@@ -1,5 +1,5 @@
 import 'package:car_consultant/app/screens/admin/admin_users_screen.dart';
-import 'package:car_consultant/app/screens/admin/admine_rquests_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_rquests_screen.dart';
 import 'package:car_consultant/app/screens/navbar/appointments_screen.dart';
 import 'package:car_consultant/app/screens/navbar/home_screen.dart';
 import 'package:car_consultant/app/screens/navbar/messages_screen.dart';
@@ -39,11 +39,12 @@ class ConstValueManager {
   static const String enLanguageCode = 'en';
 
   static const Map aboutUsMapText = {
-    "text":"Car Consultant is your go-to solution for all car-related needs. We connect car owners with automotive consultants to diagnose vehicle issues and schedule appointments with trusted service providers for repairs and maintenance. Our platform offers expert advice and easy booking, ensuring a seamless, transparent, and reliable car care experience. We're here to simplify car ownership and keep your vehicle running smoothly."
+    "text":
+        "Car Consultant is your go-to solution for all car-related needs. We connect car owners with automotive consultants to diagnose vehicle issues and schedule appointments with trusted service providers for repairs and maintenance. Our platform offers expert advice and easy booking, ensuring a seamless, transparent, and reliable car care experience. We're here to simplify car ownership and keep your vehicle running smoothly."
   };
 
-  static const Map refundAndCancellationPolicy= {
-    "text" : """ 
+  static const Map refundAndCancellationPolicy = {
+    "text": """
   <li><strong>Cancellations</strong>
   <ul>
   <li>Users may cancel an appointment or service booking at least 24 hours before the scheduled time to avoid any charges.</li>
@@ -76,8 +77,8 @@ class ConstValueManager {
     """
   };
 
-  static const Map termsAndConditions= {
-    "text":"""
+  static const Map termsAndConditions = {
+    "text": """
 <ol>
   <li>
     <strong>Introduction</strong>
@@ -154,7 +155,7 @@ class ConstValueManager {
   };
 
   static const Map privacyPolicy = {
-    "text":"""
+    "text": """
      <h2>Introduction</h2>
     <p>Car Consultant values your privacy and is committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you use the Car Consultant app.</p>
     
@@ -233,11 +234,9 @@ class ConstValueManager {
     NavbarItem(route: ProfileScreen(), icon: Icons.person, label: 'Profile'),
   ];
   static List<NavbarItem> adminNavBarList = [
-    NavbarItem(route: AdminHomeScreen(), icon: Icons.home_outlined, label: 'Home'),
     NavbarItem(
-        route: AdminUsersScreen(),
-        icon: Icons.group,
-        label: 'Users'),
+        route: AdminHomeScreen(), icon: Icons.home_outlined, label: 'Home'),
+    NavbarItem(route: AdminUsersScreen(), icon: Icons.group, label: 'Users'),
     NavbarItem(
         route: AdminAppointmentsScreen(),
         icon: Icons.date_range_outlined,
@@ -246,11 +245,11 @@ class ConstValueManager {
         route: AdminRequestsScreen(),
         icon: Icons.file_open_rounded,
         label: 'Request'),
-    NavbarItem(route: AdminProfileScreen(), icon: Icons.person, label: 'Profile'),
+    NavbarItem(
+        route: AdminProfileScreen(), icon: Icons.person, label: 'Profile'),
   ];
 
-
-  static List<String> adminHomeDashBoardTypes=[
+  static List<String> adminHomeDashBoardTypes = [
     'Users',
     'Consultants',
     'Service Providers',
@@ -296,6 +295,15 @@ class ConstValueManager {
     PaymentOption(
         text: StringManager.masterCardText, icon: AssetsManager.masterCardIcon),
     PaymentOption(text: StringManager.sadadText, icon: AssetsManager.sadadIcon),
+    PaymentOption(
+        text: StringManager.payPalText, icon: AssetsManager.payPalIcon),
+  ];
+
+  static List<MandatoryRegistrationOption> mandatoryRegistrationList = [
+    MandatoryRegistrationOption(text: 'Name', isSelected: false),
+    MandatoryRegistrationOption(text: 'Email', isSelected: false),
+    MandatoryRegistrationOption(text: 'Phone Number', isSelected: false),
+    MandatoryRegistrationOption(text: 'Date of birth', isSelected: false),
   ];
 
   static List<ConditionPasswordItem> conditionPasswordList = [
@@ -328,8 +336,17 @@ class ConditionPasswordItem {
 class PaymentOption {
   final String text;
   final String icon;
+  bool isSelected;
 
-  PaymentOption({required this.text, required this.icon});
+  PaymentOption(
+      {required this.text, required this.icon, this.isSelected = false});
+}
+
+class MandatoryRegistrationOption {
+  final String text;
+  bool isSelected;
+
+  MandatoryRegistrationOption({required this.text, this.isSelected = false});
 }
 
 class NavbarItem {

@@ -133,6 +133,7 @@ class StringManager {
   static const String visaText = 'Visa';
   static const String masterCardText = 'Master card';
   static const String sadadText = 'Sadad';
+  static const String payPalText = 'Paypal';
 
   /// payment Invoice Screen
   static const String paymentInvoiceText = 'Payment Invoice';
@@ -276,6 +277,24 @@ class StringManager {
   static const nameText = "Name";
   static const phoneText = "Phone";
   static const personalBioText = "Personal Bio";
+  static const systemSettingsText = "System Settings";
+  static const paymentSettingsText = "Payment Settings";
+  static const notificationSettingsText = "Notification Settings";
+  static const userRegistrationText = "User Registration";
+  static const applicationSettingsText = "Application Settings";
+  static const paymentMethodText = "Payment Method";
+  static const commissionRateText = "Commission Rate";
+  static const paymentNotificationsText = "Payment Notifications";
+  static const sendPaymentConfirmationsText = "Send payment confirmations";
+  static const appointmentRemindersText = "Appointment Reminders";
+  static const sendAppointmentRemindersText = "Send appointment reminders";
+  static const systemAlertsText = "System Alerts";
+  static const enableSystemIssueAlertsText = "Enable system issue alerts";
+  static const paymentNotificationsSubTitleText = "Enable system issue alerts";
+  static const notifyUsersPaymentStatusText = "Notify users of payment status";
+  static const mandatoryRegistrationFieldsText = "Mandatory Registration Fields";
+  static const emailVerificationText = "Email Verification Fields";
+  static const requireEmailVerificationText = "Require email verification";
 
 
 

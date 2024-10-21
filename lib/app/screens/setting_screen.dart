@@ -44,16 +44,19 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             StatefulBuilder(
               builder: (context,locationSetState) {
-                return SwitchListTile(
-                    dense: true,
-                    title: Text(StringManager.locationText),
-                    value: locationEnableValue
-                    ,
-                    onChanged: (value){
-                      locationSetState((){
-                        locationEnableValue = value;
-                      });
-                    }
+                return Visibility(
+                  visible: true/*isAdmin => false*/,
+                  child: SwitchListTile(
+                      dense: true,
+                      title: Text(StringManager.locationText),
+                      value: locationEnableValue
+                      ,
+                      onChanged: (value){
+                        locationSetState((){
+                          locationEnableValue = value;
+                        });
+                      }
+                  ),
                 );
               }
             ),

@@ -55,7 +55,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
             Align(
               alignment: Alignment.center,
               child: CircleAvatar(
-                radius: 54.sp,
+                radius: 44.sp,
                 child: Icon(Icons.person),
               ),
             ),
@@ -66,11 +66,11 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 child: Text(
                   StringManager.changeProfilePhotoText,
                   style: StyleManager.font12Regular(
-                      color: ColorManager.primaryColor),
+                    color: ColorManager.blueColor,
+                  ),
                 ),
               ),
             ),
-            verticalSpace(20.h),
             Form(
               key: formKey,
               child: Column(
@@ -89,7 +89,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       print('object');
                     },
                   ),
-                  verticalSpace(20.h),
+                  verticalSpace(10.h),
 
                   ///
                   Text(
@@ -105,7 +105,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       print('object');
                     },
                   ),
-                  verticalSpace(20.h),
+                  verticalSpace(10.h),
 
                   ///
                   Text(
@@ -121,7 +121,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       print('object');
                     },
                   ),
-                  verticalSpace(20.h),
+                  verticalSpace(10.h),
 
                   ///
                   Text(
@@ -137,7 +137,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       print('object');
                     },
                   ),
-                  verticalSpace(20.h),
+                  verticalSpace(10.h),
 
                   ///
                   Text(
@@ -166,16 +166,14 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       },
                     );
                   }),
-                  verticalSpace(20.h),
+                  verticalSpace(10.h),
                   Row(
                     children: [
                       Flexible(
                           flex: 3,
                           child: AppButton(
                             onPressed: () {
-                              if(formKey.currentState!.validate()){
-
-                              }
+                              if (formKey.currentState!.validate()) {}
                             },
                             text: StringManager.saveChangesText,
                           )),

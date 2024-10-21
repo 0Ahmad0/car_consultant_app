@@ -47,5 +47,8 @@ class Routes {
   static const String userInfoRoute = '/userInfoScreen';
   static const String consultantInfoRoute = '/consultantInfoScreen';
   static const String requestInfoRoute = '/requestInfoScreen';
+  static const String paymentSettingRoute = '/paymentSettingScreen';
+  static const String notificationSettingsRoute = '/notificationSettingsScreen';
+  static const String userRegistrationRoute = '/userRegistrationScreen';
 
 }
