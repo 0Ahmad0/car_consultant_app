@@ -295,6 +295,16 @@ class StringManager {
   static const mandatoryRegistrationFieldsText = "Mandatory Registration Fields";
   static const emailVerificationText = "Email Verification Fields";
   static const requireEmailVerificationText = "Require email verification";
+  static const backupText = "Backup";
+  static const lastBackupInText = "Last Backup in";
+  static const dataPrivacyAndTermsText = "Data Privacy & Terms";
+  static const dataPrivacyAndTermsUpdateText = "Data Privacy & Terms Updates";
+  static const editTermsAndConditionsText = "Edit Terms and Conditions";
+  static const editTermsAndConditionsHintText = "Edit the Terms and Conditions here…";
+  static const editPrivacyPolicyText = "Edit Privacy Policy";
+  static const lastUpdateText = "Last updated on";
+  static const editPrivacyPolicyHintText = "Edit the Privacy Policy here…";
+  static const notifyUsersForDataPrivacyAndTermsUpdatesText = "Notify users for Data Privacy & Terms updates";
 
 
 

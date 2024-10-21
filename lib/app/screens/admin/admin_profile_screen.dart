@@ -101,7 +101,7 @@ class AdminProfileScreen extends StatelessWidget {
               ProfileItemLIstTileWidget(
                 icon: Icons.settings_applications_outlined,
                 title: StringManager.applicationSettingsText,
-                route: '',
+                route: Routes.applicationSettingRoute,
               ),
             ],
           ),

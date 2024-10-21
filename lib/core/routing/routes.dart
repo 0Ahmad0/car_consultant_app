@@ -50,5 +50,6 @@ class Routes {
   static const String paymentSettingRoute = '/paymentSettingScreen';
   static const String notificationSettingsRoute = '/notificationSettingsScreen';
   static const String userRegistrationRoute = '/userRegistrationScreen';
+  static const String applicationSettingRoute = '/applicationSettingScreen';
 
 }
