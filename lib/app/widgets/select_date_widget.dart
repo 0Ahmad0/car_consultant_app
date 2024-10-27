@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
@@ -24,7 +26,7 @@ class SelectDateListWidget extends StatelessWidget {
       duration: Duration(milliseconds: ConstValueManager.animationDuration),
       padding: EdgeInsets.symmetric(
         horizontal: 20.w,
-        vertical: 12.h,
+        vertical: 10.h,
       ),
       decoration: BoxDecoration(
         color: currentIndex == index
@@ -40,20 +42,24 @@ class SelectDateListWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '${DateFormat().add_EEEE().format(ConstValueManager.dateList[index])}',
-            style: StyleManager.font14Bold(
-                color: currentIndex == index
-                    ? ColorManager.primaryColor
-                    : ColorManager.blackColor),
+          FittedBox(
+            child: Text(
+              '${DateFormat().add_EEEE().format(ConstValueManager.dateList[index])}',
+              style: StyleManager.font12SemiBold(
+                  color: currentIndex == index
+                      ? ColorManager.primaryColor
+                      : ColorManager.blackColor),
+            ),
           ),
           verticalSpace(4.h),
-          Text(
-            '${DateFormat.d().format(ConstValueManager.dateList[index])}',
-            style: StyleManager.font14Bold(
-                color: currentIndex == index
-                    ? ColorManager.primaryColor
-                    : ColorManager.blackColor),
+          FittedBox(
+            child: Text(
+              '${DateFormat.d().format(ConstValueManager.dateList[index])}',
+              style: StyleManager.font12SemiBold(
+                  color: currentIndex == index
+                      ? ColorManager.primaryColor
+                      : ColorManager.blackColor),
+            ),
           ),
         ],
       ),

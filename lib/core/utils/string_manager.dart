@@ -5,6 +5,7 @@ class StringManager {
   static const String loginText = 'Login';
   static const String signUpText = 'Signup';
   static const String submitText = 'Submit';
+  static const String continueToPaymentText = 'Continue To Payment';
   static const String continueText = 'Continue';
   static const String errorText = 'Error';
   static const String deleteText = 'Delete';
@@ -86,9 +87,15 @@ class StringManager {
   static const String consultantServiceText = 'Consultant Service';
   static const String educationalResourcesText = 'Educational Resources';
   static const String emergencyServicesText = 'Emergency Services';
-  static const String freelanceOpportunitiesText = 'Freelance Opportunities';
+  static const String freelanceOpportunitiesText = 'Opportunities';
+  static const String beComeConsultantTitleText = 'Become a Consultant';
+  static const String beComeConsultantSubTitleText = 'Offer expert advice as a consultant';
+  static const String beComeProviderTitleText = 'Become a Service Provider';
+  static const String beComeProviderSubTitleText = 'Provide car services and assist Car owners';
+  static const String consultantAndServiceProviderControlPanelText = 'Consultant & Service Provider Control Panel';
+  static const String servicesControlPanelText = 'Manage appointments, services, and client communications';
   static const String serviceProviderText = 'Service Provider';
-  static const String becomeCarText = 'Become a car consultant and earn todays';
+  static const String becomeCarText = 'Become a Consultant or Service Provider and Start Earning Today';
   static const String homeText = 'Home';
 
   /// Notification Screen
@@ -324,4 +331,8 @@ class StringManager {
       """ Are you sure you want to delete user permanently.
 You can’t undo this action""";
   static const latestAppointmentsText = "Latest Appointments";
+  static const urgentServicesText = "Urgent Services";
+  static const urgentSupportTeamText = "Urgent Support Team";
+  static const getHelpSupportTeamText = "Get urgent help from our support team for emergency car issues";
+  static const becomeAText = "Become a";
 }

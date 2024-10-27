@@ -49,19 +49,21 @@ class SelectTimeListWidget extends StatelessWidget {
                 ? 1
                 : 2),
       ),
-      child: Text(
-        '${DateFormat().add_Hm().format(
-            ConstValueManager.timeList[index].fromTime)}'
-            ' - '
-            '${DateFormat().add_Hm().add_j().format(
-            ConstValueManager.timeList[index].toTime)}',
-        style: StyleManager.font14Bold(
-          color: currentIndex == index
-              ? ColorManager.primaryColor
-              : ConstValueManager.timeList[index].status ==
-              SelectTimeOrderStatus.book
-              ? ColorManager.hintTextColor
-              : ColorManager.blackColor,
+      child: FittedBox(
+        child: Text(
+          '${DateFormat().add_Hm().format(
+              ConstValueManager.timeList[index].fromTime)}'
+              ' - '
+              '${DateFormat().add_Hm().add_j().format(
+              ConstValueManager.timeList[index].toTime)}',
+          style: StyleManager.font12SemiBold(
+            color: currentIndex == index
+                ? ColorManager.primaryColor
+                : ConstValueManager.timeList[index].status ==
+                SelectTimeOrderStatus.book
+                ? ColorManager.hintTextColor
+                : ColorManager.blackColor,
+          ),
         ),
       ),
     );

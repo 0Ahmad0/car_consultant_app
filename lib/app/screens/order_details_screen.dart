@@ -115,7 +115,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             }),
             AppPaddingWidget(child: AppButton(onPressed: (){
               context.pushNamed(Routes.paymentOptionRoute);
-            }, text: StringManager.continueText + ' (${25}\$)'))
+            }, text: StringManager.continueToPaymentText ))
           ],
         ),
       ),

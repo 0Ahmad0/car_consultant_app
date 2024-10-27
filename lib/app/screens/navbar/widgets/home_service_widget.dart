@@ -26,7 +26,7 @@ class HomeServiceWidget extends StatelessWidget {
         context.pushNamed(route);
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
+        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
         width: ScreenUtil.defaultSize.width / 2,
         decoration: BoxDecoration(
             color: ColorManager.whiteColor,

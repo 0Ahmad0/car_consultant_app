@@ -39,7 +39,7 @@ class ServiceProviderWidget extends StatelessWidget {
                     color: ColorManager.primaryColor,
                     borderRadius: BorderRadius.circular(8.r)),
                 child: Image.asset(
-                  AssetsManager.consultantServiceIMG,
+                  AssetsManager.providerIMG,
                   width: 100.w,
                 ),
               ),
@@ -72,7 +72,7 @@ class ServiceProviderWidget extends StatelessWidget {
                 verticalSpace(10.h),
                 Flexible(
                   child: Text(
-                    'Consultant ${index + 1}',
+                    'Service Provider ${index + 1}',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: StyleManager.font14Bold(),

@@ -25,11 +25,11 @@ class HomeServiceFullWidthWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(12.r),
-      onTap: () {
+      onTap: route.isNotEmpty ? () {
         context.pushNamed(route);
-      },
+      }:null,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         width: double.maxFinite,
         decoration: BoxDecoration(
             color: ColorManager.whiteColor,
@@ -45,10 +45,18 @@ class HomeServiceFullWidthWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(
-              image,
-              width: 50.w,
-              height: 50.h,
+
+            CircleAvatar(
+              backgroundColor: ColorManager.primaryColor,
+              radius: 30.sp,
+              child: Padding(
+                padding: EdgeInsets.all(10.sp),
+                child: Image.asset(
+                  image,
+                  width: 50.w,
+                  height: 50.h,
+                ),
+              ),
             ),
             horizontalSpace(14.w),
             Flexible(

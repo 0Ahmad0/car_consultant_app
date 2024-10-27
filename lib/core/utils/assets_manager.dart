@@ -11,12 +11,14 @@ class AssetsManager {
   static const consultantServiceIMG = '$_pathImages/consultant_service.png';
   static const educationalResourcesIMG = '$_pathImages/educational_resources.png';
   static const emergencyServicesIMG = '$_pathImages/emergency_services.png';
-  static const freelanceOpportunitiesIMG = '$_pathImages/freelance_opportunities.png';
+  static const opportunitiesIMG = '$_pathImages/freelance_opportunities.png';
+  static const controlPanelIMG = '$_pathImages/control_panel.png';
   static const serviceProviderIMG = '$_pathImages/service_provider.png';
   static const mailBoxIMG = '$_pathImages/mail_box.json';
   static const aiBotIMG = '$_pathImages/ai_bot.png';
   static const consultIMG = '$_pathImages/consult.png';
   static const providerIMG = '$_pathImages/provider.png';
+  static const supportIMG = '$_pathImages/support.png';
 
   ///<==== Svg ====>
   static const eyePasswordIcon = '$_pathSVGs/eye.svg';

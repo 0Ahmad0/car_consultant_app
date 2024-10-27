@@ -54,38 +54,40 @@ class HomeScreen extends StatelessWidget {
                               color: ColorManager.hintTextColor),
                         ),
                         verticalSpace(10.h),
-    GetBuilder<ProfileController>(
-   init: Get.put(ProfileController()),
-    builder: (controller) {
-                       return Text(
-                         controller.currentUser.value?.name??  'User Name',
-                          style: StyleManager.font16Regular(),
-                        );}),
+                        GetBuilder<ProfileController>(
+                            init: Get.put(ProfileController()),
+                            builder: (controller) {
+                              return Text(
+                                controller.currentUser.value?.name ??
+                                    'User Name',
+                                style: StyleManager.font16Regular(),
+                              );
+                            }),
                       ],
                     ),
                   )
                 ],
               ),
               verticalSpace(20.h),
-              TextField(
-                onSubmitted: (value) {
-                  log('${value}');
-                },
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: ColorManager.grayColor,
-                    border: _borderTextFiled(),
-                    focusedBorder:
-                        _borderTextFiled(color: ColorManager.primaryColor),
-                    enabledBorder:
-                        _borderTextFiled(color: ColorManager.hintTextColor),
-                    hintText: StringManager.whatAreYouLookingText,
-                    prefixIcon: IconButton(
-                      icon: Icon(Icons.search),
-                      onPressed: () {},
-                    )),
-              ),
-              verticalSpace(20.h),
+              // TextField(
+              //   onSubmitted: (value) {
+              //     log('${value}');
+              //   },
+              //   decoration: InputDecoration(
+              //       filled: true,
+              //       fillColor: ColorManager.grayColor,
+              //       border: _borderTextFiled(),
+              //       focusedBorder:
+              //           _borderTextFiled(color: ColorManager.primaryColor),
+              //       enabledBorder:
+              //           _borderTextFiled(color: ColorManager.hintTextColor),
+              //       hintText: StringManager.whatAreYouLookingText,
+              //       prefixIcon: IconButton(
+              //         icon: Icon(Icons.search),
+              //         onPressed: () {},
+              //       )),
+              // ),
+              // verticalSpace(20.h),
               Text(
                 StringManager.servicesText,
                 style: StyleManager.font20SemiBold(),
@@ -118,7 +120,6 @@ class HomeScreen extends StatelessWidget {
                       image: AssetsManager.educationalResourcesIMG,
                       text: StringManager.educationalResourcesText,
                       route: Routes.educationalResourcesRoute,
-
                     ),
                   ),
                   horizontalSpace(28.w),
@@ -133,10 +134,17 @@ class HomeScreen extends StatelessWidget {
               ),
               verticalSpace(20.h),
               HomeServiceFullWidthWidget(
-                image: AssetsManager.freelanceOpportunitiesIMG,
+                image: AssetsManager.opportunitiesIMG,
                 title: StringManager.freelanceOpportunitiesText,
                 subTitle: StringManager.becomeCarText,
-                route: Routes.freelanceOpportunitiesRoute,
+                route: Routes.opportunitiesRoute,
+              ),
+              verticalSpace(20.h),
+              HomeServiceFullWidthWidget(
+                image: AssetsManager.controlPanelIMG,
+                title: StringManager.consultantAndServiceProviderControlPanelText,
+                subTitle: StringManager.servicesControlPanelText,
+                route: '',
               ),
             ],
           ),

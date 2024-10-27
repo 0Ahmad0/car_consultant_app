@@ -4,11 +4,17 @@ import 'package:car_consultant/app/screens/admin/admin_home_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_navbar_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_user_info_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_users_screen.dart';
+import 'package:car_consultant/app/screens/become_service_provider_screen.dart';
 import 'package:car_consultant/app/screens/consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/details_consultant_service_screen.dart';
+import 'package:car_consultant/app/screens/emergency_services_screen.dart';
 import 'package:car_consultant/app/screens/navbar/appointments_screen.dart';
+import 'package:car_consultant/app/screens/navbar/home_screen.dart';
 import 'package:car_consultant/app/screens/navbar/messages_screen.dart';
+import 'package:car_consultant/app/screens/navbar/navbar_screen.dart';
 import 'package:car_consultant/app/screens/navbar/profile_screen.dart';
+import 'package:car_consultant/app/screens/opportunities_screen.dart';
+import 'package:car_consultant/app/screens/order_details_screen.dart';
 import 'package:car_consultant/app/screens/payment_invoice_screen.dart';
 import 'package:car_consultant/app/screens/payment_option_screen.dart';
 import 'package:car_consultant/app/screens/personal_information_screen.dart';
@@ -100,7 +106,7 @@ class CarConsultantApp extends StatelessWidget {
                 ConstValueManager.heightButtonSize,
               ))),
             ),
-            home: AdminNavBarScreen(),
+            home: NavbarScreen(),
             // initialRoute: Routes.initialRoute,
             onGenerateRoute: appRouter.generateRoute,
             routes: {
@@ -113,6 +119,8 @@ class CarConsultantApp extends StatelessWidget {
               Routes.adminAppointmentsInfoRoute: (_) => AdminAppointmentsInfoScreen(),
               Routes.adminUsersRoute: (_) => AdminUsersScreen(),
               Routes.adminUserInfoRoute: (_) => AdminUserInfoScreen(),
+              Routes.becomeRouts: (_) => BecomeScreen(),
+              Routes.opportunitiesRoute: (_) => OpportunitiesScreen(),
 
             },
           );

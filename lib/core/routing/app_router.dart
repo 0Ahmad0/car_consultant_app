@@ -14,6 +14,7 @@ import 'package:car_consultant/app/screens/admin/admin_users_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_rquests_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_payment_setting_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_request_info_screen.dart';
+import 'package:car_consultant/app/screens/become_service_provider_screen.dart';
 import 'package:car_consultant/app/screens/change_password_screen.dart';
 import 'package:car_consultant/app/screens/chat_screen.dart';
 import 'package:car_consultant/app/screens/check_inbox_screen.dart';
@@ -24,7 +25,7 @@ import 'package:car_consultant/app/screens/educational_resources_screen.dart';
 import 'package:car_consultant/app/screens/emergency_services_screen.dart';
 import 'package:car_consultant/app/screens/forgot_password_screen.dart';
 import 'package:car_consultant/app/screens/form_submitted_successfull_screen.dart';
-import 'package:car_consultant/app/screens/freelance_opportunities_screen.dart';
+import 'package:car_consultant/app/screens/opportunities_screen.dart';
 import 'package:car_consultant/app/screens/language_screen.dart';
 import 'package:car_consultant/app/screens/login_screen.dart';
 import 'package:car_consultant/app/screens/navbar/appointments_screen.dart';
@@ -141,9 +142,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => EmergencyServicesScreen(),
         );
-      case Routes.freelanceOpportunitiesRoute:
+      case Routes.opportunitiesRoute:
         return MaterialPageRoute(
-          builder: (_) => FreelanceOpportunitiesScreen(),
+          builder: (_) => OpportunitiesScreen(),
+        );
+        case Routes.becomeRouts:
+        return MaterialPageRoute(
+          builder: (_) => BecomeScreen(),
         );
       case Routes.aboutUsRoute:
         return MaterialPageRoute(
