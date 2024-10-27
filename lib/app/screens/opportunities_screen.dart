@@ -34,30 +34,18 @@ class OpportunitiesScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            InkWell(
-              onTap: (){
-                context.pushNamed(Routes.becomeRouts,arguments: {
-                  "text" : "Consult"
-                });
-              },
-              child: HomeServiceFullWidthWidget(
-                image: AssetsManager.consultIMG,
-                title: StringManager.beComeConsultantTitleText,
-                subTitle: StringManager.beComeConsultantSubTitleText,
-              ),
+            HomeServiceFullWidthWidget(
+              image: AssetsManager.consultIMG,
+              title: StringManager.beComeConsultantTitleText,
+              subTitle: StringManager.beComeConsultantSubTitleText,
+              route: Routes.becomeConsultRouts,
             ),
             verticalSpace(30.h),
-            InkWell(
-              onTap: (){
-                context.pushNamed(Routes.becomeRouts,arguments: {
-                  "text" : "Service Provider"
-                });
-              },
-              child: HomeServiceFullWidthWidget(
-                image: AssetsManager.providerIMG,
-                title: StringManager.beComeProviderTitleText,
-                subTitle: StringManager.beComeProviderSubTitleText,
-              ),
+            HomeServiceFullWidthWidget(
+              image: AssetsManager.providerIMG,
+              title: StringManager.beComeProviderTitleText,
+              subTitle: StringManager.beComeProviderSubTitleText,
+              route: Routes.becomeServiceProviderRouts,
             ),
           ],
         ),

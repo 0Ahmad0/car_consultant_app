@@ -17,35 +17,21 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../core/utils/string_manager.dart';
 
-class BecomeScreen extends StatefulWidget {
-  const BecomeScreen({super.key});
+class BecomeServiceProviderScreen extends StatefulWidget {
+  const BecomeServiceProviderScreen({super.key});
 
   @override
-  State<BecomeScreen> createState() => _BecomeScreenState();
+  State<BecomeServiceProviderScreen> createState() => _BecomeServiceProviderScreenState();
 }
 
-class _BecomeScreenState extends State<BecomeScreen> {
-  List<File>? files;
-
-  _pickFiles() async {
-    FilePickerResult? result =
-    await FilePicker.platform.pickFiles(allowMultiple: true);
-    if (result != null) {
-      files = result.paths.map((path) => File(path!)).toList();
-      setState(() {});
-    } else {
-      // User canceled the picker
-    }
-  }
+class _BecomeServiceProviderScreenState extends State<BecomeServiceProviderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final args =
-    ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(StringManager.becomeAText + " " + args['text']),
+        title: Text(StringManager.becomeAServiceProviderText ),
       ),
       body: SingleChildScrollView(
         child: AppPaddingWidget(
@@ -62,7 +48,16 @@ class _BecomeScreenState extends State<BecomeScreen> {
               ),
               verticalSpace(20.h),
               Text(
-                StringManager.tellUsText,
+                StringManager.workshopNameText,
+                style: StyleManager.font16SemiBold(),
+              ),
+              verticalSpace(10.h),
+              AppTextField(
+                hintText: StringManager.workshopNameHintText,
+              ),
+              verticalSpace(20.h),
+              Text(
+                StringManager.tellAboutYourWorkShopText,
                 style: StyleManager.font16SemiBold(),
               ),
               verticalSpace(10.h),
@@ -94,98 +89,6 @@ class _BecomeScreenState extends State<BecomeScreen> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InkWell(
-                      borderRadius: BorderRadius.circular(8.r),
-                      onTap: () {
-                        _pickFiles();
-                      },
-                      child: DottedBorder(
-                        radius: Radius.circular(8.r),
-                        dashPattern: [0, 3, 3],
-                        strokeWidth: 2.sp,
-                        color: ColorManager.hintTextColor,
-                        borderType: BorderType.RRect,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20.w, vertical: 20.h),
-                        child: SizedBox(
-                          width: double.maxFinite,
-                          child: Center(
-                            child: Text(
-                              StringManager.clickToUploadFilesText,
-                              textAlign: TextAlign.center,
-                              style: StyleManager.font14Regular(
-                                  color: ColorManager.hintTextColor),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Visibility(
-                      visible: files?.isNotEmpty ?? false,
-                      child: Column(
-                        children: [
-                          verticalSpace(10.h),
-                          SizedBox(
-                            width: double.maxFinite,
-                            height: 60.h,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) => FadeIn(
-                                key: UniqueKey(),
-                                child: Stack(
-                                  alignment: Alignment.topRight,
-                                  children: [
-                                    Container(
-                                      width: 50.w,
-                                      height: 50.h,
-                                      alignment: Alignment.center,
-                                      margin: EdgeInsets.symmetric(
-                                        horizontal: 4.w,
-                                      ),
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 8.w,
-                                        vertical: 8.h,
-                                      ),
-                                      decoration: BoxDecoration(
-                                          color: ColorManager.primaryColor,
-                                          borderRadius:
-                                          BorderRadius.circular(4.r)),
-                                      child: Text(
-                                        index.toString(),
-                                        style: StyleManager.font12Medium(
-                                            color: ColorManager.whiteColor),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 0,
-                                      right: 0,
-                                      child: InkWell(
-                                          onTap: () {
-                                            uploadFilesSetState(() {
-                                              files!.removeAt(index);
-                                            });
-                                          },
-                                          child: CircleAvatar(
-                                            radius: 10.sp,
-                                            backgroundColor:
-                                            ColorManager.errorColor,
-                                            child: Icon(
-                                              Icons.close,
-                                              color: ColorManager.whiteColor,
-                                              size: 10.sp,
-                                            ),
-                                          )),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              itemCount: files?.length ?? 0,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    verticalSpace(20.h),
                     Container(
                       width: double.maxFinite,
                       padding: EdgeInsets.symmetric(
@@ -208,7 +111,7 @@ class _BecomeScreenState extends State<BecomeScreen> {
                             children: [
                               Checkbox(value: true, onChanged: (Value) {}),
                               horizontalSpace(8.w),
-                              Text(StringManager.categoryConsultantText)
+                              Text(StringManager.categoryRepairServicesText)
                             ],
                           ),
                           verticalSpace(10.h),
@@ -216,7 +119,7 @@ class _BecomeScreenState extends State<BecomeScreen> {
                             children: [
                               Checkbox(value: false, onChanged: (Value) {}),
                               horizontalSpace(8.w),
-                              Text(StringManager.categoryEmergencyText)
+                              Text(StringManager.categoryInspectionAndDiagnosticsText)
                             ],
                           ),
                         ],
@@ -224,12 +127,12 @@ class _BecomeScreenState extends State<BecomeScreen> {
                     ),
                     verticalSpace(20.h),
                     Text(
-                      StringManager.salaryText,
+                      StringManager.locationText,
                       style: StyleManager.font16SemiBold(),
                     ),
                     verticalSpace(10.h),
                     AppTextField(
-                      hintText: StringManager.salaryHintText,
+                      hintText: StringManager.enterYourLocationText,
                       keyboardType: TextInputType.numberWithOptions(),
                     ),
                     verticalSpace(20.h),

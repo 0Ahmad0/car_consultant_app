@@ -182,6 +182,7 @@ class StringManager {
   static const String name = 'Name';
   static const String enterNameHint = 'Name';
   static const String tellUsText = 'Tell us about your Self';
+  static const String tellAboutYourWorkShopText = 'Tell us about your Workshop';
   static const String tellUsHintText = 'Description';
   static const String tellUsHelperText = 'At least 300 characters';
   static const String uploadFilesText = 'Upload files';
@@ -191,8 +192,8 @@ class StringManager {
   static const String categoryConsultantText = 'Consultant';
   static const String categoryEmergencyText = 'Emergency Consultant';
 
-  static const String salaryText = 'Salary';
-  static const String salaryHintText = 'Enter salary';
+  static const String consultationFeeText = 'Consultation Fee';
+  static const String consultationFeeHintText = 'Enter Your Consultation Fee';
 
   /// Message Screen
   static const String contactUsTitleText =
@@ -334,5 +335,11 @@ You can’t undo this action""";
   static const urgentServicesText = "Urgent Services";
   static const urgentSupportTeamText = "Urgent Support Team";
   static const getHelpSupportTeamText = "Get urgent help from our support team for emergency car issues";
-  static const becomeAText = "Become a";
+  static const becomeAConsultText = "Become a Consult";
+  static const becomeAServiceProviderText = "Become a ServiceProvider";
+  static const workshopNameText = "Workshop Name";
+  static const workshopNameHintText = "Enter Your Workshop Name";
+  static const categoryRepairServicesText = "Repair Services";
+  static const categoryInspectionAndDiagnosticsText = "Inspection & Diagnostics";
+  static const enterYourLocationText = "Enter Your Workshop Location";
 }

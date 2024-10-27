@@ -14,6 +14,7 @@ import 'package:car_consultant/app/screens/admin/admin_users_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_rquests_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_payment_setting_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_request_info_screen.dart';
+import 'package:car_consultant/app/screens/become_consultant_screen.dart';
 import 'package:car_consultant/app/screens/become_service_provider_screen.dart';
 import 'package:car_consultant/app/screens/change_password_screen.dart';
 import 'package:car_consultant/app/screens/chat_screen.dart';
@@ -146,9 +147,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => OpportunitiesScreen(),
         );
-        case Routes.becomeRouts:
+        case Routes.becomeConsultRouts:
         return MaterialPageRoute(
-          builder: (_) => BecomeScreen(),
+          builder: (_) => BecomeConsultScreen(),
+        );
+        case Routes.becomeServiceProviderRouts:
+        return MaterialPageRoute(
+          builder: (_) => BecomeServiceProviderScreen(),
         );
       case Routes.aboutUsRoute:
         return MaterialPageRoute(

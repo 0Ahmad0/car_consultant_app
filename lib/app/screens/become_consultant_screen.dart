@@ -17,14 +17,14 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../core/utils/string_manager.dart';
 
-class BecomeScreen extends StatefulWidget {
-  const BecomeScreen({super.key});
+class BecomeConsultScreen extends StatefulWidget {
+  const BecomeConsultScreen({super.key});
 
   @override
-  State<BecomeScreen> createState() => _BecomeScreenState();
+  State<BecomeConsultScreen> createState() => _BecomeConsultScreenState();
 }
 
-class _BecomeScreenState extends State<BecomeScreen> {
+class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
   List<File>? files;
 
   _pickFiles() async {
@@ -40,12 +40,9 @@ class _BecomeScreenState extends State<BecomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final args =
-    ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(StringManager.becomeAText + " " + args['text']),
+        title: Text(StringManager.becomeAConsultText),
       ),
       body: SingleChildScrollView(
         child: AppPaddingWidget(
@@ -224,12 +221,12 @@ class _BecomeScreenState extends State<BecomeScreen> {
                     ),
                     verticalSpace(20.h),
                     Text(
-                      StringManager.salaryText,
+                      StringManager.consultationFeeText,
                       style: StyleManager.font16SemiBold(),
                     ),
                     verticalSpace(10.h),
                     AppTextField(
-                      hintText: StringManager.salaryHintText,
+                      hintText: StringManager.consultationFeeHintText,
                       keyboardType: TextInputType.numberWithOptions(),
                     ),
                     verticalSpace(20.h),
