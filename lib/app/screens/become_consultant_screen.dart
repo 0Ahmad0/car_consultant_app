@@ -17,21 +17,19 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../core/utils/string_manager.dart';
 
-class FreelanceOpportunitiesScreen extends StatefulWidget {
-  const FreelanceOpportunitiesScreen({super.key});
+class BecomeScreen extends StatefulWidget {
+  const BecomeScreen({super.key});
 
   @override
-  State<FreelanceOpportunitiesScreen> createState() =>
-      _FreelanceOpportunitiesScreenState();
+  State<BecomeScreen> createState() => _BecomeScreenState();
 }
 
-class _FreelanceOpportunitiesScreenState
-    extends State<FreelanceOpportunitiesScreen> {
+class _BecomeScreenState extends State<BecomeScreen> {
   List<File>? files;
 
   _pickFiles() async {
     FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowMultiple: true);
+    await FilePicker.platform.pickFiles(allowMultiple: true);
     if (result != null) {
       files = result.paths.map((path) => File(path!)).toList();
       setState(() {});
@@ -42,9 +40,12 @@ class _FreelanceOpportunitiesScreenState
 
   @override
   Widget build(BuildContext context) {
+    final args =
+    ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(StringManager.freelanceOpportunitiesText),
+        title: Text(StringManager.becomeAText + " " + args['text']),
       ),
       body: SingleChildScrollView(
         child: AppPaddingWidget(
@@ -148,7 +149,7 @@ class _FreelanceOpportunitiesScreenState
                                       decoration: BoxDecoration(
                                           color: ColorManager.primaryColor,
                                           borderRadius:
-                                              BorderRadius.circular(4.r)),
+                                          BorderRadius.circular(4.r)),
                                       child: Text(
                                         index.toString(),
                                         style: StyleManager.font12Medium(
@@ -167,7 +168,7 @@ class _FreelanceOpportunitiesScreenState
                                           child: CircleAvatar(
                                             radius: 10.sp,
                                             backgroundColor:
-                                                ColorManager.errorColor,
+                                            ColorManager.errorColor,
                                             child: Icon(
                                               Icons.close,
                                               color: ColorManager.whiteColor,
