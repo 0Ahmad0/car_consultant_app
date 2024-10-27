@@ -106,8 +106,8 @@ class CarConsultantApp extends StatelessWidget {
                 ConstValueManager.heightButtonSize,
               ))),
             ),
-            home: NavbarScreen(),
-            // initialRoute: Routes.initialRoute,
+            // home: NavbarScreen(),
+            initialRoute: Routes.initialRoute,
             onGenerateRoute: appRouter.generateRoute,
             routes: {
               Routes.consultantServiceRoute: (_) => ConsultantServiceScreen(),
