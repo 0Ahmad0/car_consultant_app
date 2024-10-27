@@ -15,6 +15,8 @@ class AssetsManager {
   static const serviceProviderIMG = '$_pathImages/service_provider.png';
   static const mailBoxIMG = '$_pathImages/mail_box.json';
   static const aiBotIMG = '$_pathImages/ai_bot.png';
+  static const consultIMG = '$_pathImages/consult.png';
+  static const providerIMG = '$_pathImages/provider.png';
 
   ///<==== Svg ====>
   static const eyePasswordIcon = '$_pathSVGs/eye.svg';

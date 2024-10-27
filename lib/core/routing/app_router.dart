@@ -1,5 +1,6 @@
 import 'package:car_consultant/app/screens/add_new_card_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_application_setting_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_appointments_info_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_appointments_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_consultant_info_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_home_screen.dart';
@@ -246,6 +247,10 @@ class AppRouter {
       case Routes.applicationSettingRoute:
         return MaterialPageRoute(
           builder: (_) => AdminApplicationSettingScreen(),
+        );
+      case Routes.adminAppointmentsInfoRoute:
+        return MaterialPageRoute(
+          builder: (_) => AdminAppointmentsInfoScreen(),
         );
 
       default:

@@ -7,6 +7,7 @@ class StringManager {
   static const String submitText = 'Submit';
   static const String continueText = 'Continue';
   static const String errorText = 'Error';
+  static const String deleteText = 'Delete';
   static const String noText = 'No';
   static const String statusText = 'Status';
   static const String scheduleText = 'Schedule';
@@ -234,14 +235,14 @@ class StringManager {
   static const String consultAiSubTitleText =
       'I verify consultations to help you make the best decisions';
 
-  static const String typeMessageText ='Type a message...';
+  static const String typeMessageText = 'Type a message...';
 
   /// Review Screen
-  static const String reviewText ='Review';
-  static const String rateYourExperienceText ='Rate your experience';
-  static const String writeYourReviewText ='Write Your Review';
-  static const String pleaseEnsureYourReviewText ='Please ensure your review is honest, constructive, and respectful';
-
+  static const String reviewText = 'Review';
+  static const String rateYourExperienceText = 'Rate your experience';
+  static const String writeYourReviewText = 'Write Your Review';
+  static const String pleaseEnsureYourReviewText =
+      'Please ensure your review is honest, constructive, and respectful';
 
   /// Message Screen
   static const String searchMessageText = 'search Message..';
@@ -254,7 +255,6 @@ class StringManager {
   static const message_failure = "Failure";
   static const message_successful_login = "Successful login";
   static const message_successfully_update = "Successful update";
-
 
   ///Admin
   static const usersText = "Users";
@@ -292,7 +292,8 @@ class StringManager {
   static const enableSystemIssueAlertsText = "Enable system issue alerts";
   static const paymentNotificationsSubTitleText = "Enable system issue alerts";
   static const notifyUsersPaymentStatusText = "Notify users of payment status";
-  static const mandatoryRegistrationFieldsText = "Mandatory Registration Fields";
+  static const mandatoryRegistrationFieldsText =
+      "Mandatory Registration Fields";
   static const emailVerificationText = "Email Verification Fields";
   static const requireEmailVerificationText = "Require email verification";
   static const backupText = "Backup";
@@ -300,12 +301,25 @@ class StringManager {
   static const dataPrivacyAndTermsText = "Data Privacy & Terms";
   static const dataPrivacyAndTermsUpdateText = "Data Privacy & Terms Updates";
   static const editTermsAndConditionsText = "Edit Terms and Conditions";
-  static const editTermsAndConditionsHintText = "Edit the Terms and Conditions here…";
+  static const editTermsAndConditionsHintText =
+      "Edit the Terms and Conditions here…";
   static const editPrivacyPolicyText = "Edit Privacy Policy";
   static const lastUpdateText = "Last updated on";
   static const editPrivacyPolicyHintText = "Edit the Privacy Policy here…";
-  static const notifyUsersForDataPrivacyAndTermsUpdatesText = "Notify users for Data Privacy & Terms updates";
-
-
-
+  static const notifyUsersForDataPrivacyAndTermsUpdatesText =
+      "Notify users for Data Privacy & Terms updates";
+  static const appointmentInfoText = "Appointment info";
+  static const appointmentInformationText = "Appointment Information";
+  static const appointmentSetByText = "Appointment Set By";
+  static const appointmentSetWithText = "Appointment Set With";
+  static const confirmPaymentText = "Confirm Payment";
+  static const timeText = "Time";
+  static const typeText = "Type";
+  static const moreInformationText = "More Information";
+  static const createdText = "Created";
+  static const appointmentRatingText = "Appointment Rating";
+  static const deleteUserText = "Delete User";
+  static const areYouSureDeleteUSerText =
+      """ Are you sure you want to delete user permanently.
+You can’t undo this action""";
 }

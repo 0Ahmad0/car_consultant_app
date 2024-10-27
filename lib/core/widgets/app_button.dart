@@ -3,16 +3,21 @@ import 'package:car_consultant/core/utils/style_manager.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton({super.key, required this.onPressed, required this.text});
+  const AppButton(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      this.color = ColorManager.primaryColor});
 
   final VoidCallback onPressed;
   final String text;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-            backgroundColor: ColorManager.primaryColor),
+            backgroundColor: color),
         onPressed: onPressed,
         child: Text(
           text,
@@ -23,9 +28,10 @@ class AppButton extends StatelessWidget {
 
 class AppOutlinedButton extends StatelessWidget {
   const AppOutlinedButton(
-      {super.key, required this.onPressed,
-        required this.text,
-         this.color = ColorManager.primaryColor});
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      this.color = ColorManager.primaryColor});
 
   final VoidCallback onPressed;
   final String text;
@@ -34,16 +40,11 @@ class AppOutlinedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-        style: ElevatedButton.styleFrom(
-          side: BorderSide(
-            color: color
-          )
-        ),
+        style: ElevatedButton.styleFrom(side: BorderSide(color: color)),
         onPressed: onPressed,
         child: Text(
           text,
-          style: StyleManager.font16Regular(
-              color: color),
+          style: StyleManager.font16Regular(color: color),
         ));
   }
 }

@@ -1,3 +1,5 @@
+import 'package:car_consultant/core/helpers/extensions.dart';
+import 'package:car_consultant/core/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,7 +24,10 @@ class AppointmentsAdminWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        context.pushNamed(Routes.adminAppointmentsInfoRoute,
+            arguments: {'status': status.name});
+      },
       child: Row(
         children: [
           Expanded(
@@ -71,11 +76,8 @@ class AppointmentsAdminWidget extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.info_outline,
-              ),
+            child: Icon(
+              Icons.info_outline,
             ),
           )
         ],
