@@ -74,7 +74,8 @@ class StringManager {
   static const String refundAndCancellationPolicyRouteText =
       'Refund & Cancellation Policy';
   static const String contactUsText = 'Contact Us';
-  static const String aboutText = 'About Us';
+  static const String aboutUsText = 'About Us';
+  static const String aboutText = 'About';
   static const String accountSettingText = 'Account Setting';
   static const String moreText = 'More';
 
@@ -322,4 +323,5 @@ class StringManager {
   static const areYouSureDeleteUSerText =
       """ Are you sure you want to delete user permanently.
 You can’t undo this action""";
+  static const latestAppointmentsText = "Latest Appointments";
 }

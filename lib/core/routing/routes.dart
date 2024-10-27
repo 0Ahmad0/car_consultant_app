@@ -44,9 +44,10 @@ class Routes {
   static const String adminAppointmentsRoute = '/adminAppointmentsScreen';
   static const String adminRequestsRoute = '/adminRequestsScreen';
   static const String adminProfileRoute = '/adminProfileScreen';
-  static const String userInfoRoute = '/userInfoScreen';
-  static const String consultantInfoRoute = '/consultantInfoScreen';
-  static const String requestInfoRoute = '/requestInfoScreen';
+  static const String adminUserInfoRoute = '/adminUserInfoScreen';
+  static const String adminConsultantInfoRoute = '/adminConsultantInfoScreen';
+  static const String adminProviderInfoRoute = '/adminProviderInfoScreen';
+  static const String adminRequestInfoRoute = '/adminRequestInfoScreen';
   static const String paymentSettingRoute = '/paymentSettingScreen';
   static const String notificationSettingsRoute = '/notificationSettingsScreen';
   static const String userRegistrationRoute = '/userRegistrationScreen';

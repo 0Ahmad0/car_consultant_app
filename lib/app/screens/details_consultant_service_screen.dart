@@ -53,7 +53,7 @@ class DetailsConsultantServiceScreen extends StatelessWidget {
             ),
             verticalSpace(10.h),
             AboutMeAndExpertiseWidget(
-              title: StringManager.aboutText,
+              title: StringManager.aboutUsText,
               description:
                   'Senior Automotive Consultant width over 15 years od experience in the automotive industry',
             ),

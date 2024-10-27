@@ -115,7 +115,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               ProfileItemLIstTileWidget(
                 icon: Icons.info_outlined,
-                title: StringManager.aboutText,
+                title: StringManager.aboutUsText,
                 route: Routes.aboutUsRoute,
               ),
             ],

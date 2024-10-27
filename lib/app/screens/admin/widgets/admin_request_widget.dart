@@ -68,7 +68,7 @@ class AdminRequestWidget extends StatelessWidget {
             horizontalPadding: 50.w,
             child: AppButton(
               onPressed: () {
-                context.pushNamed(Routes.requestInfoRoute);
+                context.pushNamed(Routes.adminRequestInfoRoute);
               },
               text: StringManager.viewText,
             ),

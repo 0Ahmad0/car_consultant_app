@@ -17,7 +17,7 @@ class AboutUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(StringManager.aboutText),
+        title: Text(StringManager.aboutUsText),
       ),
       body: AppPaddingWidget(
         child: Column(

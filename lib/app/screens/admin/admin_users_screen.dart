@@ -55,7 +55,7 @@ class AdminUsersScreen extends StatelessWidget {
                   itemBuilder: (context, index) =>
                       UsersAndConsultantsAndProvidersWidget(
                     onTap: () {
-                      context.pushNamed(Routes.userInfoRoute, arguments: {});
+                      context.pushNamed(Routes.adminUserInfoRoute, arguments: {});
                     },
                     title: 'User ${index + 1}',
                     subTitle: 'user${index + 1}@gmail.com',
@@ -81,7 +81,10 @@ class AdminUsersScreen extends StatelessWidget {
                       UsersAndConsultantsAndProvidersWidget(
                     onTap: () {
                       context
-                          .pushNamed(Routes.consultantInfoRoute, arguments: {});
+                          .pushNamed(index.isEven
+                          ? Routes.adminConsultantInfoRoute
+                          :Routes.adminProviderInfoRoute
+                          , arguments: {});
                     },
                     title: 'Consultant${index + 1}',
                     subTitle: 'consultant${index + 1}@gmail.com',
