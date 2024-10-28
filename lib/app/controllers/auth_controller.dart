@@ -107,7 +107,7 @@ class AuthController extends GetxController {
     String password = passwordController.value.text;
     String email = userName;
     try {
-      ConstantsWidgets.showLoading(context);
+      ConstantsWidgets.showLoading();
       var result = await FirebaseFun.fetchUserByUserName(userName: userName);
 
       ///handling
@@ -184,7 +184,7 @@ class AuthController extends GetxController {
     // String phoneNumber='0937954969';
     // String password='12345678';
     try {
-      ConstantsWidgets.showLoading(context);
+      ConstantsWidgets.showLoading();
       // String userName = await _getUserNameByName(name);
 
       UserCredential userCredential = await auth

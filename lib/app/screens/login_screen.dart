@@ -1,4 +1,5 @@
 import 'package:car_consultant/core/helpers/extensions.dart';
+import 'package:car_consultant/core/helpers/seeder.dart';
 import 'package:car_consultant/core/helpers/spacing.dart';
 import 'package:car_consultant/core/routing/routes.dart';
 import 'package:car_consultant/core/utils/color_manager.dart';
@@ -73,6 +74,7 @@ class LoginScreen extends StatelessWidget {
                   verticalSpace(20.h),
                   AppButton(
                     onPressed: () {
+                      // Seeder.serviceProvider();
                       // context.pushReplacement(Routes.navbarRoute);
                       if (authController.formKey.currentState!.validate()) {
                       authController.login(context);}
