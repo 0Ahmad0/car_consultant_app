@@ -15,12 +15,14 @@ class StringManager {
   static const String noText = 'No';
   static const String statusText = 'Status';
   static const String scheduleText = 'Schedule';
+  static const String scheduleAtText = 'Schedule at';
   static const String saveChangesText = 'Save changes';
   static const String cancelText = 'Cancel';
   static const String doYouWantToSignoutText = 'Do you want to sign out?';
   static const String searchText = 'Search';
   static const String newRequestText = 'New Requests';
   static const String newAppointmentRequestsText = 'New Appointment Requests';
+  static const String appointmentRequestsText = 'Appointment Requests';
   static const String newText = 'New';
   static const String requestsText = 'Requests';
   static const String requestedToBeText = 'Requested To Be a';
