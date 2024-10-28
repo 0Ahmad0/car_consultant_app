@@ -9,6 +9,9 @@ class StringManager {
   static const String continueText = 'Continue';
   static const String errorText = 'Error';
   static const String deleteText = 'Delete';
+  static const String editYourBioText = 'Edit your bio';
+  static const String availabilityText = 'Availability';
+  static const String availabilityHintText = 'Set your available time';
   static const String noText = 'No';
   static const String statusText = 'Status';
   static const String scheduleText = 'Schedule';
@@ -342,4 +345,15 @@ You can’t undo this action""";
   static const categoryRepairServicesText = "Repair Services";
   static const categoryInspectionAndDiagnosticsText = "Inspection & Diagnostics";
   static const enterYourLocationText = "Enter Your Workshop Location";
+  ///
+  static const consultantControlPanelText = "Consultant Control Panel";
+  static const serviceProviderControlPanelText = "Service Provider Control Panel";
+  static const manageRequestTitleText = "Manage Requests";
+  static const manageRequestSubTitleText = "View and Accept appointment requests";
+  static const appointmentsOverviewTitleText = "Appointments Overview";
+  static const appointmentsOverviewSubTitleText = "View and manage all your appointments here";
+  static const manageProfileTitleText = "Manage Profile";
+  static const manageProfileSubTitleText = "Update your information";
+
+
 }

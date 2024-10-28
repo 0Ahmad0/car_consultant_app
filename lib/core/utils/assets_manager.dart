@@ -19,6 +19,9 @@ class AssetsManager {
   static const consultIMG = '$_pathImages/consult.png';
   static const providerIMG = '$_pathImages/provider.png';
   static const supportIMG = '$_pathImages/support.png';
+  static const manageRequestIMG = '$_pathImages/manage_request.png';
+  static const manageProfileIMG = '$_pathImages/manage_profile.png';
+  static const appointmentsOverviewIMG = '$_pathImages/appointments_overview.png';
 
   ///<==== Svg ====>
   static const eyePasswordIcon = '$_pathSVGs/eye.svg';

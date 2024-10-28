@@ -19,6 +19,9 @@ import 'package:car_consultant/app/screens/become_service_provider_screen.dart';
 import 'package:car_consultant/app/screens/change_password_screen.dart';
 import 'package:car_consultant/app/screens/chat_screen.dart';
 import 'package:car_consultant/app/screens/check_inbox_screen.dart';
+import 'package:car_consultant/app/screens/consult/consult_control_panel_screen.dart';
+import 'package:car_consultant/app/screens/consult/consult_manage_profile_screen.dart';
+import 'package:car_consultant/app/screens/consult/consult_manage_request_screen.dart';
 import 'package:car_consultant/app/screens/consult_ai_bot_screen.dart';
 import 'package:car_consultant/app/screens/consultant_service_screen.dart';
 import 'package:car_consultant/app/screens/details_consultant_service_screen.dart';
@@ -42,6 +45,9 @@ import 'package:car_consultant/app/screens/personal_information_screen.dart';
 import 'package:car_consultant/app/screens/privacy_policy_screen.dart';
 import 'package:car_consultant/app/screens/refund_and_cancellation_policy_screen.dart';
 import 'package:car_consultant/app/screens/review_screen.dart';
+import 'package:car_consultant/app/screens/service_provider/service_provider_control_panel_screen.dart';
+import 'package:car_consultant/app/screens/service_provider/service_provider_manage_profile_screen.dart';
+import 'package:car_consultant/app/screens/service_provider/service_provider_manage_request_screen.dart';
 import 'package:car_consultant/app/screens/service_provider_screen.dart';
 import 'package:car_consultant/app/screens/setting_screen.dart';
 import 'package:car_consultant/app/screens/sign_up_screen.dart';
@@ -147,11 +153,11 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => OpportunitiesScreen(),
         );
-        case Routes.becomeConsultRouts:
+      case Routes.becomeConsultRouts:
         return MaterialPageRoute(
           builder: (_) => BecomeConsultScreen(),
         );
-        case Routes.becomeServiceProviderRouts:
+      case Routes.becomeServiceProviderRouts:
         return MaterialPageRoute(
           builder: (_) => BecomeServiceProviderScreen(),
         );
@@ -239,7 +245,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => AdminConsultantInfoScreen(),
         );
-        case Routes.adminProviderInfoRoute:
+      case Routes.adminProviderInfoRoute:
         return MaterialPageRoute(
           builder: (_) => AdminProviderInfoScreen(),
         );
@@ -268,6 +274,32 @@ class AppRouter {
           builder: (_) => AdminAppointmentsInfoScreen(),
         );
 
+      ///Consult
+      case Routes.consultControlPanelRoute:
+        return MaterialPageRoute(
+          builder: (_) => ConsultControlPanelScreen(),
+        );
+      case Routes.consultManageRequestRoute:
+        return MaterialPageRoute(
+          builder: (_) => ConsultManageRequestScreen(),
+        );
+        case Routes.consultManageProfileRoute:
+        return MaterialPageRoute(
+          builder: (_) => ConsultManageProfile(),
+        );
+      ///Service Provider
+      case Routes.serviceProviderControlPanelRoute:
+        return MaterialPageRoute(
+          builder: (_) => ServiceProviderControlPanelScreen(),
+        );
+      case Routes.serviceProviderManageRequestRoute:
+        return MaterialPageRoute(
+          builder: (_) => ServiceProviderManageRequestScreen(),
+        );
+        case Routes.serviceProviderManageProfileRoute:
+        return MaterialPageRoute(
+          builder: (_) => ServiceProviderManageProfile(),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

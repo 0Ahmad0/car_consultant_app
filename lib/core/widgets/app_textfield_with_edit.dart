@@ -11,7 +11,7 @@ var _borderTextFiled = ({Color color = ColorManager.primaryColor}) =>
         borderSide: BorderSide(color: color));
 
 class AppTextFiledWithEdit extends StatelessWidget {
-  const AppTextFiledWithEdit({
+   AppTextFiledWithEdit({
     super.key,
     this.icon,
     this.hintText,
@@ -21,7 +21,11 @@ class AppTextFiledWithEdit extends StatelessWidget {
     this.readOnly = false,
     this.validator,
     this.onChanged,
-    this.onTap, this.onEditTap,
+    this.onTap,
+    this.onEditTap,
+    this.maxLine,
+    this.minLine,
+    this.isMultiLine = false
   });
 
   final IconData? icon;
@@ -31,9 +35,13 @@ class AppTextFiledWithEdit extends StatelessWidget {
   final TextInputType keyboardType;
   final bool readOnly;
   final String? Function(String?)? validator;
+  bool isMultiLine;
+  final int? maxLine;
+  final int? minLine;
   final Function(String)? onChanged;
   final VoidCallback? onTap;
   final VoidCallback? onEditTap;
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,16 +54,25 @@ class AppTextFiledWithEdit extends StatelessWidget {
           },
       onChanged: onChanged,
       onTap: onTap,
-
+      maxLines: maxLine,
+      minLines: minLine,
       textInputAction: textInputAction,
       keyboardType: keyboardType,
       controller: controller,
       cursorColor: ColorManager.primaryColor,
       decoration: InputDecoration(
-          focusedBorder: _borderTextFiled(),
-          border: _borderTextFiled(color: Colors.transparent),
-          enabledBorder: _borderTextFiled(color: Colors.transparent),
-          errorBorder: _borderTextFiled(color: ColorManager.errorColor),
+          focusedBorder: _borderTextFiled().copyWith(
+              borderRadius: isMultiLine?BorderRadius.circular(12.r):null
+          ),
+          border: _borderTextFiled(color: Colors.transparent).copyWith(
+              borderRadius: isMultiLine?BorderRadius.circular(12.r):null
+          ),
+          enabledBorder: _borderTextFiled(color: Colors.transparent).copyWith(
+              borderRadius: isMultiLine?BorderRadius.circular(12.r):null
+          ),
+          errorBorder: _borderTextFiled(color: ColorManager.errorColor).copyWith(
+              borderRadius: isMultiLine?BorderRadius.circular(12.r):null
+          ),
           iconColor: ColorManager.grayColor,
           filled: true,
           fillColor: ColorManager.grayColor,
@@ -64,7 +81,7 @@ class AppTextFiledWithEdit extends StatelessWidget {
             onPressed: onEditTap,
             icon: Icon(Icons.edit),
           ),
-          prefixIcon: Icon(icon),
+          prefixIcon: icon == null?null:Icon(icon??null),
           hintText: hintText,
           hintStyle: StyleManager.font16Regular(
             color: ColorManager.hintTextColor,
