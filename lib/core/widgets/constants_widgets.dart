@@ -20,64 +20,64 @@ class ConstantsWidgets {
       child: CircularProgressIndicator(),
     );
   }
-    static showLoading(BuildContext context) async {
-    // return
-      showDialog(
-          context: context,
-          barrierDismissible: false, // Prevents dialog from being dismissed by tapping outside
-          builder: (BuildContext context) {
-      return PopScope(
-        canPop:true
-        ,
-        child: Center(
-          child: Container(
-            width: 80,
-            height: 80,
-            padding: const EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-              color: ColorManager.whiteColor,
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            child:
+    static showLoading() async {
+    return
+    //   showDialog(
+    //       context: context,
+    //       barrierDismissible: false, // Prevents dialog from being dismissed by tapping outside
+    //       builder: (BuildContext context) {
+    //   return PopScope(
+    //     canPop:true
+    //     ,
+    //     child: Center(
+    //       child: Container(
+    //         width: 80,
+    //         height: 80,
+    //         padding: const EdgeInsets.all(10.0),
+    //         decoration: BoxDecoration(
+    //           color: ColorManager.whiteColor,
+    //           borderRadius: BorderRadius.circular(8.0),
+    //         ),
+    //         child:
+    //
+    //         Center(
+    //             child:  CircularProgressIndicator(
+    //               color: ColorManager.primaryColor,
+    //             )),
+    //       ),
+    //     ),
+    //   );});
 
-            Center(
-                child:  CircularProgressIndicator(
-                  color: ColorManager.primaryColor,
-                )),
+
+      await Get.dialog(
+        PopScope(
+          canPop:true
+          ,
+          child: Center(
+            child: Container(
+              width: 80,
+              height: 80,
+              padding: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                color: ColorManager.whiteColor,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child:
+
+              Center(
+                  child:  CircularProgressIndicator(
+                    color: ColorManager.primaryColor,
+                  )),
+            ),
           ),
         ),
-      );});
+        barrierDismissible: false,
+      );
+    }
 
-
-      // await Get.dialog(
-      //   PopScope(
-      //     canPop:true
-      //     ,
-      //     child: Center(
-      //       child: Container(
-      //         width: 80,
-      //         height: 80,
-      //         padding: const EdgeInsets.all(10.0),
-      //         decoration: BoxDecoration(
-      //           color: ColorManager.whiteColor,
-      //           borderRadius: BorderRadius.circular(8.0),
-      //         ),
-      //         child:
-      //
-      //         Center(
-      //             child:  CircularProgressIndicator(
-      //               color: ColorManager.primaryColor,
-      //             )),
-      //       ),
-      //     ),
-      //   ),
-      //   barrierDismissible: false,
-      // );
-    // }
-  }
-  static closeDialog(BuildContext context) async {
-    // Get.close(1);
-    context.pop();
+  static closeDialog() async {
+    Get.close(1);
+    // context.pop();
 
   }
   static showProgress(double progress)  {

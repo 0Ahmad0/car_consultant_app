@@ -20,4 +20,6 @@ class AppConstants {
   static String collection = "";
   static String collectionUser = "User";
   static String collectionAdmin = "Admin";
+  static String collectionServiceProvider = "ServiceProvider";
+  static String collectionConsultantProvider = "ConsultantProvider";
 }

@@ -29,26 +29,38 @@ class SplashController extends GetxController with GetSingleTickerProviderStateM
     });
 
 
+
    if((await AppStorage.storageRead(key: AppConstants.rememberMe) as bool?) ??false){
       // ConstantsWidgets.showLoading(context);
 
       ProfileController profileController=Get.put(ProfileController());
 
-      await profileController.getUser(context);
-      // await ProfileController.instance.getUser();
-      if(profileController.currentUser.value?.isAdmin??false)
-        context.pushAndRemoveUntil(Routes.navbarRoute, predicate: (Route<dynamic> route) =>false);
+      if((await AppStorage.storageRead(key: AppConstants.rememberMe) as bool?) ??false){
+        await profileController.getUser(context);
+        // await ProfileController.instance.getUser();
 
-      // Get.offAll(NavbarScreen());
+        if(profileController.currentUser.value==null)
+          context.pushAndRemoveUntil(Routes.loginRoute, predicate: (Route<dynamic> route) =>false);
+
+        if(profileController.currentUser.value?.isAdmin??false)
+          context.pushAndRemoveUntil(Routes.navbarRoute, predicate: (Route<dynamic> route) =>false);
+
+        // Get.offAll(NavbarScreen());
         // Get.offAll(NavBarAdminScreen());
-      else
-        context.pushAndRemoveUntil(Routes.navbarRoute, predicate: (Route<dynamic> route) =>false);
+        else
+          context.pushAndRemoveUntil(Routes.navbarRoute, predicate: (Route<dynamic> route) =>false);
 
-      // Get.offAll(NavbarScreen());
-    }else
+        // Get.offAll(NavbarScreen());
+      }else
+        context.pushAndRemoveUntil(Routes.loginRoute, predicate: (Route<dynamic> route) =>false);
+
+     // Get.offAll(LoginScreen());
+      }else{
      context.pushAndRemoveUntil(Routes.loginRoute, predicate: (Route<dynamic> route) =>false);
 
-    // Get.offAll(LoginScreen());
+   }
+
+
   }
   Future<void> _initSplash(BuildContext context) async {
     await AppStorage.init();

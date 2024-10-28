@@ -8,10 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../core/models/education_resource.dart';
+
 class EducationalContentWidget extends StatelessWidget {
   const EducationalContentWidget({
-    super.key,
+    super.key, this.educationResourceModel,
   });
+  final EducationResourceModel? educationResourceModel;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +38,7 @@ class EducationalContentWidget extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.r),
                 child: Image.network(
+                  educationResourceModel?.photoUrl??
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUDkCqGfRI3qDDs7MzeCyLCPOWjhbnqX2xw0P22K7rktN7eORJeIVCgYIom3I9o4VNXeY&usqp=CAU'
                   ,fit: BoxFit.fitHeight,
                   height: 140.h,
@@ -48,6 +52,7 @@ class EducationalContentWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    educationResourceModel?.title??
                     'Proper Oil Refilling Technique',
                     style: StyleManager.font16Regular(),
                     maxLines: 2,
@@ -55,6 +60,7 @@ class EducationalContentWidget extends StatelessWidget {
                   ),
                   verticalSpace(10.h),
                   Text(
+                    educationResourceModel?.about??
                     'Video description'
                     'Check the oil level regularly.'
                     'Pour slowly to avoid spills.',
@@ -78,13 +84,13 @@ class EducationalContentWidget extends StatelessWidget {
                           ),
                           horizontalSpace(4.w),
                           Text(
-                            '${5.0}',
+                            '${educationResourceModel?.review??5.0}',
                             style: StyleManager.font14Bold(),
                           )
                         ],
                       ),
                       Text(
-                        '${200} ' + StringManager.likesText,
+                        '${educationResourceModel?.numLike??200} ' + StringManager.likesText,
                         style: StyleManager.font12Regular(
                             color: ColorManager.blackColor.withOpacity(.5)),
                       )
