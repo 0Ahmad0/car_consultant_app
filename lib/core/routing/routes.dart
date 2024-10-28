@@ -22,16 +22,15 @@ class Routes {
   static const String paymentSuccessfulRoute = '/paymentSuccessfulScreen';
   static const String educationalResourcesRoute = '/educationalResourcesScreen';
   static const String emergencyServicesRoute = '/emergencyServicesScreen';
-  static const String opportunitiesRoute =
-      '/opportunitiesScreen';
-  static const String becomeConsultRouts =
-      '/becomeConsultScreen';
+  static const String opportunitiesRoute = '/opportunitiesScreen';
+  static const String becomeConsultRouts = '/becomeConsultScreen';
   static const String becomeServiceProviderRouts =
       '/becomeAServiceProviderScreen';
   static const String aboutUsRoute = '/aboutUsScreen';
   static const String contactUsRoute = '/contactUsScreen';
   static const String formSubmitRoute = '/formSubmitScreen';
-  static const String refundAndCancellationPolicyRoute = '/refundAndCancellationPolicyScreen';
+  static const String refundAndCancellationPolicyRoute =
+      '/refundAndCancellationPolicyScreen';
   static const String termsAndConditionsRoute = '/termsAndConditionsScreen';
   static const String privacyPolicyRoute = '/privacyPolicyScreen';
   static const String personalInformationRoute = '/personalInformationScreen';
@@ -56,6 +55,17 @@ class Routes {
   static const String notificationSettingsRoute = '/notificationSettingsScreen';
   static const String userRegistrationRoute = '/userRegistrationScreen';
   static const String applicationSettingRoute = '/applicationSettingScreen';
-  static const String adminAppointmentsInfoRoute = '/adminAppointmentsInfoScreen';
+  static const String adminAppointmentsInfoRoute =
+      '/adminAppointmentsInfoScreen';
+
+  ///Consult Route
+  static const String consultControlPanelRoute = '/consultControlPanelScreen';
+  static const String consultManageRequestRoute = '/consultManageRequestScreen';
+  static const String consultManageProfileRoute = '/consultManageProfileScreen';
+
+  ///Service Provider Route
+  static const String serviceProviderControlPanelRoute = '/serviceProviderControlPanelScreen';
+  static const String serviceProviderManageRequestRoute = '/serviceProviderManageRequestScreen';
+  static const String serviceProviderManageProfileRoute = '/serviceProviderManageProfileScreen';
 
 }
