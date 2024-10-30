@@ -8,23 +8,23 @@ import 'firebase/firebase_constants.dart';
 import 'firebase/firebase_fun.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class EducationResourcesController extends GetxController{
+class EmergencyServicesController extends GetxController{
 
   final searchController = TextEditingController();
-  EducationResources educationResources=EducationResources(items: []);
-  EducationResources educationsWithFilter=EducationResources(items: []);
-  var getEducationResources;
+  EducationResources emergencyServices=EducationResources(items: []);
+  EducationResources emergenciesWithFilter=EducationResources(items: []);
+  var getEmergencyServices;
 
   @override
   void onInit() {
    searchController.clear();
-    getEducationResourcesFun();
+   getEmergencyServicesFun();
     super.onInit();
     }
 
-  getEducationResourcesFun() async {
-    getEducationResources =_fetchEducationResourcesStream();
-    return getEducationResources;
+  getEmergencyServicesFun() async {
+    getEmergencyServices =_fetchEducationResourcesStream();
+    return getEmergencyServices;
   }
   @override
   void dispose() {
@@ -58,13 +58,13 @@ class EducationResourcesController extends GetxController{
         .snapshots();
     return result;
   }
-  filterPersons({required String term}) async {
+  filter({required String term}) async {
 
-    educationsWithFilter.items=[];
-    educationResources.items.forEach((element) {
+    emergenciesWithFilter.items=[];
+    emergencyServices.items.forEach((element) {
 
       if((element.title?.toLowerCase().contains(term.toLowerCase())??false))
-        educationsWithFilter.items.add(element);
+        emergenciesWithFilter.items.add(element);
     });
      update();
   }

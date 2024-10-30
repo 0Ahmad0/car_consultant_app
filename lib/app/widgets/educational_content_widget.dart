@@ -1,5 +1,6 @@
 import 'package:car_consultant/core/helpers/sizer.dart';
 import 'package:car_consultant/core/helpers/spacing.dart';
+import 'package:car_consultant/core/utils/assets_manager.dart';
 import 'package:car_consultant/core/utils/color_manager.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:car_consultant/core/utils/style_manager.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../core/helpers/launcher_helper.dart';
 import '../../core/models/education_resource.dart';
 
 class EducationalContentWidget extends StatelessWidget {
@@ -35,13 +37,22 @@ class EducationalContentWidget extends StatelessWidget {
           children: [
             Flexible(
               flex: 2,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.r),
-                child: Image.network(
-                  educationResourceModel?.photoUrl??
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUDkCqGfRI3qDDs7MzeCyLCPOWjhbnqX2xw0P22K7rktN7eORJeIVCgYIom3I9o4VNXeY&usqp=CAU'
-                  ,fit: BoxFit.fitHeight,
-                  height: 140.h,
+              child:      InkWell(
+                onTap: ()=>LauncherHelper.launchWebsite(context,educationResourceModel?.urlLink??''),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.r),
+                  child: Image.network(
+                    educationResourceModel?.photoUrl??
+                    "https://firebasestorage.googleapis.com/v0/b/car-consultant-e0002.appspot.com/o/youtube_empty.jpg?alt=media&token=b1aca133-d194-4ed3-a8ef-ac2369d48208"??
+
+
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUDkCqGfRI3qDDs7MzeCyLCPOWjhbnqX2xw0P22K7rktN7eORJeIVCgYIom3I9o4VNXeY&usqp=CAU'
+                    ,fit: BoxFit.fitHeight,
+                    height: 140.h,
+                    // loadingBuilder:(context,widget, imageChunkEvent)=>widget,
+                    frameBuilder:(context,widget,i,a)=>i!=null?widget:Image.asset(AssetsManager.youtubeEmptyIMG),
+                    errorBuilder:(context,_,__)=>Image.asset(AssetsManager.youtubeEmptyIMG),
+                  ),
                 ),
               ),
             ),

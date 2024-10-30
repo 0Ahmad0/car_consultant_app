@@ -72,7 +72,7 @@ class EducationResources {
 
   factory EducationResources.fromJson(json) {
     List<EducationResourceModel> temp = [];
-    for (int i = 1; i < json.length; i++) {
+    for (int i = 0; i < json.length; i++) {
       EducationResourceModel tempElement = EducationResourceModel.fromJson(json[i]);
       tempElement.id = json[i].id;
       temp.add(tempElement);

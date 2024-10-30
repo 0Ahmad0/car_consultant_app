@@ -44,43 +44,44 @@ class _EducationalResourcesScreenState extends State<EducationalResourcesScreen>
             ),
           ),
           Expanded(
-            child:
-          StreamBuilder<QuerySnapshot>(
-          stream: controller.getEducationResources,
-          builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-          return    ConstantsWidgets.circularProgress();
-          } else if (snapshot.connectionState ==
-          ConnectionState.active) {
-          if (snapshot.hasError) {
-          return  Text('Error');
-          } else if (snapshot.hasData) {
-          ConstantsWidgets.circularProgress();
-          controller.educationResources.items.clear();
-          if (snapshot.data!.docs.length > 0) {
-          controller.educationResources.items =
-              EducationResources.fromJson(snapshot.data?.docs).items;
-          }
-          controller.filterPersons(term: controller.searchController.value.text);
-          return
-          GetBuilder<EducationResourcesController>(
-          builder: (EducationResourcesController educationResourcesController)=>
-          (educationResourcesController.educationsWithFilter.items.isEmpty ?? true)
-          ?
-          NoDataFoundWidget(
-              // text: tr(LocaleKeys.home_no_faces_available))
-          // text: StringManager.infoNotFacesYet
-          )
-              :
+              child:
+              StreamBuilder<QuerySnapshot>(
+                  stream: controller.getEducationResources,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return    ConstantsWidgets.circularProgress();
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.active) {
+                      if (snapshot.hasError) {
+                        return  Text('Error');
+                      } else if (snapshot.hasData) {
+                        ConstantsWidgets.circularProgress();
+                        controller.educationResources.items.clear();
+                        if (snapshot.data!.docs.length > 0) {
 
-          buildEducationResources(context, controller.educationsWithFilter.items ?? []));
-          } else {
-          return const Text('Empty data');
-          }
-          } else {
-          return Text('State: ${snapshot.connectionState}');
-          }
-          })
+                          controller.educationResources.items =
+                              EducationResources.fromJson(snapshot.data?.docs).items;
+                        }
+                        controller.filterPersons(term: controller.searchController.value.text);
+                        return
+                          GetBuilder<EducationResourcesController>(
+                              builder: (EducationResourcesController educationResourcesController)=>
+                              (educationResourcesController.educationsWithFilter.items.isEmpty ?? true)
+                                  ?
+                              NoDataFoundWidget(
+                                // text: tr(LocaleKeys.home_no_faces_available))
+                                // text: StringManager.infoNotFacesYet
+                              )
+                                  :
+
+                              buildEducationResources(context, controller.educationsWithFilter.items ?? []));
+                      } else {
+                        return const Text('Empty data');
+                      }
+                    } else {
+                      return Text('State: ${snapshot.connectionState}');
+                    }
+                  })
 
 
             // ListView.separated(

@@ -48,7 +48,7 @@ class Files {
 
   factory Files.fromJson(json) {
     List<LocationModel> temp = [];
-    for (int i = 1; i < json.length; i++) {
+    for (int i = 0; i < json.length; i++) {
       LocationModel tempElement = LocationModel.fromJson(json[i]);
       tempElement.id = json[i].id;
       temp.add(tempElement);

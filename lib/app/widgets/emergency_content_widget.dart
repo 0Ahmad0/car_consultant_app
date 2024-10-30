@@ -8,10 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../core/helpers/launcher_helper.dart';
+import '../../core/models/education_resource.dart';
+import '../../core/utils/assets_manager.dart';
+
 class EmergencyContentWidget extends StatelessWidget {
   const EmergencyContentWidget({
-    super.key,
+    super.key, this.emergencyServices,
   });
+  final EducationResourceModel? emergencyServices;
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +38,18 @@ class EmergencyContentWidget extends StatelessWidget {
           children: [
             Flexible(
               flex: 2,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.r),
-                child: Image.network(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywtm6OwKip9u3WQRWeJ2lXFQfqGrjGLh8Dg&s'
-                  ,fit: BoxFit.fitHeight,
-                  height: 140.h,
+              child:InkWell(
+                onTap: ()=>LauncherHelper.launchWebsite(context,emergencyServices?.urlLink??''),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.r),
+                  child: Image.network(
+                    emergencyServices?.photoUrl??
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywtm6OwKip9u3WQRWeJ2lXFQfqGrjGLh8Dg&s'
+                    ,fit: BoxFit.fitHeight,
+                    height: 140.h,
+                    frameBuilder:(context,widget,i,a)=>i!=null?widget:Image.asset(AssetsManager.youtubeEmptyIMG),
+                    errorBuilder:(context,_,__)=>Image.asset(AssetsManager.youtubeEmptyIMG),
+                  ),
                 ),
               ),
             ),
@@ -48,6 +60,7 @@ class EmergencyContentWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    emergencyServices?.title??
                     'Proper Oil Refilling Technique',
                     style: StyleManager.font16Regular(),
                     maxLines: 2,
@@ -55,6 +68,7 @@ class EmergencyContentWidget extends StatelessWidget {
                   ),
                   verticalSpace(10.h),
                   Text(
+                    emergencyServices?.about??
                     'Video description'
                         'Check the oil level regularly.'
                         'Pour slowly to avoid spills.',
@@ -78,13 +92,13 @@ class EmergencyContentWidget extends StatelessWidget {
                           ),
                           horizontalSpace(4.w),
                           Text(
-                            '${5.0}',
+                            '${emergencyServices?.review??5.0}',
                             style: StyleManager.font14Bold(),
                           )
                         ],
                       ),
                       Text(
-                        '${200} ' + StringManager.likesText,
+                        '${emergencyServices?.numLike??200} ' + StringManager.likesText,
                         style: StyleManager.font12Regular(
                             color: ColorManager.blackColor.withOpacity(.5)),
                       )
