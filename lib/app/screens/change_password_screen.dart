@@ -6,8 +6,11 @@ import 'package:car_consultant/core/widgets/app_padding.dart';
 import 'package:car_consultant/core/widgets/app_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../core/widgets/app_button.dart';
+import '../controllers/profile_controller.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -53,6 +56,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   hintText: StringManager.enterNewPasswordText,
                   suffixIcon: true,
                   obscureText: true,
+                  validator: (String? val) {
+
+                    if (val!.trim().isEmpty) return StringManager.requiredField;
+                    if ( !(Get.put(ProfileController()).currentUser.value?.checkPassword(val)??false)) return StringManager.unCorrectPassword;
+                    return null;
+                  } ,
                 ),
                 verticalSpace(20.h),
                 Text(
@@ -87,7 +96,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         child: AppButton(
                           onPressed: () {
                             if(formKey.currentState!.validate()){
-
+                              Get.put(ProfileController()).changePassword(newPasswordController.value.text);
                             }
                           },
                           text: StringManager.saveChangesText,

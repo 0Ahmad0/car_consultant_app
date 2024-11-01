@@ -1,9 +1,11 @@
+import 'package:car_consultant/app/widgets/image_consultant_provider.dart';
 import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/helpers/spacing.dart';
+import '../../core/models/user_model.dart';
 import '../../core/routing/routes.dart';
 import '../../core/utils/assets_manager.dart';
 import '../../core/utils/color_manager.dart';
@@ -11,9 +13,10 @@ import '../../core/utils/style_manager.dart';
 
 class ConsultantDetailsCardWidget extends StatelessWidget {
   const ConsultantDetailsCardWidget({
-    super.key, required this.tag,
+    super.key, required this.tag, this.provider,
   });
   final String tag;
+  final UserModel? provider;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,10 +41,15 @@ class ConsultantDetailsCardWidget extends StatelessWidget {
                   color: ColorManager.primaryColor,
                   borderRadius: BorderRadius.circular(8.r),
                 ),
-                child: Image.asset(
-                  AssetsManager.consultantServiceIMG,
+                child:
+                ImageConsultantProvider(
+                  url: provider?.photoUrl,
                   width: 100.w,
-                ),
+                )
+                // Image.asset(
+                //   AssetsManager.consultantServiceIMG,
+                //   width: 100.w,
+                // ),
               ),
             ),
             horizontalSpace(10.w),
@@ -51,6 +59,7 @@ class ConsultantDetailsCardWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
+                      provider?.name??
                       'Consultant1',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -58,6 +67,7 @@ class ConsultantDetailsCardWidget extends StatelessWidget {
                     ),
                     verticalSpace(10.h),
                     Text(
+                      provider?.additionalInfo?.workShopName??
                       '3 years in service',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -66,11 +76,14 @@ class ConsultantDetailsCardWidget extends StatelessWidget {
                     ),
                   ],
                 )),
-            IconButton(
-              onPressed: () {
-                context.pushNamed(Routes.messagesRoute);
-              },
-              icon: Icon(Icons.chat),
+            Visibility(
+              visible: false,
+              child: IconButton(
+                onPressed: () {
+                  context.pushNamed(Routes.messagesRoute);
+                },
+                icon: Icon(Icons.chat),
+              ),
             )
           ],
         ),

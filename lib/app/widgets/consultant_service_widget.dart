@@ -1,3 +1,4 @@
+import 'package:car_consultant/app/widgets/image_consultant_provider.dart';
 import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/routing/routes.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/helpers/spacing.dart';
+import '../../core/models/user_model.dart';
 import '../../core/utils/assets_manager.dart';
 import '../../core/utils/color_manager.dart';
 import '../../core/utils/style_manager.dart';
@@ -12,10 +14,11 @@ import '../../core/utils/style_manager.dart';
 class ConsultantServiceWidget extends StatelessWidget {
   const ConsultantServiceWidget({
     super.key,
-    required this.index,
+    required this.index, this.consultantService,
   });
 
   final int index;
+  final UserModel? consultantService;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class ConsultantServiceWidget extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: () {
         context.pushNamed(Routes.detailsConsultantServiceRoute,
-            arguments: {'index': index.toString()});
+            arguments: {'index': index.toString(),'provider':consultantService});
       },
       child: IntrinsicHeight(
         child: Row(
@@ -35,10 +38,15 @@ class ConsultantServiceWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: ColorManager.primaryColor,
                     borderRadius: BorderRadius.circular(8.r)),
-                child: Image.asset(
-                  AssetsManager.consultantServiceIMG,
+                child:
+                ImageConsultantProvider(
+                  url: consultantService?.photoUrl,
                   width: 100.w,
-                ),
+                )
+                // Image.asset(
+                //   AssetsManager.consultantServiceIMG,
+                //   width: 100.w,
+                // ),
               ),
             ),
             horizontalSpace(14.w),
@@ -57,7 +65,9 @@ class ConsultantServiceWidget extends StatelessWidget {
                     horizontalSpace(10.w),
                     Flexible(
                       child: Text(
-                        '${4.5}  ( ${84} )',
+                        '${consultantService?.additionalInfo?.getRate.toStringAsFixed(1)??4.5}  ( ${consultantService?.additionalInfo?.reviews?.length??'-'} )',
+
+                        // '${4.5}  ( ${84} )',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: StyleManager.font12Regular(
@@ -69,6 +79,7 @@ class ConsultantServiceWidget extends StatelessWidget {
                 verticalSpace(10.h),
                 Flexible(
                   child: Text(
+                    consultantService?.name??
                     'Consultant ${index + 1}',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -77,6 +88,7 @@ class ConsultantServiceWidget extends StatelessWidget {
                 ),
                 verticalSpace(10.h),
                 Text(
+                  consultantService?.additionalInfo?.workShopName??
                   'Starts From',
                   style: StyleManager.font12Regular(
                     color: ColorManager.hintTextColor,
@@ -89,7 +101,8 @@ class ConsultantServiceWidget extends StatelessWidget {
                       color: ColorManager.primaryColor,
                       borderRadius: BorderRadius.circular(4.r)),
                   child: Text(
-                    '20 \$',
+                    '${consultantService?.additionalInfo?.fee??'-'} \$',
+                    // '20 \$',
                     style: StyleManager.font12Regular(
                         color: ColorManager.whiteColor),
                   ),

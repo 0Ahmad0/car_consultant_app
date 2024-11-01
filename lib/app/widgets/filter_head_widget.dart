@@ -2,10 +2,14 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../core/helpers/spacing.dart';
 import '../../core/utils/string_manager.dart';
 import '../../core/utils/style_manager.dart';
+import '../controllers/providers_controller.dart';
+import '../controllers/service_providers_controller.dart';
 
 class FilterHeadWidget extends StatelessWidget {
   const FilterHeadWidget({
@@ -39,10 +43,17 @@ class FilterHeadWidget extends StatelessWidget {
                 DropdownMenuItem(
                   child: Text('Best Selling'),
                   value: 'Best Selling',
+                  onTap: (){
+                    Get.put(ProvidersController()).sortByBestFee();
+                  },
                 ),
                 DropdownMenuItem(
                   child: Text('Best Rate'),
                   value: 'Best Rate',
+                  onTap: (){
+                    Get.put(ProvidersController()).sortByBestRate();
+
+                  },
                 ),
               ],
               onChanged: (value) {

@@ -40,6 +40,54 @@ class AdditionalInfoModel {
     this.inspectionDiagnostics,
 
   });
+  double get  getRate{
+    double rate=0;
+    for(ReviewModel review in reviews??[]){
+      rate+=review.avgRate;
+    }
+    return rate/(reviews?.length??1);
+  }
+  int get  professionalRate{
+    double rate=0;
+    int? countRate;
+    for(ReviewModel review in reviews??[]){
+      if(review.professionalReview!=null)
+        {
+          countRate??=0;
+          rate+=review.professionalReview!;
+          countRate++;
+        }
+    }
+    return (rate/(countRate??1)).toInt();
+  }
+  int get  punctualityRate{
+    double rate=0;
+    int? countRate;
+    for(ReviewModel review in reviews??[]){
+      if(review.punctualityReview!=null)
+      {
+        countRate??=0;
+        rate+=review.punctualityReview!;
+        countRate++;
+      }
+    }
+    return (rate/(countRate??1)).toInt();
+  }
+  int get timeScaleRate{
+    double rate=0;
+    int? countRate;
+    for(ReviewModel review in reviews??[]){
+      if(review.timeScaleReview!=null)
+      {
+        countRate??=0;
+        rate+=review.timeScaleReview!;
+        countRate++;
+      }
+    }
+    return (rate/(countRate??1)).toInt();
+  }
+
+
 
   factory AdditionalInfoModel.fromJson(json) {
     var data = ['_JsonDocumentSnapshot','_JsonQueryDocumentSnapshot'].contains(json.runtimeType.toString())?json.data():json;
@@ -51,6 +99,7 @@ class AdditionalInfoModel {
     for(var review in data["reviews"]){
       tempListReviews.add(ReviewModel.fromJson(review));
     }
+
 
     return AdditionalInfoModel(
         id: data['id'],
@@ -71,7 +120,10 @@ class AdditionalInfoModel {
   }
 
   factory AdditionalInfoModel.init() {
-    return AdditionalInfoModel();
+    return AdditionalInfoModel(
+      files: [],
+      reviews: []
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -117,6 +169,7 @@ class UserModel {
   String? password;
   String? typeUser;
   String? gender;
+  DateTime? birthDate;
   bool isAdd = false;
   AdditionalInfoModel? additionalInfo;
 
@@ -134,6 +187,7 @@ class UserModel {
     this.typeUser,
     this.gender,
     this.additionalInfo,
+    this.birthDate,
   });
 
   factory UserModel.fromJson(json) {
@@ -152,6 +206,7 @@ class UserModel {
       // gender: data["gender"],
        password:data['password'],
         additionalInfo:data['additionalInfo']==null?null:AdditionalInfoModel.fromJson(data['additionalInfo'])
+        ,birthDate: data["birthDate"]?.toDate(),
     );
   }
 
@@ -162,6 +217,7 @@ class UserModel {
       name: '',
       email: '',
       typeUser: '',
+    additionalInfo: AdditionalInfoModel.init()
     //  password: ''
     );
   }
@@ -179,9 +235,11 @@ class UserModel {
     'password': password==null?null:BCrypt.hashpw(password!, BCrypt.gensalt()),
     // 'password': password,
     'additionalInfo': additionalInfo?.toJson(),
+    'birthDate': birthDate==null?null:Timestamp.fromDate(birthDate!),
       };
   /// Function to check if the password matches the hashed password
   bool checkPassword(String plainPassword) {
+
     return BCrypt.checkpw(plainPassword, password??'');
   }
 }
@@ -190,11 +248,11 @@ class UserModel {
 
 //users
 class Users {
-  List<UserModel> users;
+  List<UserModel> items;
 
   //DateTime date;
 
-  Users({required this.users});
+  Users({required this.items});
 
   factory Users.fromJson(json) {
     List<UserModel> tempUsers = [];
@@ -204,12 +262,12 @@ class Users {
       tempUser.id = json[i].id;
       tempUsers.add(tempUser);
     }
-    return Users(users: tempUsers);
+    return Users(items: tempUsers);
   }
 
   Map<String, dynamic> toJson() {
     List<Map<String, dynamic>> tempUsers = [];
-    for (UserModel user in users) {
+    for (UserModel user in items) {
       tempUsers.add(user.toJson());
     }
     return {

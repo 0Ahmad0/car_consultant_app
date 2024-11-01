@@ -75,32 +75,32 @@ class FirebaseFun {
   }
 
 
-  ///Lesson
-  // static addLesson( {required LessonModel lesson}) async {
-  //   final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionLesson)
-  //       .doc(lesson.id)
-  //       .set(lesson.toJson()).then(onValueAddLesson).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
-  //   return result;
-  // }
-  // static deleteLesson( {required String idLesson}) async {
-  //   final result =await FirebaseFirestore.instance
-  //       .collection(FirebaseConstants.collectionLesson)
-  //       .doc(idLesson)
-  //       .delete().then(onValueDeleteLesson)
-  //       .catchError(onError);
-  //   return result;
-  // }
-  // static updateLesson( {required LessonModel lesson}) async {
-  //   final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionLesson).doc(
-  //       lesson.id
-  //   ).update(lesson.toJson()).then(onValueUpdateLesson).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
-  //   return result;
-  // }
-  // static fetchLessonsByIdUser({required String idUser})  async {
-  //   final result=await FirebaseFirestore.instance.collection(FirebaseConstants.collectionLesson)
+  ///RequestProvider
+  static addRequestProvider( {required UserModel provider}) async {
+    final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionRequestProvider)
+        .doc(provider.id)
+        .set(provider.toJson()).then(onValueAddRequestProvider).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static deleteRequestProvider( {required String idRequestProvider}) async {
+    final result =await FirebaseFirestore.instance
+        .collection(FirebaseConstants.collectionRequestProvider)
+        .doc(idRequestProvider)
+        .delete().then(onValueDeleteRequestProvider)
+        .catchError(onError);
+    return result;
+  }
+  static updateRequestProvider( {required UserModel provider}) async {
+    final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionRequestProvider).doc(
+        provider.id
+    ).update(provider.toJson()).then(onValueUpdateRequestProvider).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  // static fetchRequestProvidersByIdUser({required String idUser})  async {
+  //   final result=await FirebaseFirestore.instance.collection(FirebaseConstants.collectionRequestProvider)
   //       .where('idUser',isEqualTo: idUser)
   //       .get()
-  //       .then((onValueFetchLessons))
+  //       .then((onValueFetchRequestProviders))
   //       .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
   //   return result;
   // }
@@ -169,31 +169,31 @@ class FirebaseFun {
 
 
 
-  static Future<Map<String,dynamic>>onValueAddLesson(value) async{
+  static Future<Map<String,dynamic>>onValueAddRequestProvider(value) async{
     return {
       'status':true,
-      'message':'Lesson successfully add',
+      'message':'RequestProvider successfully add',
       'body':{},//{'id':value.id}
     };
   }
-  static Future<Map<String,dynamic>>onValueUpdateLesson(value) async{
+  static Future<Map<String,dynamic>>onValueUpdateRequestProvider(value) async{
     return {
       'status':true,
-      'message':'Lesson successfully update',
+      'message':'RequestProvider successfully update',
       'body':{}
     };
   }
-  static Future<Map<String,dynamic>> onValueFetchLessons(value) async{
+  static Future<Map<String,dynamic>> onValueFetchRequestProviders(value) async{
     return {
       'status':true,
-      'message':'Lesson successfully fetch',
+      'message':'RequestProvider successfully fetch',
       'body':value.docs
     };
   }
-  static Future<Map<String,dynamic>>onValueDeleteLesson(value) async{
+  static Future<Map<String,dynamic>>onValueDeleteRequestProvider(value) async{
     return {
       'status':true,
-      'message':'Lesson successfully delete',
+      'message':'RequestProvider successfully delete',
       'body':{}
     };
   }
@@ -258,15 +258,15 @@ class FirebaseFun {
         "تم جلب معلومات المستخدمين بنجاح";
         errorMessage = "Users successfully fetch";
         break;
-      case "lesson successfully add":
+      case "RequestProvider successfully add":
         errorMessage =
         "تمت إضافة درس بنجاح";
         break;
-      case "lesson successfully update":
+      case "RequestProvider successfully update":
         errorMessage =
         "تم تحديث الدرس بنجاح";
         break;
-      case "lesson successfully fetch":
+      case "RequestProvider successfully fetch":
         errorMessage =
         "تم جلب الدرس بنجاح";
         break;
@@ -274,7 +274,7 @@ class FirebaseFun {
         errorMessage =
         "تم انشاء الحساب بنجاح";
         break;
-      case "Lesson successfully delete":
+      case "RequestProvider successfully delete":
         errorMessage =
         "تم حذف الجلسة بنجاح";
         break;

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bcrypt/bcrypt.dart';
 import 'package:car_consultant/app/screens/login_screen.dart';
 import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 import '../../core/local/storage.dart';
 import '../../core/models/user_model.dart';
@@ -38,6 +40,7 @@ class ProfileController extends GetxController {
   TextEditingController userNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController dateBirthController = TextEditingController();
   String? gender;
 
   Future<void> updateImage(XFile? image) async {
@@ -78,7 +81,7 @@ class ProfileController extends GetxController {
     String name=nameController.value.text;
         String email=emailController.value.text;
     try {
-      // ConstantsWidgets.showLoading(context);
+      ConstantsWidgets.showLoading();
       if(profileImage!=null){
         imagePath=await FirebaseFun.uploadImage(image: XFile(profileImage!.path));
         profileImage=null;
@@ -94,6 +97,7 @@ class ProfileController extends GetxController {
         email: email,
         phoneNumber: phoneController.value.text,
         userName: userNameController.value.text,
+        birthDate: DateFormat.yMd().tryParse(dateBirthController.value.text),
         gender: gender,
         photoUrl: imagePath,
         typeUser: currentUser.value?.typeUser,
@@ -109,7 +113,8 @@ class ProfileController extends GetxController {
         currentUser.value=userModel;
         update();
 
-        Get.back();
+        ConstantsWidgets.closeDialog();
+        // Get.back();
         Get.snackbar(
             StringManager.message_success,
             StringManager.message_successfully_update,
@@ -124,8 +129,8 @@ class ProfileController extends GetxController {
       String errorMessage;
       // errorMessage = "An unexpected error occurred. Please try again later.";
       errorMessage = "An unexpected error occurred. Please try again later.";
-
-      Get.back();
+      ConstantsWidgets.closeDialog();
+      // Get.back();
       Get.snackbar(
           StringManager.message_failure,
           errorMessage,
@@ -133,6 +138,51 @@ class ProfileController extends GetxController {
       );
     }
   }
+
+
+  Future<void> changePassword(
+      String password
+      ) async {
+    try {
+      ConstantsWidgets.showLoading();
+        auth.currentUser?.updatePassword(password);
+
+
+      String hashPassword=BCrypt.hashpw(password!, BCrypt.gensalt());
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(FirebaseAuth.instance.currentUser?.uid ?? '')
+          .update({"password":hashPassword}).timeout(timeLimit)
+          .then((value){
+        currentUser.value?.password=hashPassword;
+        update();
+
+        ConstantsWidgets.closeDialog();
+        // Get.back();
+        Get.snackbar(
+            StringManager.message_success,
+            StringManager.message_successfully_update,
+            backgroundColor: ColorManager.successColor
+        );
+        // if(email!=currentUser.value?.email||(password!=''&&password!=null))
+        //    Get.offAll(SplashScreen());
+
+      });
+
+    } catch (e) {
+      String errorMessage;
+      // errorMessage = "An unexpected error occurred. Please try again later.";
+      errorMessage = "An unexpected error occurred. Please try again later.";
+      ConstantsWidgets.closeDialog();
+      // Get.back();
+      Get.snackbar(
+          StringManager.message_failure,
+          errorMessage,
+          backgroundColor: ColorManager.errorColor
+      );
+    }
+  }
+
   Future<void> getUser(BuildContext context) async {
     try {
       await FirebaseFirestore.instance
@@ -175,11 +225,12 @@ class ProfileController extends GetxController {
 
   ///image local
   void deletePhoto() {
-    Get.back();
+
     profileImage = null;
     imagePath=null;
+    Get.back();
 
-    update();
+    // update();
   }
 
   Future<void> pickPhoto(ImageSource source) async {
@@ -197,6 +248,8 @@ class ProfileController extends GetxController {
     userNameController = TextEditingController(text: currentUser.value?.userName);
     emailController = TextEditingController(text: currentUser.value?.email);
     phoneController = TextEditingController(text: currentUser.value?.phoneNumber);
+    if(currentUser.value?.birthDate!=null)
+    dateBirthController = TextEditingController(text:DateFormat.yMd().format( currentUser.value!.birthDate!));
 
     // gender=genders.firstWhereOrNull((element)=>element==currentUser.value?.gender);
     // genderController = TextEditingController();

@@ -31,6 +31,7 @@ class LocationModel {
       'id': id,
       'Latitude': latitude,
       'Longitude': longitude,
+      'address': address,
       'timestamp': dateTime==null?null:Timestamp.fromDate(dateTime!),
     };
   }

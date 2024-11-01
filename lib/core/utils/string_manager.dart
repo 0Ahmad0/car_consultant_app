@@ -2,6 +2,7 @@ class StringManager {
   /// Global
   static const String appName = "Car Consultant";
   static const String requiredField = "Filed Is Required";
+  static const String unCorrectPassword = "UnCorrect Password";
   static const String loginText = 'Login';
   static const String signUpText = 'Signup';
   static const String submitText = 'Submit';
@@ -222,6 +223,10 @@ class StringManager {
   static const String phoneNumberText = 'Phone number';
   static const String dateOfBirthText = 'Date of birth';
   static const String firstNameText = 'First name';
+  static const String detected_face_pick_photo_text = 'Detected Face Pick Photo';
+  static const String pick_from_camera_text = 'Pick from Camera';
+  static const String pick_from_gallery_text = 'Pick from Gallery';
+  static const String delete_photo_text = 'Delete Photo';
 
   /// Setting Screen
   static const String pushNotificationText = 'Push Notification';

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/helpers/spacing.dart';
 import 'package:car_consultant/core/utils/color_manager.dart';
@@ -11,9 +13,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
+import '../../core/dialogs/picker_dialog.dart';
 import '../../core/widgets/app_textfield_with_edit.dart';
+import '../controllers/profile_controller.dart';
+import '../widgets/image_user_provider.dart';
 
 class PersonalInformationScreen extends StatefulWidget {
   const PersonalInformationScreen({super.key});
@@ -31,6 +39,14 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   final phoneController = TextEditingController();
   final dateBirthController = TextEditingController();
 
+  late  ProfileController profileController;
+  @override
+  void initState() {
+    profileController = Get.put(ProfileController());
+    profileController.refresh();
+    super.initState();
+  }
+
   @override
   void dispose() {
     firstNameController.dispose();
@@ -43,6 +59,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text(StringManager.personalInformationText),
@@ -54,15 +71,70 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
           children: [
             Align(
               alignment: Alignment.center,
-              child: CircleAvatar(
+              child:
+              profileController.profileImage== null|| (profileController.profileImage?.path.isEmpty??true)?
+              ImageUserProvider(
+                url: profileController.imagePath,
+                // url: profileController.currentUser.value?.photoUrl,
                 radius: 44.sp,
-                child: Icon(Icons.person),
-              ),
+              ):
+              ClipOval(
+                child: CircleAvatar(
+                  radius: 44.sp,
+                  child: Image.file(
+                    File(profileController.profileImage!.path!),
+                    // width: 44.sp,
+                    // height: 44.sp,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              )
+              // CircleAvatar(
+              //   radius: 44.sp,
+              //   child: Icon(Icons.person),
+              // ),
             ),
             Align(
               alignment: Alignment.center,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  {
+                    showModalBottomSheet(
+                      backgroundColor: ColorManager.whiteColor,
+                      isScrollControlled: true,
+                      enableDrag: true,
+                      context: context,
+                      isDismissible: false,
+                      builder: (context) => PickerDialog(
+                        deletePicker:
+                        profileController.profileImage==null&&(profileController.imagePath?.isEmpty??true)?null:
+                            () async {
+
+                           profileController.deletePhoto();
+                          setState(() {});
+
+                          // onChange?.call();
+
+                        },
+                        galleryPicker: () async {
+                          await profileController.pickPhoto(ImageSource.gallery);
+                          // print('result ${profileController.profileImage}');
+                          setState(() {
+
+                          });
+                          // onChange?.call();
+
+                        },
+                        cameraPicker: () async {
+                          await profileController.pickPhoto(ImageSource.camera);
+                          setState(() {
+
+                          });
+                        },
+                      ),
+                    );
+                  }
+                },
                 child: Text(
                   StringManager.changeProfilePhotoText,
                   style: StyleManager.font12Regular(
@@ -77,14 +149,17 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    StringManager.firstNameText,
+                    StringManager.userNameText,
+                    // StringManager.firstNameText,
                     style: StyleManager.font14SemiBold(),
                   ),
                   verticalSpace(10.h),
                   AppTextFiledWithEdit(
-                    hintText: StringManager.firstNameText,
+                    hintText: StringManager.userNameText,
+                    // hintText: StringManager.firstNameText,
                     icon: Icons.person,
-                    controller: firstNameController,
+                    controller: profileController.nameController,
+                    // controller: firstNameController,
                     onEditTap: () {
                       print('object');
                     },
@@ -92,20 +167,24 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                   verticalSpace(10.h),
 
                   ///
-                  Text(
-                    StringManager.lastNameText,
-                    style: StyleManager.font14SemiBold(),
-                  ),
-                  verticalSpace(10.h),
-                  AppTextFiledWithEdit(
-                    hintText: StringManager.lastNameText,
-                    icon: Icons.person,
-                    controller: lastNameController,
-                    onEditTap: () {
-                      print('object');
-                    },
-                  ),
-                  verticalSpace(10.h),
+                  if(false)...[
+                    Text(
+                      StringManager.lastNameText,
+                      style: StyleManager.font14SemiBold(),
+                    ),
+                    verticalSpace(10.h),
+                    AppTextFiledWithEdit(
+                      hintText: StringManager.lastNameText,
+                      icon: Icons.person,
+                      controller: lastNameController,
+                      onEditTap: () {
+                        print('object');
+                      },
+                    ),
+                    verticalSpace(10.h),
+                  ],
+
+
 
                   ///
                   Text(
@@ -114,9 +193,11 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                   ),
                   verticalSpace(10.h),
                   AppTextFiledWithEdit(
+                    readOnly: true,
                     hintText: StringManager.emailAddressText,
                     icon: Icons.email,
-                    controller: emailController,
+                    controller: profileController.emailController,
+                    // controller: emailController,
                     onEditTap: () {
                       print('object');
                     },
@@ -132,7 +213,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                   AppTextFiledWithEdit(
                     hintText: StringManager.phoneNumberText,
                     icon: Icons.phone_android,
-                    controller: phoneController,
+                    controller: profileController.phoneController,
+                    // controller: phoneController,
                     onEditTap: () {
                       print('object');
                     },
@@ -149,7 +231,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                     return AppTextFiledWithEdit(
                       hintText: StringManager.dateOfBirthText,
                       icon: Icons.date_range_outlined,
-                      controller: dateBirthController,
+                      controller: profileController.dateBirthController,
+                      // controller: dateBirthController,
                       onEditTap: () {
                         print('object');
                       },
@@ -160,8 +243,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                             firstDate: DateTime(1990),
                             lastDate: DateTime(2050));
                         if (datePicker != null) {
-                          dateBirthController.text =
-                              DateFormat.yMd().format(datePicker);
+                          dateBirthController.text = DateFormat.yMd().format(datePicker);
+                          profileController.dateBirthController.text = DateFormat.yMd().format(datePicker);
                         }
                       },
                     );
@@ -173,7 +256,9 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                           flex: 3,
                           child: AppButton(
                             onPressed: () {
-                              if (formKey.currentState!.validate()) {}
+                              if (formKey.currentState!.validate()) {
+                                profileController.updateUser();
+                              }
                             },
                             text: StringManager.saveChangesText,
                           )),

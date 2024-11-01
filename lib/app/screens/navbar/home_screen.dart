@@ -15,6 +15,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import '../../../core/widgets/app_padding.dart';
 import '../../controllers/profile_controller.dart';
+import '../../widgets/image_user_provider.dart';
 import 'widgets/home_service_full_width_widget.dart';
 import 'widgets/home_service_widget.dart';
 
@@ -37,36 +38,43 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 34.sp,
-                    child: Icon(Icons.person),
-                  ),
-                  horizontalSpace(10.w),
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          StringManager.welcomeBackText,
-                          style: StyleManager.font14SemiBold(
-                              color: ColorManager.hintTextColor),
+              GetBuilder<ProfileController>(
+                  init: Get.put(ProfileController()),
+                  builder: (controller) {
+                    return Row(
+                    children: [
+                      ImageUserProvider(
+                        url: controller.currentUser.value?.photoUrl,
+                        radius: 34.sp,
+                      ),
+                      // CircleAvatar(
+                      //   radius: 34.sp,
+                      //   child: Icon(Icons.person),
+                      // ),
+                      horizontalSpace(10.w),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              StringManager.welcomeBackText,
+                              style: StyleManager.font14SemiBold(
+                                  color: ColorManager.hintTextColor),
+                            ),
+                            verticalSpace(10.h),
+
+                                   Text(
+                                    controller.currentUser.value?.name ??
+                                        'User Name',
+                                    style: StyleManager.font16Regular(),
+                                  )
+                                ,
+                          ],
                         ),
-                        verticalSpace(10.h),
-                        GetBuilder<ProfileController>(
-                            init: Get.put(ProfileController()),
-                            builder: (controller) {
-                              return Text(
-                                controller.currentUser.value?.name ??
-                                    'User Name',
-                                style: StyleManager.font16Regular(),
-                              );
-                            }),
-                      ],
-                    ),
-                  )
-                ],
+                      )
+                    ],
+                  );
+                }
               ),
               verticalSpace(20.h),
               // TextField(

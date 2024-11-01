@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../core/models/user_model.dart';
 import '../widgets/about_me_and_expertise_widget.dart';
 import '../widgets/consultant_details_card_widget.dart';
 import '../widgets/rate_consultant_widget.dart';
@@ -19,14 +20,15 @@ import '../widgets/starts_text_rate_widget.dart';
 import '../widgets/text_rich_details_consultant_widget.dart';
 
 class DetailsConsultantServiceScreen extends StatelessWidget {
-  const DetailsConsultantServiceScreen({
+   DetailsConsultantServiceScreen({
     super.key,
   });
-
+   UserModel? provider;
   @override
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    provider=args['provider'];
     return Scaffold(
       appBar: AppBar(
         title: Text(StringManager.detailsText),
@@ -40,10 +42,12 @@ class DetailsConsultantServiceScreen extends StatelessWidget {
               tag: args['index'],
             ),
             verticalSpace(10.h),
-            RateConsultantWidget(),
+            RateConsultantWidget(
+              provider: provider,
+            ),
             verticalSpace(10.h),
             TextRichDetailsConsultant(
-              number: 87,
+              number: provider?.additionalInfo?.reviews?.length??87,
               text: StringManager.reviewsText,
             ),
             verticalSpace(10.h),
@@ -55,12 +59,15 @@ class DetailsConsultantServiceScreen extends StatelessWidget {
             AboutMeAndExpertiseWidget(
               title: StringManager.aboutUsText,
               description:
+              provider?.additionalInfo?.about??
                   'Senior Automotive Consultant width over 15 years od experience in the automotive industry',
             ),
             AboutMeAndExpertiseWidget(
               isListFormat: true,
               title: StringManager.expertiseText,
-              description: ''
+              description:
+              provider?.additionalInfo?.expertise??
+              ''
                   '* Engin diagnostics and repair'
                   '* Brake Systems'
                   '* Electrical and electronic systems',

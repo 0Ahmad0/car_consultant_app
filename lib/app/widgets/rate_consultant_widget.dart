@@ -1,15 +1,16 @@
 import 'package:car_consultant/app/widgets/starts_text_rate_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/models/user_model.dart';
 import '../../core/utils/string_manager.dart';
 import '../../core/utils/style_manager.dart';
 import '../../core/widgets/app_padding.dart';
 
 class RateConsultantWidget extends StatelessWidget {
   const RateConsultantWidget({
-    super.key,
+    super.key, this.provider,
   });
-
+  final UserModel? provider;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,7 +18,7 @@ class RateConsultantWidget extends StatelessWidget {
         Expanded(
           child: AppPaddingWidget(
             child: Text(
-              '${4.6}',
+              '${provider?.additionalInfo?.getRate.toStringAsFixed(1)??4.5}',
               style: StyleManager.font40Bold(),
             ),
           ),
@@ -28,15 +29,15 @@ class RateConsultantWidget extends StatelessWidget {
             children: [
               StartsTextRateWidget(
                 text: StringManager.professionalismText,
-                rate: 5,
+                rate: provider?.additionalInfo?.professionalRate??5,
               ),
               StartsTextRateWidget(
                 text: StringManager.timeScaleText,
-                rate: 2,
+                rate: provider?.additionalInfo?.timeScaleRate??2,
               ),
               StartsTextRateWidget(
                 text: StringManager.punctualityText,
-                rate: 2,
+                rate: provider?.additionalInfo?.punctualityRate??2,
               ),
             ],
           ),

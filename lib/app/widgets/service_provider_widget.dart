@@ -8,17 +8,20 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/helpers/spacing.dart';
+import '../../core/models/user_model.dart';
 import '../../core/utils/assets_manager.dart';
 import '../../core/utils/color_manager.dart';
 import '../../core/utils/style_manager.dart';
+import 'image_service_provider.dart';
 
 class ServiceProviderWidget extends StatelessWidget {
   const ServiceProviderWidget({
     super.key,
-    required this.index,
+    required this.index, this.serviceProvider,
   });
 
   final int index;
+  final UserModel? serviceProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class ServiceProviderWidget extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: () {
         context.pushNamed(Routes.detailsConsultantServiceRoute,
-            arguments: {'index': index.toString()});
+            arguments: {'index': index.toString(),'provider':serviceProvider});
       },
       child: IntrinsicHeight(
         child: Row(
@@ -38,10 +41,15 @@ class ServiceProviderWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: ColorManager.primaryColor,
                     borderRadius: BorderRadius.circular(8.r)),
-                child: Image.asset(
-                  AssetsManager.providerIMG,
+                child:
+                ImageServiceProvider(
+                  url: serviceProvider?.photoUrl,
                   width: 100.w,
-                ),
+                )
+                // Image.asset(
+                //   AssetsManager.providerIMG,
+                //   width: 100.w,
+                // ),
               ),
             ),
             horizontalSpace(14.w),
@@ -60,7 +68,8 @@ class ServiceProviderWidget extends StatelessWidget {
                     horizontalSpace(10.w),
                     Flexible(
                       child: Text(
-                        '${4.5}  ( ${84} )',
+                        '${serviceProvider?.additionalInfo?.getRate.toStringAsFixed(1)??4.5}  ( ${serviceProvider?.additionalInfo?.reviews?.length??'-'} )',
+                        // '${4.5}  ( ${84} )',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: StyleManager.font12Regular(
@@ -72,6 +81,7 @@ class ServiceProviderWidget extends StatelessWidget {
                 verticalSpace(10.h),
                 Flexible(
                   child: Text(
+                    serviceProvider?.name??
                     'Service Provider ${index + 1}',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -80,6 +90,7 @@ class ServiceProviderWidget extends StatelessWidget {
                 ),
                 verticalSpace(10.h),
                 Text(
+                  serviceProvider?.additionalInfo?.workShopName??
                   'Starts From',
                   style: StyleManager.font12Regular(
                     color: ColorManager.hintTextColor,
@@ -97,7 +108,8 @@ class ServiceProviderWidget extends StatelessWidget {
                             color: ColorManager.primaryColor,
                             borderRadius: BorderRadius.circular(4.r)),
                         child: Text(
-                          '20 \$',
+                          '${serviceProvider?.additionalInfo?.fee??'-'} \$',
+                          // '20 \$',
                           style: StyleManager.font12Regular(
                               color: ColorManager.whiteColor),
                         ),
