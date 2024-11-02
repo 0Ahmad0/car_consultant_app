@@ -1,4 +1,5 @@
 import 'package:car_consultant/core/helpers/get_color_status_appointments.dart';
+import 'package:car_consultant/core/models/appointment.dart';
 import 'package:car_consultant/core/utils/assets_manager.dart';
 import 'package:car_consultant/core/utils/color_manager.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
@@ -11,9 +12,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class UpcomingItemWidget extends StatelessWidget {
-  const UpcomingItemWidget({super.key, required this.status});
+  const UpcomingItemWidget({super.key, required this.status, required this.appointment});
 
   final ColorAppointments status;
+  final Appointment appointment;
 
   @override
   Widget build(BuildContext context) {
@@ -89,15 +91,17 @@ class UpcomingItemWidget extends StatelessWidget {
               ),
             ),
             title: Text(
-              "${DateFormat().add_Hm().format(
-                    DateTime.now(),
+              "${
+
+                  DateFormat('h:mm').format(
+                    appointment?.fromHour??DateTime.now(),
                   )} "
               "-"
               " ${DateFormat().add_jm().format(
-                    DateTime.now(),
+                appointment?.toHour??DateTime.now(),
                   )} ,"
               " ${DateFormat.MMMd().format(
-                DateTime.now(),
+                appointment?.selectDate??DateTime.now(),
               )}",
               style: StyleManager.font12SemiBold(),
             ),

@@ -11,8 +11,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../core/models/user_model.dart';
+import '../controllers/request_order_controller.dart';
 import '../widgets/about_me_and_expertise_widget.dart';
 import '../widgets/consultant_details_card_widget.dart';
 import '../widgets/rate_consultant_widget.dart';
@@ -75,7 +78,9 @@ class DetailsConsultantServiceScreen extends StatelessWidget {
             AppPaddingWidget(
                 child: AppButton(
                     onPressed: () {
-                      context.pushNamed(Routes.orderDetailsRoute);
+                      Get.put(RequestOrderController()).provider=provider;
+                      context.pushNamed(Routes.orderDetailsRoute,
+                          arguments: {'provider':provider});
                     }, text: StringManager.continueText))
           ],
         ),

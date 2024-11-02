@@ -6,21 +6,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/models/appointment.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/utils/color_manager.dart';
 import '../../../../core/utils/string_manager.dart';
 import '../../../../core/utils/style_manager.dart';
 import '../../../../core/widgets/app_padding.dart';
+import '../../../controllers/request_order_controller.dart';
 
 class PreviousItemWidget extends StatelessWidget {
-  const PreviousItemWidget({super.key, required this.status});
+   PreviousItemWidget({super.key, required this.status, this.appointment});
 
   final ColorAppointments status;
-
+  final Appointment? appointment;
+  late RequestOrderController controller;
   @override
   Widget build(BuildContext context) {
+
+
     return AppPaddingWidget(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,15 +101,17 @@ class PreviousItemWidget extends StatelessWidget {
               ),
             ),
             title: Text(
-              "${DateFormat().add_Hm().format(
-                    DateTime.now(),
+              "${
+
+                  DateFormat('h:mm').format(
+                    appointment?.fromHour??DateTime.now(),
                   )} "
-              "-"
-              " ${DateFormat().add_jm().format(
-                    DateTime.now(),
-                  )} ,"
-              " ${DateFormat.MMMd().format(
-                DateTime.now(),
+                  "-"
+                  " ${DateFormat().add_jm().format(
+                appointment?.toHour??DateTime.now(),
+              )} ,"
+                  " ${DateFormat.MMMd().format(
+                appointment?.selectDate??DateTime.now(),
               )}",
               style: StyleManager.font12SemiBold(),
             ),
@@ -118,6 +127,10 @@ class PreviousItemWidget extends StatelessWidget {
                 ? null
                 : InkWell(
                     onTap: () {
+                      controller = Get.put(RequestOrderController());
+                      controller.onInit();
+                      controller.appointment=appointment;
+                      print(controller.appointment?.toJson());
                       context.pushNamed(Routes.reviewRoute);
                     },
                     child: Image.asset(

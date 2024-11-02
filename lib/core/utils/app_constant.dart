@@ -22,4 +22,5 @@ class AppConstants {
   static String collectionAdmin = "Admin";
   static String collectionServiceProvider = "ServiceProvider";
   static String collectionConsultantProvider = "ConsultantProvider";
+
 }

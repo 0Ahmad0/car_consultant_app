@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:car_consultant/core/helpers/spacing.dart';
 import 'package:car_consultant/core/utils/color_manager.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
@@ -7,7 +9,11 @@ import 'package:car_consultant/core/widgets/app_padding.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
+
+import '../controllers/request_order_controller.dart';
 
 class PaymentInvoiceScreen extends StatelessWidget {
   const PaymentInvoiceScreen({super.key});
@@ -81,7 +87,9 @@ class PaymentInvoiceScreen extends StatelessWidget {
                                 spreadRadius: 2.sp)
                           ]),
                       child: Text(
-                        'Invoice Number',
+                       "${ (DateTime.now().hour+12345)*12345 + (DateTime.now().minute~/2)*123}",
+                       // "${ Random().nextInt(1000000000)}",
+                        // 'Invoice Number',
                         style: StyleManager.font16SemiBold(),
                       ),
                     ),
@@ -137,7 +145,9 @@ class PaymentInvoiceScreen extends StatelessWidget {
                     ),
                     verticalSpace(10.h),
                     AppButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.put(RequestOrderController()).addAppointment(context);
+                      },
                       text: StringManager.continueText,
                     )
                   ],

@@ -6,6 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../core/models/appointment.dart';
+import '../../../core/models/review_model.dart';
 import '../../../core/models/user_model.dart';
 import '../../../core/utils/color_manager.dart';
 import 'firebase_constants.dart';
@@ -75,6 +77,24 @@ class FirebaseFun {
   }
 
 
+  static rateProvider( {required String idProvider,required ReviewModel review}) async {
+    UserModel? provider;
+   await FirebaseFirestore.instance.collection(FirebaseConstants.collectionUser).doc(
+        idProvider
+    ).get().then((value){
+     provider=UserModel.fromJson(value);
+    });
+    provider?.additionalInfo?.reviews??=[];
+    if(provider?.additionalInfo?.reviews?.any((element)=>element.idUser!=review.idUser)??true)
+        provider?.additionalInfo?.reviews?.add(review);
+    if(provider==null)
+      return errorUser("Failure");
+    final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionUser).doc(
+        idProvider
+    ).
+    update(provider!.toJson()).then(onValueRateProvider).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
   ///RequestProvider
   static addRequestProvider( {required UserModel provider}) async {
     final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionRequestProvider)
@@ -107,6 +127,27 @@ class FirebaseFun {
   //
   //
 
+  ///Appointment
+  static addRequestAppointment( {required Appointment appointment}) async {
+    final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionAppointment)
+        .doc(appointment.id)
+        .set(appointment.toJson()).then(onValueAddAppointment).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static deleteAppointment( {required String idAppointment}) async {
+    final result =await FirebaseFirestore.instance
+        .collection(FirebaseConstants.collectionAppointment)
+        .doc(idAppointment)
+        .delete().then(onValueDeleteAppointment)
+        .catchError(onError);
+    return result;
+  }
+  static updateAppointment( {required Appointment appointment}) async {
+    final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionAppointment).doc(
+        appointment.id
+    ).update(appointment.toJson()).then(onValueUpdateAppointment).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
 
 
   static Future<Map<String,dynamic>>  onError(error) async {
@@ -167,7 +208,13 @@ class FirebaseFun {
   }
 
 
-
+  static Future<Map<String,dynamic>>onValueRateProvider(value) async{
+    return {
+      'status':true,
+      'message':'successfully review',
+      'body':{}
+    };
+  }
 
   static Future<Map<String,dynamic>>onValueAddRequestProvider(value) async{
     return {
@@ -194,6 +241,37 @@ class FirebaseFun {
     return {
       'status':true,
       'message':'RequestProvider successfully delete',
+      'body':{}
+    };
+  }
+
+
+
+  static Future<Map<String,dynamic>>onValueAddAppointment(value) async{
+    return {
+      'status':true,
+      'message':'Appointment successfully add',
+      'body':{},//{'id':value.id}
+    };
+  }
+  static Future<Map<String,dynamic>>onValueUpdateAppointment(value) async{
+    return {
+      'status':true,
+      'message':'Appointment successfully update',
+      'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>> onValueFetchAppointments(value) async{
+    return {
+      'status':true,
+      'message':'Appointment successfully fetch',
+      'body':value.docs
+    };
+  }
+  static Future<Map<String,dynamic>>onValueDeleteAppointment(value) async{
+    return {
+      'status':true,
+      'message':'Appointment successfully delete',
       'body':{}
     };
   }

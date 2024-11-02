@@ -10,6 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_emoji_feedback/flutter_emoji_feedback.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../controllers/request_order_controller.dart';
 
 class ReviewScreen extends StatefulWidget {
   const ReviewScreen({super.key});
@@ -30,6 +34,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    currentRating=Get.put(RequestOrderController()).appointment?.review?.timeScaleReview?.toInt()??currentRating;
+    rateController.text=Get.put(RequestOrderController()).appointment?.review?.text??  rateController.text;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -96,7 +103,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
             verticalSpace(20.h),
             AppButton(
               onPressed: () {
-                if (formKey.currentState!.validate()) {}
+                if (formKey.currentState!.validate()) {
+                  Get.put(RequestOrderController()).addReview(context, rate: currentRating,text:   rateController.value.text);
+                }
               },
               text: StringManager.submitText,
             )

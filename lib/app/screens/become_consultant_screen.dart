@@ -13,9 +13,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../core/enums/enums.dart';
+import '../../core/helpers/operation_file.dart';
 import '../../core/utils/string_manager.dart';
+import '../controllers/request_provider_controller.dart';
 
 class BecomeConsultScreen extends StatefulWidget {
   const BecomeConsultScreen({super.key});
@@ -26,18 +32,28 @@ class BecomeConsultScreen extends StatefulWidget {
 
 class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
   List<File>? files;
-
+  final formKey = GlobalKey<FormState>();
+  late RequestProviderController controller;
+  @override
+  void initState() {
+    controller = Get.put(RequestProviderController());
+    controller.onInit();
+    super.initState();
+  }
   _pickFiles() async {
     FilePickerResult? result =
     await FilePicker.platform.pickFiles(allowMultiple: true);
     if (result != null) {
-      files = result.paths.map((path) => File(path!)).toList();
-      setState(() {});
+      for(PlatformFile platformFile in result?.files??[])
+      {
+        controller.addFile(platformFile.xFile,platformFile: platformFile,type: TypeFile.file.name);
+      }
+      // files = result.paths.map((path) => File(path!)).toList();
+      // setState(() {});
     } else {
       // User canceled the picker
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,11 +66,13 @@ class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
+
                 StringManager.name,
                 style: StyleManager.font16SemiBold(),
               ),
               verticalSpace(10.h),
               AppTextField(
+                controller:controller.nameController,
                 hintText: StringManager.enterNameHintText,
               ),
               verticalSpace(20.h),
@@ -64,6 +82,7 @@ class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
               ),
               verticalSpace(10.h),
               TextFormField(
+                controller:controller.workshopNameController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.r),
@@ -88,7 +107,10 @@ class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
               ),
               verticalSpace(10.h),
               StatefulBuilder(builder: (context, uploadFilesSetState) {
-                return Column(
+    return GetBuilder<RequestProviderController>(
+    init: controller,
+    builder: ( requestProviderController)=>
+                  Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     InkWell(
@@ -118,7 +140,8 @@ class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
                       ),
                     ),
                     Visibility(
-                      visible: files?.isNotEmpty ?? false,
+                      visible:  requestProviderController.provider?.additionalInfo?.files?.isNotEmpty ?? false,
+                      // visible: files?.isNotEmpty ?? false,
                       child: Column(
                         children: [
                           verticalSpace(10.h),
@@ -147,11 +170,28 @@ class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
                                           color: ColorManager.primaryColor,
                                           borderRadius:
                                           BorderRadius.circular(4.r)),
-                                      child: Text(
-                                        index.toString(),
-                                        style: StyleManager.font12Medium(
-                                            color: ColorManager.whiteColor),
-                                      ),
+                                      child:
+                                      Column(
+                                        children: [
+                                          Icon(
+                                            getFileIcon( requestProviderController.provider?.additionalInfo?.files?[index].type),
+
+                                          ),
+                                          Flexible(
+                                            child: Text(
+                                              formatFileSize( requestProviderController.provider?.additionalInfo?.files?[index].size),
+                                              // index.toString(),
+                                              style: StyleManager.font12Medium(
+                                                  color: ColorManager.whiteColor),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                      // Text(
+                                      //   index.toString(),
+                                      //   style: StyleManager.font12Medium(
+                                      //       color: ColorManager.whiteColor),
+                                      // ),
                                     ),
                                     Positioned(
                                       top: 0,
@@ -159,7 +199,10 @@ class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
                                       child: InkWell(
                                           onTap: () {
                                             uploadFilesSetState(() {
-                                              files!.removeAt(index);
+                                              requestProviderController.removeFile(
+                                                  requestProviderController.provider?.additionalInfo?.files?[index]
+                                              );
+                                              // files!.removeAt(index);
                                             });
                                           },
                                           child: CircleAvatar(
@@ -176,7 +219,7 @@ class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
                                   ],
                                 ),
                               ),
-                              itemCount: files?.length ?? 0,
+                              itemCount: requestProviderController.provider?.additionalInfo?.files?.length ?? 0,
                             ),
                           ),
                         ],
@@ -203,7 +246,11 @@ class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
                           verticalSpace(10.h),
                           Row(
                             children: [
-                              Checkbox(value: true, onChanged: (Value) {}),
+                              Checkbox(value: requestProviderController.repairServices, onChanged: (value) {
+                                requestProviderController.repairServices=value??false;
+                                requestProviderController.update();
+                              }),
+                              // Checkbox(value: true, onChanged: (Value) {}),
                               horizontalSpace(8.w),
                               Text(StringManager.categoryConsultantText)
                             ],
@@ -211,7 +258,12 @@ class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
                           verticalSpace(10.h),
                           Row(
                             children: [
-                              Checkbox(value: false, onChanged: (Value) {}),
+                              Checkbox(value:requestProviderController.inspectionDiagnostics, onChanged: (value) {
+                                requestProviderController.inspectionDiagnostics=value??false;
+                                requestProviderController.update();
+                              }),
+
+                              // Checkbox(value: false, onChanged: (Value) {}),
                               horizontalSpace(8.w),
                               Text(StringManager.categoryEmergencyText)
                             ],
@@ -226,15 +278,19 @@ class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
                     ),
                     verticalSpace(10.h),
                     AppTextField(
+                      controller: controller.feeController,
                       hintText: StringManager.consultationFeeHintText,
                       keyboardType: TextInputType.numberWithOptions(),
                     ),
                     verticalSpace(20.h),
                     AppButton(
                         onPressed: () {
+                          if(formKey.currentState!.validate()){
+                            controller.addRequestProvider(context);
+                          }
                         }, text: StringManager.submitText)
                   ],
-                );
+                ));
               }),
             ],
           ),

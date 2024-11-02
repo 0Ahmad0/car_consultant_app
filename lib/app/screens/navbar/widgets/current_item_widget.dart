@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/models/appointment.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/utils/color_manager.dart';
 import '../../../../core/utils/string_manager.dart';
@@ -12,10 +13,10 @@ import '../../../../core/utils/style_manager.dart';
 import '../../../../core/widgets/app_padding.dart';
 
 class CurrentItemWidget extends StatelessWidget {
-  const CurrentItemWidget({super.key, required this.status});
+  const CurrentItemWidget({super.key, required this.status, this.appointment});
 
   final ColorAppointments status;
-
+  final Appointment? appointment;
   @override
   Widget build(BuildContext context) {
     return AppPaddingWidget(
@@ -93,15 +94,17 @@ class CurrentItemWidget extends StatelessWidget {
                     ),
                   ),
                   title: Text(
-                    "${DateFormat().add_Hm().format(
-                          DateTime.now(),
+                    "${
+
+                        DateFormat('h:mm').format(
+                          appointment?.fromHour??DateTime.now(),
                         )} "
-                    "-"
-                    " ${DateFormat().add_jm().format(
-                          DateTime.now(),
-                        )} ,"
-                    " ${DateFormat.MMMd().format(
-                      DateTime.now(),
+                        "-"
+                        " ${DateFormat().add_jm().format(
+                      appointment?.toHour??DateTime.now(),
+                    )} ,"
+                        " ${DateFormat.MMMd().format(
+                      appointment?.selectDate??DateTime.now(),
                     )}",
                     style: StyleManager.font12SemiBold(),
                   ),

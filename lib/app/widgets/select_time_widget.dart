@@ -11,11 +11,12 @@ class SelectTimeListWidget extends StatelessWidget {
   const SelectTimeListWidget({
     super.key,
     required this.index,
-    required this.currentIndex,
+    required this.currentIndex,  this.timeHour,
   });
 
   final int index;
   final int currentIndex;
+  final TimeHourModel? timeHour;
 
   @override
   Widget build(BuildContext context) {
@@ -28,38 +29,46 @@ class SelectTimeListWidget extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: currentIndex == index &&
-            ConstValueManager.timeList[index].status !=
+            timeHour?.status !=
+            // ConstValueManager.timeList[index].status !=
                 SelectTimeOrderStatus.book
             ? ColorManager.primaryColor.withOpacity(.1)
-            : ConstValueManager.timeList[index].status ==
+            : timeHour?.status ==
+            // : ConstValueManager.timeList[index].status ==
             SelectTimeOrderStatus.book?
             ColorManager.grayColor:ColorManager.whiteColor,
         borderRadius: BorderRadius.circular(10.r),
         border: Border.all(
             color: currentIndex == index &&
-                ConstValueManager.timeList[index].status !=
+                timeHour?.status !=
+                // ConstValueManager.timeList[index].status !=
                     SelectTimeOrderStatus.book
                 ? ColorManager.primaryColor
-                : ConstValueManager.timeList[index].status ==
+                : timeHour?.status ==
+                // : ConstValueManager.timeList[index].status ==
                 SelectTimeOrderStatus.book
                 ? ColorManager.grayColor :ColorManager.hintTextColor,
             width: currentIndex == index &&
-                ConstValueManager.timeList[index].status !=
+                timeHour?.status !=
+                // ConstValueManager.timeList[index].status !=
                     SelectTimeOrderStatus.book
                 ? 1
                 : 2),
       ),
       child: FittedBox(
         child: Text(
-          '${DateFormat().add_Hm().format(
-              ConstValueManager.timeList[index].fromTime)}'
+          '${DateFormat('h:mm').format(
+              timeHour?.fromTime??DateTime.now())}'
+              // ConstValueManager.timeList[index].fromTime)}'
               ' - '
-              '${DateFormat().add_Hm().add_j().format(
-              ConstValueManager.timeList[index].toTime)}',
+              '${DateFormat().add_jm().format(
+              timeHour?.toTime??DateTime.now())}',
+              // ConstValueManager.timeList[index].toTime)}',
           style: StyleManager.font12SemiBold(
             color: currentIndex == index
                 ? ColorManager.primaryColor
-                : ConstValueManager.timeList[index].status ==
+                : timeHour?.status ==
+                // : ConstValueManager.timeList[index].status ==
                 SelectTimeOrderStatus.book
                 ? ColorManager.hintTextColor
                 : ColorManager.blackColor,

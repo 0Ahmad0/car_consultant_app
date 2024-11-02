@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:car_consultant/app/controllers/profile_controller.dart';
+import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/models/location_model.dart';
 import 'package:car_consultant/core/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,6 +17,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../core/widgets/constants_widgets.dart';
 
 import '../../core/models/file_model.dart';
+import '../../core/routing/routes.dart';
 import 'firebase/firebase_constants.dart';
 import 'firebase/firebase_fun.dart';
 
@@ -56,7 +58,7 @@ class RequestProviderController extends GetxController{
     }
 
 
-  addRequestProvider(context,{bool withUserId=true}) async {
+  addRequestProvider(BuildContext context,{bool withUserId=true}) async {
     // ConstantsWidgets.showProgress(progress);
     _calculateProgress(provider?.additionalInfo?.files?.length??0);
     Get.dialog(
@@ -110,8 +112,10 @@ class RequestProviderController extends GetxController{
     ConstantsWidgets.closeDialog();
     if(result['status']){
       provider=userModel;
-      Get.back();
-      Get.back();
+      context.pushNamed(
+          Routes.paymentSuccessfulRoute);
+      // Get.back();
+      // Get.back();
     }
     ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()),state: result['status']);
     return result;

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../core/utils/color_manager.dart';
 import '../../core/utils/string_manager.dart';
 import '../../core/utils/style_manager.dart';
+import '../controllers/request_order_controller.dart';
 
 class OrderDetailsSectionWidget extends StatelessWidget {
   const OrderDetailsSectionWidget({
-    super.key,
+    super.key, this.fee,
   });
-
+  final int? fee;
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -30,7 +33,7 @@ class OrderDetailsSectionWidget extends StatelessWidget {
                 style: StyleManager.font14Regular(),
               ),
               trailing: Text(
-                '${20} \$',
+                '${fee??20} \$',
                 style: StyleManager.font14SemiBold(
                     color: ColorManager.hintTextColor),
               ),
@@ -57,7 +60,7 @@ class OrderDetailsSectionWidget extends StatelessWidget {
                   style: StyleManager.font14Bold(),
                 ),
                 trailing: Text(
-                  '${25} \$',
+                  '${(fee??20)+5} \$',
                   style: StyleManager.font14Bold(),
                 )),
             Divider(
