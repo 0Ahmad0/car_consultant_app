@@ -266,6 +266,8 @@ class StringManager {
   /// Message Screen
   static const String searchMessageText = 'search Message..';
   static const String noMessageYetText = 'No messages yet';
+  static const String errorTryAgainLater = 'Error try again later';
+  static const String emptyData = 'Empty Data';
   static const String startChatText =
       'Start a conversation with proofreaders,\nand get the job done';
 

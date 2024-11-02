@@ -6,5 +6,7 @@ class FirebaseConstants{
   static String collectionEmergencyService = "EmergencyServices";
   static String collectionRequestProvider = "RequestProviders";
   static String collectionAppointment = "Appointments";
+  static String collectionChat = "Chats";
+  static String collectionMessage = "Messages";
 
 }

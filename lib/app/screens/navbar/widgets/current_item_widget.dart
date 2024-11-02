@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/models/appointment.dart';
@@ -11,6 +13,7 @@ import '../../../../core/utils/color_manager.dart';
 import '../../../../core/utils/string_manager.dart';
 import '../../../../core/utils/style_manager.dart';
 import '../../../../core/widgets/app_padding.dart';
+import '../../../controllers/user_appointments_controller.dart';
 
 class CurrentItemWidget extends StatelessWidget {
   const CurrentItemWidget({super.key, required this.status, this.appointment});
@@ -45,7 +48,9 @@ class CurrentItemWidget extends StatelessWidget {
             ),
             trailing: status == ColorAppointments.Pending
                 ? IconButton(
-                    onPressed: () {}, icon: Icon(Icons.location_on_outlined))
+                    onPressed: () {
+
+                    }, icon: Icon(Icons.location_on_outlined))
                 : null,
           ),
           const Divider(
@@ -123,12 +128,16 @@ class CurrentItemWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+
+                            },
                             icon: Icon(
                               Icons.chat_outlined,
                             )),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                           icon: Stack(
                             clipBehavior: Clip.none,
                             children: [
@@ -153,7 +162,9 @@ class CurrentItemWidget extends StatelessWidget {
                       ],
                     )
                   : IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.put(UserAppointmentsController()).connectionPerson(context, appointment?.idProvider);
+                      },
                       icon: Icon(
                         Icons.chat_outlined,
                       )),

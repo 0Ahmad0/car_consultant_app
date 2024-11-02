@@ -18,6 +18,29 @@ IconData getFileIcon(String? type) {
   }
 }
 
+TypeFile getFileType(String? filePath) {
+  // استخراج الامتداد من مسار الملف
+  String? extension = filePath?.split('.').last.toLowerCase();
+
+  switch (extension) {
+    case 'txt':
+    case 'doc':
+    case 'docx':
+    case 'pdf':
+      return TypeFile.file;
+    case 'jpg':
+    case 'jpeg':
+    case 'png':
+    case 'gif':
+      return TypeFile.image;
+    case 'mp3':
+    case 'wav':
+      return TypeFile.audio;
+    default:
+      return TypeFile.file; // أي نوع آخر يعتبر ملفًا عامًا
+  }
+}
+
 String formatFileSize(int? size) {
   if (size == null) return "Undefined";
   if (size < 1024) return "$size Byte";

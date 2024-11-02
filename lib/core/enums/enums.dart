@@ -27,3 +27,9 @@ enum TypeFile{
   file,
   audio,
 }
+
+enum TypeMessage{
+  text,
+  image,
+  file, audio,
+}
