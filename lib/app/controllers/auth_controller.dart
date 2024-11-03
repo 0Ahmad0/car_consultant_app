@@ -149,7 +149,7 @@ class AuthController extends GetxController {
         context.pop();
         // Get.back();
         if (profileController.currentUser.value?.isAdmin ?? false)
-          context.pushAndRemoveUntil(Routes.navbarRoute,
+          context.pushAndRemoveUntil(Routes.adminNavbarRoute,
               predicate: (Route<dynamic> route) => false);
 
         // Get.offAll(NavbarScreen());
@@ -212,7 +212,7 @@ class AuthController extends GetxController {
       profileController.currentUser.value = user;
       // if(profileController.currentUser.value?.isAdmin??false)
       if (user.isAdmin)
-        context.pushAndRemoveUntil(Routes.navbarRoute,
+        context.pushAndRemoveUntil(Routes.adminNavbarRoute,
             predicate: (Route<dynamic> route) => false);
 
       // Get.offAll(NavbarScreen());

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:car_consultant/core/helpers/spacing.dart';
+import 'package:car_consultant/core/utils/app_constant.dart';
 import 'package:car_consultant/core/utils/color_manager.dart';
 import 'package:car_consultant/core/utils/style_manager.dart';
 import 'package:car_consultant/core/widgets/app_button.dart';
@@ -286,7 +287,7 @@ class _BecomeConsultScreenState extends State<BecomeConsultScreen> {
                     AppButton(
                         onPressed: () {
                           if(formKey.currentState!.validate()){
-                            controller.addRequestProvider(context);
+                            controller.addRequestProvider(context,typeUser: AppConstants.collectionConsultantProvider);
                           }
                         }, text: StringManager.submitText)
                   ],

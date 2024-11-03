@@ -8,5 +8,6 @@ class FirebaseConstants{
   static String collectionAppointment = "Appointments";
   static String collectionChat = "Chats";
   static String collectionMessage = "Messages";
+  static String collectionNotification= "Notifications";
 
 }

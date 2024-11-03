@@ -1,6 +1,8 @@
 
 
 import 'package:car_consultant/core/helpers/extensions.dart';
+import 'package:car_consultant/core/models/notification_model.dart';
+import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:car_consultant/app/controllers/profile_controller.dart';
@@ -19,6 +21,7 @@ import '../../core/routing/routes.dart';
 import '../widgets/select_time_widget.dart';
 import 'firebase/firebase_constants.dart';
 import 'firebase/firebase_fun.dart';
+import 'notifications_controller.dart';
 
 
 class RequestOrderController extends GetxController{
@@ -51,6 +54,9 @@ class RequestOrderController extends GetxController{
 
     ConstantsWidgets.closeDialog();
     if(result['status']){
+      //TODO dd notification
+      Get.put(NotificationsController()).addNotification(context, notification: NotificationModel(idUser: appointment?.idProvider, subtitle: StringManager.notificationSubTitleNewAppointment+' '+(Get.put(ProfileController())?.currentUser.value?.name??''), dateTime: DateTime.now(), title: StringManager.notificationTitleNewAppointment, message: ''));
+
       context.pushNamed(
           Routes.paymentSuccessfulRoute
       );

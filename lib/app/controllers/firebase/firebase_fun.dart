@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:car_consultant/core/models/notification_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -226,6 +227,25 @@ class FirebaseFun {
     return result;
   }
 
+  ///Notification
+  static addNotification( {required NotificationModel notification}) async {
+    final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionNotification).add(
+        notification.toJson()
+    ).then(onValueAddNotification).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+
+  static updateNotification({required NotificationModel notification}) async {
+    final result = await FirebaseFirestore.instance
+        .collection(FirebaseConstants.collectionNotification)
+        .doc(notification.id)
+        .update(notification.toJson())
+        .then(onValueUpdateNotification)
+        .catchError(onError)
+        .timeout(timeOut, onTimeout: onTimeOut);
+    return result;
+  }
+
 
 
   static Future<Map<String,dynamic>>  onError(error) async {
@@ -406,6 +426,20 @@ class FirebaseFun {
     };
   }
 
+  static Future<Map<String,dynamic>>onValueAddNotification(value) async{
+    return {
+      'status':true,
+      'message':'Notification successfully add',
+      'body':{}
+    };
+  }
+  static Future<Map<String, dynamic>> onValueUpdateNotification(value) async {
+    return {
+      'status': true,
+      'message': 'Notification successfully update',
+      'body': {}
+    };
+  }
 
 
 

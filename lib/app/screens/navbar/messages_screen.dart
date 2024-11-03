@@ -117,11 +117,13 @@ class _MessagesScreenState extends State<MessagesScreen> {
                             return
 
                               (chatController.chats.listChat.isEmpty)
-                                  ?  NoDataFoundWidget(
-                                // text: tr(LocaleKeys.home_no_faces_available))
-                                // text: StringManager.infoNotFacesYet
-                                  // text: tr(LocaleKeys.chat_no_chats_yet))
-                              text: "No Chats Yet!")
+                                  ?  Center(
+                                    child: NoDataFoundWidget(
+                                                                    // text: tr(LocaleKeys.home_no_faces_available))
+                                                                    // text: StringManager.infoNotFacesYet
+                                    // text: tr(LocaleKeys.chat_no_chats_yet))
+                                                                  text: "No Chats Yet!"),
+                                  )
                                   :
 
                               buildChats(context, chatController.chats.listChat ?? []);

@@ -22,6 +22,8 @@ class AdditionalInfoModel {
   DateTime? dateTime;
   bool? repairServices;
   bool? inspectionDiagnostics;
+  DateTime? availabilityFrom;
+  DateTime? availabilityTo;
 
   AdditionalInfoModel({
     this.id,
@@ -38,6 +40,8 @@ class AdditionalInfoModel {
     this.dateTime,
     this.repairServices,
     this.inspectionDiagnostics,
+    this.availabilityFrom,
+    this.availabilityTo,
 
   });
   double get  getRate{
@@ -116,6 +120,8 @@ class AdditionalInfoModel {
       repairServices: data["repairServices"],
       inspectionDiagnostics: data["inspectionDiagnostics"],
       dateTime: data["dateTime"]?.toDate(),
+      availabilityFrom: data["availabilityFrom"]?.toDate(),
+      availabilityTo: data["availabilityTo"]?.toDate(),
     );
   }
 
@@ -152,6 +158,8 @@ class AdditionalInfoModel {
     'inspectionDiagnostics': inspectionDiagnostics,
     'repairServices': repairServices,
     'dateTime': dateTime==null?null:Timestamp.fromDate(dateTime!),
+    'availabilityFrom': availabilityFrom==null?null:Timestamp.fromDate(availabilityFrom!),
+    'availabilityTo': availabilityTo==null?null:Timestamp.fromDate(availabilityTo!),
 
   };
   }

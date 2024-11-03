@@ -58,7 +58,7 @@ class RequestProviderController extends GetxController{
     }
 
 
-  addRequestProvider(BuildContext context,{bool withUserId=true}) async {
+  addRequestProvider(BuildContext context,{required String typeUser,bool withUserId=true}) async {
     // ConstantsWidgets.showProgress(progress);
     _calculateProgress(provider?.additionalInfo?.files?.length??0);
     Get.dialog(
@@ -86,6 +86,7 @@ class RequestProviderController extends GetxController{
     //   imagePath=await FirebaseFun.uploadImage(image:image,folder: FirebaseConstants.collectionPerson+'/$name');
     // }
     UserModel userModel=UserModel.fromJson(user?.toJson());
+    userModel.typeUser=typeUser;
     userModel.additionalInfo=AdditionalInfoModel(
       uid: id,
       files: files??[],

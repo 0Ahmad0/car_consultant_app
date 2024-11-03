@@ -1,7 +1,9 @@
 import 'package:car_consultant/app/screens/admin/admin_appointments_info_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_appointments_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_consultant_info_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_home_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_navbar_screen.dart';
+import 'package:car_consultant/app/screens/admin/admin_provider_info_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_user_info_screen.dart';
 import 'package:car_consultant/app/screens/admin/admin_users_screen.dart';
 import 'package:car_consultant/app/screens/become_service_provider_screen.dart';
@@ -120,6 +122,8 @@ class CarConsultantApp extends StatelessWidget {
               Routes.adminAppointmentsInfoRoute: (_) => AdminAppointmentsInfoScreen(),
               Routes.adminUsersRoute: (_) => AdminUsersScreen(),
               Routes.adminUserInfoRoute: (_) => AdminUserInfoScreen(),
+              Routes.adminConsultantInfoRoute: (_) => AdminConsultantInfoScreen(),
+              Routes.adminProviderInfoRoute: (_) => AdminProviderInfoScreen(),
               Routes.opportunitiesRoute: (_) => OpportunitiesScreen(),
 
             },

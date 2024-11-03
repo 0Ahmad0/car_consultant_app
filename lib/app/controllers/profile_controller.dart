@@ -139,6 +139,53 @@ class ProfileController extends GetxController {
     }
   }
 
+  Future<void> updateAdditionalInfo(
+  {
+    String? about,
+    DateTime? availabilityFrom,
+    DateTime? availabilityTo,
+  }
+      ) async {
+    try {
+      ConstantsWidgets.showLoading();
+      UserModel? userModel=UserModel.fromJson(currentUser.value?.toJson());
+      userModel.additionalInfo?.about=about;
+      userModel.additionalInfo?.availabilityFrom=availabilityFrom;
+      userModel.additionalInfo?.availabilityTo=availabilityTo;
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(FirebaseAuth.instance.currentUser?.uid ?? '')
+          .update(userModel.toJson()).timeout(timeLimit)
+          .then((value){
+        currentUser.value=userModel;
+        update();
+
+        ConstantsWidgets.closeDialog();
+        Get.back();
+        Get.snackbar(
+            StringManager.message_success,
+            StringManager.message_successfully_update,
+            backgroundColor: ColorManager.successColor
+        );
+        // if(email!=currentUser.value?.email||(password!=''&&password!=null))
+        //    Get.offAll(SplashScreen());
+
+      });
+
+    } catch (e) {
+      String errorMessage;
+      // errorMessage = "An unexpected error occurred. Please try again later.";
+      errorMessage = "An unexpected error occurred. Please try again later.";
+      ConstantsWidgets.closeDialog();
+      // Get.back();
+      Get.snackbar(
+          StringManager.message_failure,
+          errorMessage,
+          backgroundColor: ColorManager.errorColor
+      );
+    }
+  }
+
 
   Future<void> changePassword(
       String password

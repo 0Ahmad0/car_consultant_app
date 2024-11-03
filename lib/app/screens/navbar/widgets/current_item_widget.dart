@@ -7,13 +7,17 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/enums/enums.dart';
 import '../../../../core/models/appointment.dart';
+import '../../../../core/models/user_model.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/utils/color_manager.dart';
 import '../../../../core/utils/string_manager.dart';
 import '../../../../core/utils/style_manager.dart';
 import '../../../../core/widgets/app_padding.dart';
+import '../../../controllers/process_controller.dart';
 import '../../../controllers/user_appointments_controller.dart';
+import '../../../widgets/image_user_provider.dart';
 
 class CurrentItemWidget extends StatelessWidget {
   const CurrentItemWidget({super.key, required this.status, this.appointment});
@@ -29,13 +33,16 @@ class CurrentItemWidget extends StatelessWidget {
           ListTile(
             contentPadding: EdgeInsets.zero,
             dense: true,
-            title: Text(
-              'Consultant 1',
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style:
-                  StyleManager.font16SemiBold(color: ColorManager.blackColor),
-            ),
+            title:
+
+            fetchName(context,appointment?.idProvider??''),
+            // Text(
+            //   'Consultant 1',
+            //   maxLines: 2,
+            //   overflow: TextOverflow.ellipsis,
+            //   style:
+            //       StyleManager.font16SemiBold(color: ColorManager.blackColor),
+            // ),
             leading: Container(
               width: 50.w,
               height: 50.w,
@@ -44,7 +51,26 @@ class CurrentItemWidget extends StatelessWidget {
                 color: ColorManager.primaryColor,
                 borderRadius: BorderRadius.circular(8.r),
               ),
-              child: Image.asset(AssetsManager.consultantServiceIMG),
+              child:
+              GetBuilder<ProcessController>(
+                  builder: (ProcessController processController) {
+                    processController.fetchUserAsync(context, idUser: appointment?.idProvider??'');
+                    UserModel? user = processController.fetchLocalUser(idUser: appointment?.idProvider??'');
+                    return
+
+                      user?.typeUser==AccountType.User.name?
+                      ImageUserProvider(
+                        url: user?.photoUrl,
+                        errorBuilder:  Icon(
+
+                          Icons.account_circle_outlined,
+                        ),
+                      ):
+                      Image.asset(AssetsManager.consultantServiceIMG)
+                    ;
+
+                  }),
+
             ),
             trailing: status == ColorAppointments.Pending
                 ? IconButton(
@@ -173,5 +199,8 @@ class CurrentItemWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+  fetchName(BuildContext context,String idUser){
+    return Get.put(ProcessController()).widgetNameUser(context, idUser: idUser);
   }
 }

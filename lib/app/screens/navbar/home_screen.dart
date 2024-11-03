@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
+import '../../../core/enums/enums.dart';
 import '../../../core/widgets/app_padding.dart';
 import '../../controllers/profile_controller.dart';
 import '../../widgets/image_user_provider.dart';
@@ -140,20 +141,28 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              verticalSpace(20.h),
-              HomeServiceFullWidthWidget(
-                image: AssetsManager.opportunitiesIMG,
-                title: StringManager.freelanceOpportunitiesText,
-                subTitle: StringManager.becomeCarText,
-                route: Routes.opportunitiesRoute,
-              ),
-              verticalSpace(20.h),
-              HomeServiceFullWidthWidget(
-                image: AssetsManager.controlPanelIMG,
-                title: StringManager.consultantAndServiceProviderControlPanelText,
-                subTitle: StringManager.servicesControlPanelText,
-                route: '',
-              ),
+              if(    Get.put(ProfileController().currentUser.value?.typeUser==AccountType.User.name))...[
+                verticalSpace(20.h),
+                HomeServiceFullWidthWidget(
+                  image: AssetsManager.opportunitiesIMG,
+                  title: StringManager.freelanceOpportunitiesText,
+                  subTitle: StringManager.becomeCarText,
+                  route: Routes.opportunitiesRoute,
+                ),
+              ]else...[
+                verticalSpace(20.h),
+                HomeServiceFullWidthWidget(
+                  image: AssetsManager.controlPanelIMG,
+                  title: StringManager.consultantAndServiceProviderControlPanelText,
+                  subTitle: StringManager.servicesControlPanelText,
+                  route:
+    Get.put(ProfileController().currentUser.value?.typeUser==AccountType.ServiceProvider.name?
+                  Routes.serviceProviderControlPanelRoute
+                 :Routes.serviceProviderControlPanelRoute,
+                ),)
+              ]
+
+
             ],
           ),
         ),

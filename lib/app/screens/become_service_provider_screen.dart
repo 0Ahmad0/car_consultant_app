@@ -19,6 +19,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../core/enums/enums.dart';
 import '../../core/helpers/operation_file.dart';
+import '../../core/utils/app_constant.dart';
 import '../../core/utils/string_manager.dart';
 import '../controllers/request_provider_controller.dart';
 
@@ -295,7 +296,7 @@ class _BecomeServiceProviderScreenState extends State<BecomeServiceProviderScree
                       AppButton(
                           onPressed: () {
                             if(formKey.currentState!.validate()){
-                             controller.addRequestProvider(context);
+                             controller.addRequestProvider(context,typeUser: AppConstants.collectionServiceProvider);
                             }
 
                           }, text: StringManager.submitText)

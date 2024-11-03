@@ -43,7 +43,7 @@ class SplashController extends GetxController with GetSingleTickerProviderStateM
           context.pushAndRemoveUntil(Routes.loginRoute, predicate: (Route<dynamic> route) =>false);
 
         if(profileController.currentUser.value?.isAdmin??false)
-          context.pushAndRemoveUntil(Routes.navbarRoute, predicate: (Route<dynamic> route) =>false);
+          context.pushAndRemoveUntil(Routes.adminNavbarRoute, predicate: (Route<dynamic> route) =>false);
 
         // Get.offAll(NavbarScreen());
         // Get.offAll(NavBarAdminScreen());

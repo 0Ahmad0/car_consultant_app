@@ -8,16 +8,19 @@ import 'package:intl/intl.dart';
 
 import '../../../core/dialogs/delete_user_dialog.dart';
 import '../../../core/helpers/spacing.dart';
+import '../../../core/models/user_model.dart';
 import '../../../core/utils/assets_manager.dart';
 import '../../../core/utils/color_manager.dart';
 import '../../../core/utils/style_manager.dart';
 import '../../../core/widgets/app_container_with_shadow.dart';
 
 class AdminProviderInfoScreen extends StatelessWidget {
-  const AdminProviderInfoScreen({super.key});
-
+   AdminProviderInfoScreen({super.key});
+  UserModel? provider;
   @override
   Widget build(BuildContext context) {
+    final args=ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    provider=args['provider'];
     return Scaffold(
       appBar: AppBar(
         title: Text(StringManager.providerInfoText),
@@ -68,7 +71,7 @@ class AdminProviderInfoScreen extends StatelessWidget {
                                               color: ColorManager.primaryColor),
                                         ),
                                         Text(
-                                          'User 14',
+                                          provider?.name?? 'User 14',
                                           style: StyleManager.font12Regular(
                                               color:
                                               ColorManager.hintTextColor),
@@ -82,7 +85,9 @@ class AdminProviderInfoScreen extends StatelessWidget {
                                         Text(
                                           DateFormat.d()
                                               .add_yMMM()
-                                              .format(DateTime.now()),
+                                              .format(
+                                              provider?.birthDate??
+                                              DateTime.now()),
                                           style: StyleManager.font12Regular(
                                               color:
                                               ColorManager.hintTextColor),
@@ -94,7 +99,7 @@ class AdminProviderInfoScreen extends StatelessWidget {
                                               color: ColorManager.primaryColor),
                                         ),
                                         Text(
-                                          '0501882888',
+                                          provider?.phoneNumber??'0501882888',
                                           style: StyleManager.font12Regular(
                                               color:
                                               ColorManager.hintTextColor),
@@ -113,7 +118,7 @@ class AdminProviderInfoScreen extends StatelessWidget {
                                               color: ColorManager.primaryColor),
                                         ),
                                         Text(
-                                          'user14@mail.com',
+                                          provider?.email??'user14@mail.com',
                                           style: StyleManager.font12Regular(
                                               color:
                                               ColorManager.hintTextColor),
@@ -125,7 +130,7 @@ class AdminProviderInfoScreen extends StatelessWidget {
                                               color: ColorManager.primaryColor),
                                         ),
                                         Text(
-                                          'MERA2749',
+                                          provider?.additionalInfo?.location?.address??  'MERA2749',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: StyleManager.font12Regular(
@@ -151,6 +156,7 @@ class AdminProviderInfoScreen extends StatelessWidget {
                   verticalSpace(10.h),
                   AppContainerWithShadow(
                     child: Text(
+                      provider?.additionalInfo?.about??
                       'Service Provider with over 10 years of experience in delivering quality services and ensuring customer satisfaction.',
                       style: StyleManager.font12Regular(
                           color: ColorManager.hintTextColor),
@@ -164,6 +170,7 @@ class AdminProviderInfoScreen extends StatelessWidget {
                   verticalSpace(10.h),
                   AppContainerWithShadow(
                     child: Text(
+                      provider?.additionalInfo?.expertise??
                       """. Engine diagnostics and repair
 . Brake systems maintenance
 . Fuel systems inspection and repair""",

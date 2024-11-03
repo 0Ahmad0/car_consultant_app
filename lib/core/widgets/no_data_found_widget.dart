@@ -22,15 +22,24 @@ class NoDataFoundWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset(
-          image,
-          width: 100.w,
-          height: 100.h,
-          color: ColorManager.primaryColor,
-          fit: BoxFit.cover,
-        ),
+        if(image!=null)
+          Image.asset(
+              image,
+              width: 100.w,
+              // height: 100.h,
+              color: ColorManager.primaryColor,
+              fit: BoxFit.cover,
+          ),
+        // SvgPicture.asset(
+        //   image,
+        //   width: 100.w,
+        //   height: 100.h,
+        //   color: ColorManager.primaryColor,
+        //   fit: BoxFit.cover,
+        // ),
         verticalSpace(12.h),
         Text(
           text,

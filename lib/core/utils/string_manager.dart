@@ -11,6 +11,9 @@ class StringManager {
   static const String errorText = 'Error';
   static const String deleteText = 'Delete';
   static const String editYourBioText = 'Edit your bio';
+  static const String availabilityHintFromText = 'Set your available time from';
+  static const String availabilityHintToText = 'Set your available time to';
+  static const String to = 'To';
   static const String availabilityText = 'Availability';
   static const String availabilityHintText = 'Set your available time';
   static const String noText = 'No';
@@ -363,6 +366,25 @@ You can’t undo this action""";
   static const appointmentsOverviewSubTitleText = "View and manage all your appointments here";
   static const manageProfileTitleText = "Manage Profile";
   static const manageProfileSubTitleText = "Update your information";
+
+
+
+  //notification
+  static const notificationTitleNewAppointment = "Book a new appointment";
+  static const notificationSubTitleNewAppointment = "You have a request to book an appointment";
+  static const notificationTitleAcceptAppointment = "Requested accepted";
+  static const notificationSubTitleAcceptAppointment = "Your requested has been accepted by";
+  static const notificationTitleCanceledAppointment = "Requested Canceled";
+  static const notificationSubTitleCanceledAppointment = "Your requested has been canceled by";
+
+  static const notificationTitleAcceptRequestProvider = "Requested provider accepted";
+  static const notificationSubTitleAcceptRequestProvider = "Your requested has been accepted as ";
+  static const notificationTitleRejectedRequestProvider = "Requested provider rejected";
+  static const notificationSubTitleCanceledRequestProvider= "Your requested has been rejected as";
+
+
+
+
 
 
 }

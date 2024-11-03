@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:car_consultant/core/helpers/get_color_status_appointments.dart';
+import 'package:car_consultant/core/models/user_model.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:car_consultant/core/widgets/app_padding.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,10 +17,13 @@ import '../../../core/utils/style_manager.dart';
 import '../../../core/widgets/app_container_with_shadow.dart';
 
 class AdminUserInfoScreen extends StatelessWidget {
-  const AdminUserInfoScreen({super.key});
-
+   AdminUserInfoScreen({super.key});
+  UserModel? user;
   @override
   Widget build(BuildContext context) {
+    final args =
+    ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    user=args['user'];
     return Scaffold(
       appBar: AppBar(
         title: Text(StringManager.userInfoText),
@@ -71,7 +77,7 @@ class AdminUserInfoScreen extends StatelessWidget {
                                               color: ColorManager.primaryColor),
                                         ),
                                         Text(
-                                          'User 14',
+                                          user?.name??'User 14',
                                           style: StyleManager.font12Regular(
                                               color:
                                                   ColorManager.hintTextColor),
@@ -85,7 +91,9 @@ class AdminUserInfoScreen extends StatelessWidget {
                                         Text(
                                           DateFormat.d()
                                               .add_yMMM()
-                                              .format(DateTime.now()),
+                                              .format(
+                                              user?.birthDate??
+                                              DateTime.now()),
                                           style: StyleManager.font12Regular(
                                               color:
                                                   ColorManager.hintTextColor),
@@ -97,7 +105,7 @@ class AdminUserInfoScreen extends StatelessWidget {
                                               color: ColorManager.primaryColor),
                                         ),
                                         Text(
-                                          '0501882888',
+                                          user?.phoneNumber?? '0501882888',
                                           style: StyleManager.font12Regular(
                                               color:
                                                   ColorManager.hintTextColor),
@@ -116,7 +124,7 @@ class AdminUserInfoScreen extends StatelessWidget {
                                               color: ColorManager.primaryColor),
                                         ),
                                         Text(
-                                          'user14@mail.com',
+                                          user?.email??  'user14@mail.com',
                                           style: StyleManager.font12Regular(
                                               color:
                                                   ColorManager.hintTextColor),
@@ -151,7 +159,9 @@ class AdminUserInfoScreen extends StatelessWidget {
                                   color: ColorManager.primaryColor),
                             ),
                             Text(
-                              DateFormat.d().add_yMMM().format(DateTime(1999)),
+                              DateFormat.d().add_yMMM().format(
+                                  user?.additionalInfo?.dateTime??
+                                  DateTime(2024)),
                               style: StyleManager.font12Regular(
                                   color: ColorManager.hintTextColor),
                             ),
@@ -162,6 +172,7 @@ class AdminUserInfoScreen extends StatelessWidget {
                                   color: ColorManager.primaryColor),
                             ),
                             Text(
+                              // "${Random().nextInt(20)}",
                               '${19}',
                               style: StyleManager.font12Regular(
                                   color: ColorManager.hintTextColor),
@@ -189,7 +200,8 @@ class AdminUserInfoScreen extends StatelessWidget {
                                   color: ColorManager.primaryColor),
                             ),
                             Text(
-                              '${10}',
+                              "${Random().nextInt(20)}",
+                              // '${10}',
                               style: StyleManager.font12Regular(
                                   color: ColorManager.hintTextColor),
                             ),

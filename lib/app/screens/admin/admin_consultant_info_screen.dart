@@ -8,16 +8,20 @@ import 'package:intl/intl.dart';
 
 import '../../../core/dialogs/delete_user_dialog.dart';
 import '../../../core/helpers/spacing.dart';
+import '../../../core/models/user_model.dart';
 import '../../../core/utils/assets_manager.dart';
 import '../../../core/utils/color_manager.dart';
 import '../../../core/utils/style_manager.dart';
 import '../../../core/widgets/app_container_with_shadow.dart';
 
 class AdminConsultantInfoScreen extends StatelessWidget {
-  const AdminConsultantInfoScreen({super.key});
-
+   AdminConsultantInfoScreen({super.key});
+  UserModel? provider;
   @override
   Widget build(BuildContext context) {
+    final args =
+    ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    provider=args['provider'];
     return Scaffold(
       appBar: AppBar(
         title: Text(StringManager.consultantInfoText),
@@ -68,7 +72,7 @@ class AdminConsultantInfoScreen extends StatelessWidget {
                                               color: ColorManager.primaryColor),
                                         ),
                                         Text(
-                                          'User 14',
+                                          provider?.name??'User 14',
                                           style: StyleManager.font12Regular(
                                               color:
                                                   ColorManager.hintTextColor),
@@ -82,7 +86,9 @@ class AdminConsultantInfoScreen extends StatelessWidget {
                                         Text(
                                           DateFormat.d()
                                               .add_yMMM()
-                                              .format(DateTime.now()),
+                                              .format(
+                                              provider?.birthDate??
+                                              DateTime.now()),
                                           style: StyleManager.font12Regular(
                                               color:
                                                   ColorManager.hintTextColor),
@@ -94,7 +100,7 @@ class AdminConsultantInfoScreen extends StatelessWidget {
                                               color: ColorManager.primaryColor),
                                         ),
                                         Text(
-                                          '0501882888',
+                                          provider?.phoneNumber?? '0501882888',
                                           style: StyleManager.font12Regular(
                                               color:
                                                   ColorManager.hintTextColor),
@@ -113,7 +119,7 @@ class AdminConsultantInfoScreen extends StatelessWidget {
                                               color: ColorManager.primaryColor),
                                         ),
                                         Text(
-                                          'user14@mail.com',
+                                          provider?.email?? 'user14@mail.com',
                                           style: StyleManager.font12Regular(
                                               color:
                                                   ColorManager.hintTextColor),
@@ -137,6 +143,7 @@ class AdminConsultantInfoScreen extends StatelessWidget {
                   verticalSpace(10.h),
                   AppContainerWithShadow(
                     child: Text(
+                      provider?.additionalInfo?.about??
                       'Senior Automotive Consultant with over 15 years of experience in the automotive industry.',
                       style: StyleManager.font12Regular(
                           color: ColorManager.hintTextColor),
@@ -150,6 +157,7 @@ class AdminConsultantInfoScreen extends StatelessWidget {
                   verticalSpace(10.h),
                   AppContainerWithShadow(
                     child: Text(
+                      provider?.additionalInfo?.expertise??
                       """. Engine diagnostics
 . Brake systems
 . Electrical and electronic systems""",

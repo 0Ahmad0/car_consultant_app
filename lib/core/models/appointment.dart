@@ -4,7 +4,9 @@ import 'package:car_consultant/core/models/location_model.dart';
 import 'package:car_consultant/core/models/review_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
+import '../helpers/get_color_status_appointments.dart';
 import '../utils/app_constant.dart';
 import 'file_model.dart';
 
@@ -51,6 +53,23 @@ class Appointment {
     return Appointment();
   }
 
+  int? get getState{
+    DateTime now=DateFormat.yMd().parse(DateFormat.yMd().format(DateTime.now()));
+
+    if(selectDate==null)
+      return 1;
+    DateTime? current=DateFormat.yMd().parse(DateFormat.yMd().format(selectDate!));
+    if(now.isBefore(current!)
+        ||[ColorAppointments.Canceled.name,ColorAppointments.Concluded.name].contains(state))
+      return -1;
+    if(now.isAfter(current!)
+        ||[ColorAppointments.StartingSoon.name,ColorAppointments.Rescheduled.name].contains(state))
+      return 1;
+    if(now.isAtSameMomentAs(current!))
+      return 0;
+    else
+      return 1;
+  }
 
 
   Map<String, dynamic> toJson() {
@@ -60,6 +79,7 @@ class Appointment {
     'idProvider': idProvider,
     'idUser': idUser,
     'fee': fee,
+    'state': state,
     'review': review?.toJson(),
     'fromHour':  fromHour==null?null:Timestamp.fromDate(fromHour!),
     'toHour':   toHour==null?null:Timestamp.fromDate(toHour!),

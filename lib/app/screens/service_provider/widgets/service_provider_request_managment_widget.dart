@@ -5,16 +5,27 @@ import 'package:car_consultant/core/widgets/app_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/enums/enums.dart';
+import '../../../../core/helpers/get_color_status_appointments.dart';
+import '../../../../core/models/appointment.dart';
+import '../../../../core/models/user_model.dart';
 import '../../../../core/utils/string_manager.dart';
 import '../../../../core/widgets/app_container_with_shadow.dart';
 import '../../../../core/widgets/app_padding.dart';
+import '../../../controllers/manage_request_appointments_controller.dart';
+import '../../../controllers/process_controller.dart';
+import '../../../widgets/image_user_provider.dart';
 
 class ServiceProviderRequestManagementWidget extends StatelessWidget {
   const ServiceProviderRequestManagementWidget({
-    super.key,
+    super.key, this.appointment,
   });
+  final Appointment?  appointment;
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +37,39 @@ class ServiceProviderRequestManagementWidget extends StatelessWidget {
             ListTile(
               dense: true,
               contentPadding: EdgeInsets.zero,
-              leading: CircleAvatar(
-                backgroundColor: ColorManager.whiteColor,
-                child: Icon(
-                  Icons.account_circle,
-                  size: 44.sp,
-                ),
-              ),
-              title: Text(
-                'User 10',
-                style: StyleManager.font14SemiBold(),
-              ),
+              leading:
+              GetBuilder<ProcessController>(
+                  builder: (ProcessController processController) {
+                    processController.fetchUserAsync(context, idUser: appointment?.idProvider??'');
+                    UserModel? user = processController.fetchLocalUser(idUser: appointment?.idProvider??'');
+                    return
+
+                      user?.photoUrl!=null?
+                      ImageUserProvider(
+                        url: user?.photoUrl,
+                        errorBuilder:  Icon(
+
+                          Icons.account_circle_outlined,
+                        ),
+                      ):
+                      CircleAvatar(
+                        backgroundColor: ColorManager.whiteColor,
+                        child: Icon(
+                          Icons.account_circle,
+                          size: 44.sp,
+                        ),
+                      )
+                    ;
+
+                  })
+
+             ,
+              title:
+              fetchName(context,appointment?.idProvider??''),
+              // Text(
+              //   'User 10',
+              //   style: StyleManager.font14SemiBold(),
+              // ),
               subtitle: Text(
                 'Scheduled a New Appointment',
                 style: StyleManager.font12Regular(
@@ -65,14 +98,15 @@ class ServiceProviderRequestManagementWidget extends StatelessWidget {
               ),
               subtitle: Text(
                 "${DateFormat().add_Hm().format(
-                      DateTime.now(),
+                  appointment?.fromHour??DateTime.now(),
+
                     )} "
                 "-"
                 " ${DateFormat().add_jm().format(
-                      DateTime.now(),
+                  appointment?.toHour??DateTime.now(),
                     )} ,"
                 " ${DateFormat.MMMd().format(
-                  DateTime.now(),
+                  appointment?.selectDate??DateTime.now(),
                 )}",
                 style: StyleManager.font12SemiBold(),
               ),
@@ -89,11 +123,16 @@ class ServiceProviderRequestManagementWidget extends StatelessWidget {
               children: [
                 Flexible(
                     child: AppButton(
-                        onPressed: () {}, text: StringManager.acceptText)),
+                        onPressed: () {
+                          Get.put(ManageRequestAppointmentsController()).acceptOrRejectedRequest(context, ColorAppointments.Confirmed, appointment);
+                        }, text: StringManager.acceptText)),
                 horizontalSpace(10.w),
                 Flexible(
                     child: AppOutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.put(ManageRequestAppointmentsController()).acceptOrRejectedRequest(context, ColorAppointments.Canceled, appointment);
+
+                  },
                   text: StringManager.cancelText,
                       color: ColorManager.errorColor,
                 ))
@@ -103,5 +142,8 @@ class ServiceProviderRequestManagementWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+  fetchName(BuildContext context,String idUser){
+    return Get.put(ProcessController()).widgetNameUser(context, idUser: idUser,style:  StyleManager.font14SemiBold());
   }
 }

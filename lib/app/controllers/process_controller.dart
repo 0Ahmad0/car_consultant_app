@@ -64,7 +64,7 @@ class ProcessController extends GetxController {
     // notifyListeners();
   }
 
-  widgetNameUser(context, {required String idUser}) {
+  widgetNameUser(context, {required String idUser,TextStyle? style}) {
     // if(cacheNameUser.containsKey(idUser)&&cacheNameUser[idUser]!=null)
     //   return Text('${cacheNameUser[idUser]}');
     return FutureBuilder(
@@ -87,7 +87,7 @@ class ProcessController extends GetxController {
             return Text('${cacheNameUser[idUser]}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: StyleManager.font18Medium(),
+                  style: style??StyleManager.font18Medium(),
                 );
           } else {
             return const Text('Empty data');

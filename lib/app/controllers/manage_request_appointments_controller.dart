@@ -1,16 +1,19 @@
 
 
+
 import 'package:car_consultant/app/controllers/profile_controller.dart';
 import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/models/education_resource.dart';
 import 'package:car_consultant/core/models/user_model.dart';
 import 'package:car_consultant/core/utils/app_constant.dart';
+import 'package:car_consultant/core/utils/const_value_manager.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../core/helpers/get_color_status_appointments.dart';
 import '../../core/models/appointment.dart';
+import '../../core/models/notification_model.dart';
 import '../../core/routing/routes.dart';
 import '../../core/widgets/constants_widgets.dart';
 import 'chat_controller.dart';
@@ -19,13 +22,12 @@ import 'firebase/firebase_constants.dart';
 import 'firebase/firebase_fun.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class UserAppointmentsController extends GetxController{
+import 'notifications_controller.dart';
+
+class ManageRequestAppointmentsController extends GetxController{
 
   final searchController = TextEditingController();
   Appointments appointments=Appointments(items: []);
-  Appointments upAppointments=Appointments(items: []);
-  Appointments currAppointments=Appointments(items: []);
-  Appointments prevAppointments=Appointments(items: []);
   String? uid;
   var getAppointments;
 
@@ -50,14 +52,17 @@ class UserAppointmentsController extends GetxController{
 
 
   _fetchAppointmentsStream() {
-    final result= FirebaseFirestore.instance
+    final result = FirebaseFirestore.instance
         .collection(FirebaseConstants.collectionAppointment)
-        .where('idUser',isEqualTo: uid)
+        .where('idProvider', isEqualTo: uid)
         .snapshots();
+
     return result;
   }
-  filterProviders({required String term}) async {
-
+  filter({required String term}) async {
+    appointments.items=appointments.items.where((element)=>
+    [null,"", ColorAppointments.Pending.name].contains(element.state)
+    ).toList();
     // providersWithFilter.items=[];
     // Appointments.items.forEach((element) {
     //
@@ -66,81 +71,28 @@ class UserAppointmentsController extends GetxController{
     // });
      update();
   }
-  classification() async {
-    upAppointments.items.clear();
-    currAppointments.items.clear();
-    prevAppointments.items.clear();
-    appointments.items.forEach((element) {
-      switch(element.getState){
-        case 1:
-          upAppointments.items.add(element);
-        case 0:
-          currAppointments.items.add(element);
-        case -1:
-          prevAppointments.items.add(element);
-        default:
-          upAppointments.items.add(element);
-      }
-      // switch(element.state){
-      //   case ColorAppointments.Confirmed:
-      //   case ColorAppointments.Rescheduled:
-      //   case ColorAppointments.Pending:
-      //   case null:
-      //     if()
-      //     upAppointments.items.add(element);
-      //   case ColorAppointments.Ongoing:
-      //   case ColorAppointments.StartingSoon:
-      //     currAppointments.items.add(element);
-      //   case ColorAppointments.Concluded:
-      //   case ColorAppointments.Canceled:
-      //     prevAppointments.items.add(element);
-      //   default:
-      //     upAppointments.items.add(element);
-      // }
-      });
-    update();
-  }
 
-  connectionPerson(BuildContext context ,String? idProvider) async {
+
+  acceptOrRejectedRequest(BuildContext context ,ColorAppointments? state,Appointment? appointment) async {
     var result;
+    appointment?.state=state?.name;
     ConstantsWidgets.showLoading();
-    // if(person.idChat!=null){
-    //   ConstantsWidgets.closeDialog();
-    //   context.pushNamed(Routes.sendMessageRoute,
-    //       arguments: {
-    //         "index":index.toString(),
-    //         'chat':Chat(id:person.idChat??'',messages: [], listIdUser: [uid??'',person.uid??''], date: DateTime.now())
-    //       }
-    //   );
-    //
-    // }
-    // else
     {
+      result=await FirebaseFun.updateAppointment(appointment:appointment!);
 
-        result = await Get.put(ChatController()).createChat(
-            listIdUser: [uid??'',idProvider ?? '']);
-        /// bind person with user
-        // if(result['status']){
-        //   person.uid=user.uid;
-        //   person.idChat=result['body']['id'];
-        //   await FirebaseFun.updatePerson(person:person!);
-        // }
 
         //TODO dd notification
         // if(result['status'])
         //   context.read<NotificationProvider>().addNotification(context, notification: models.Notification(idUser: users[index].uid, subtitle: AppConstants.notificationSubTitleNewChat+' '+(profileProvider?.user?.firstName??''), dateTime: DateTime.now(), title: AppConstants.notificationTitleNewChat, message: ''));
 
-        result =  await Get.put(ChatController()).fetchChatByListIdUser(
-            listIdUser: [uid??'', idProvider ?? '']);
-
         if(result['status']){
+          state==ColorAppointments.Confirmed?
+          Get.put(NotificationsController()).addNotification(context, notification: NotificationModel(idUser: appointment?.idUser, subtitle: StringManager.notificationSubTitleAcceptAppointment+' '+(Get.put(ProfileController())?.currentUser.value?.name??''), dateTime: DateTime.now(), title: StringManager.notificationTitleAcceptAppointment, message: ''))
+          :Get.put(NotificationsController()).addNotification(context, notification: NotificationModel(idUser: appointment?.idUser, subtitle: StringManager.notificationSubTitleCanceledAppointment+' '+(Get.put(ProfileController())?.currentUser.value?.name??''), dateTime: DateTime.now(), title: StringManager.notificationTitleCanceledAppointment, message: ''));
+
           ConstantsWidgets.closeDialog();
           // if(result['status'])
           //    Get.to(ChatPage(), arguments: {'chat': controller.chat});
-          Get.put(ChatRoomController()).chat=Get.put(ChatController()).chat;
-          context.pushNamed(Routes.chatRoute, arguments: {
-            'chat':Get.put(ChatController()).chat
-          });
         }else{
           ConstantsWidgets.closeDialog();
           ConstantsWidgets.TOAST(null,
