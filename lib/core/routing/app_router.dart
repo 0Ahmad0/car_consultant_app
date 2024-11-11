@@ -58,6 +58,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/screens/about_us_screen.dart';
 import '../../app/screens/contact_us_screen.dart';
+import '../../app/screens/service_provider/service_provider_manage_appointments_screen.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
@@ -299,6 +300,10 @@ class AppRouter {
         case Routes.serviceProviderManageProfileRoute:
         return MaterialPageRoute(
           builder: (_) => ServiceProviderManageProfile(),
+        );
+      case Routes.serviceProviderManageAppointmentsRoute:
+        return MaterialPageRoute(
+          builder: (_) => ServiceProviderManageAppointmentsScreen(),
         );
       default:
         return MaterialPageRoute(

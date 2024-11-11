@@ -1,3 +1,4 @@
+import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/helpers/get_color_status_appointments.dart';
 import 'package:car_consultant/core/models/appointment.dart';
 import 'package:car_consultant/core/utils/assets_manager.dart';
@@ -16,7 +17,9 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/enums/enums.dart';
 import '../../../../core/models/user_model.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../controllers/process_controller.dart';
+import '../../../controllers/request_order_controller.dart';
 import '../../../widgets/image_user_provider.dart';
 
 class UpcomingItemWidget extends StatelessWidget {
@@ -142,7 +145,14 @@ class UpcomingItemWidget extends StatelessWidget {
               ),
             ),
             trailing: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.put(RequestOrderController()).provider=UserModel(uid:appointment.idProvider );
+                Get.put(RequestOrderController()).appointment=appointment;
+                context.pushNamed(Routes.orderDetailsRoute,
+                    arguments: {'provider':Get.put(RequestOrderController()).provider,
+                      "appointment":appointment
+                });
+              },
               icon: Stack(
                 clipBehavior: Clip.none,
                 children: [

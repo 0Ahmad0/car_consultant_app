@@ -27,9 +27,9 @@ var _borderTextFiled = ({Color color = ColorManager.primaryColor}) =>
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text(StringManager.homeText),
@@ -141,7 +141,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              if(    Get.put(ProfileController().currentUser.value?.typeUser==AccountType.User.name))...[
+
+              if(  Get.put(ProfileController()).currentUser.value?.typeUser==AccountType.User.name)...[
                 verticalSpace(20.h),
                 HomeServiceFullWidthWidget(
                   image: AssetsManager.opportunitiesIMG,
@@ -156,10 +157,10 @@ class HomeScreen extends StatelessWidget {
                   title: StringManager.consultantAndServiceProviderControlPanelText,
                   subTitle: StringManager.servicesControlPanelText,
                   route:
-    Get.put(ProfileController().currentUser.value?.typeUser==AccountType.ServiceProvider.name?
+    Get.put(ProfileController()).currentUser.value?.typeUser==AccountType.ServiceProvider.name?
                   Routes.serviceProviderControlPanelRoute
                  :Routes.serviceProviderControlPanelRoute,
-                ),)
+                )
               ]
 
 

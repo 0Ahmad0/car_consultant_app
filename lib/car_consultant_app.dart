@@ -33,6 +33,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'app/controllers/profile_controller.dart';
+import 'app/screens/service_provider/service_provider_manage_appointments_screen.dart';
 import 'core/routing/app_router.dart';
 import 'core/routing/routes.dart';
 import 'core/utils/color_manager.dart';
@@ -125,6 +126,8 @@ class CarConsultantApp extends StatelessWidget {
               Routes.adminConsultantInfoRoute: (_) => AdminConsultantInfoScreen(),
               Routes.adminProviderInfoRoute: (_) => AdminProviderInfoScreen(),
               Routes.opportunitiesRoute: (_) => OpportunitiesScreen(),
+              Routes.orderDetailsRoute: (_) => OrderDetailsScreen(),
+              Routes.serviceProviderManageAppointmentsRoute: (_) => ServiceProviderManageAppointmentsScreen(),
 
             },
           );

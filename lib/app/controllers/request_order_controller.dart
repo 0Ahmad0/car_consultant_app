@@ -70,30 +70,22 @@ class RequestOrderController extends GetxController{
 
 
 
-  // updatePerson(context,{ XFile? image}) async {
-  //   ConstantsWidgets.showLoading();
-  //
-  //   String name=nameController.value.text;
-  //
-  //   String? imagePath;
-  //   if(image!=null){
-  //     imagePath=await FirebaseFun.uploadImage(image:image,folder: FirebaseConstants.collectionPerson+'/$name');
-  //   }
-  //
-  //   person?.name=name;
-  //   person?.description= descriptionController.value.text;
-  //  person?.imagePath=imagePath??person?.imagePath;
-  //   person?.phoneNumber=phoneNumberController.value.text;
-  //   person?.email=emailController.value.text;
-  //   var
-  //   result=await FirebaseFun.updatePerson(person:person!);
-  //   ConstantsWidgets.closeDialog();
-  //   // if(result['status'])
-  //   //   Get.back();
-  //   ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()),state: result['status']);
-  //   return result;
-  // }
-  //
+  updateAppointment(BuildContext context) async {
+    ConstantsWidgets.showLoading();
+
+    var result=await FirebaseFun.updateAppointment(appointment:appointment!);
+
+    ConstantsWidgets.closeDialog();
+    ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()),state: result['status']);
+    if(result['status']){
+      //TODO update notification
+      Get.put(NotificationsController()).addNotification(context, notification: NotificationModel(idUser: appointment?.idProvider, subtitle: StringManager.notificationSubTitleUpdateAppointment+' '+(Get.put(ProfileController())?.currentUser.value?.name??''), dateTime: DateTime.now(), title: StringManager.notificationTitleUpdateAppointment, message: ''));
+    }
+    return result;
+  }
+
+
+
 
 
   addReview(context,{required int rate,String? text}) async {

@@ -35,6 +35,7 @@ class ServiceProviderControlPanelScreen extends StatelessWidget {
                   image: AssetsManager.appointmentsOverviewIMG,
                   title: StringManager.appointmentsOverviewTitleText,
                   subTitle: StringManager.appointmentsOverviewSubTitleText,
+                  route: Routes.serviceProviderManageAppointmentsRoute,
                 ),
                 verticalSpace(20.h),
                 HomeServiceFullWidthWidget(

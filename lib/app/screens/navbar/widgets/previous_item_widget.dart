@@ -78,7 +78,10 @@ class PreviousItemWidget extends StatelessWidget {
             ),
             trailing: status == ColorAppointments.Pending
                 ? IconButton(
-                    onPressed: () {}, icon: Icon(Icons.location_on_outlined))
+                    onPressed: () {
+
+
+                    }, icon: Icon(Icons.location_on_outlined))
                 : null,
           ),
           const Divider(

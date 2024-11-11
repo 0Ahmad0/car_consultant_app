@@ -1,3 +1,4 @@
+import 'package:car_consultant/app/controllers/profile_controller.dart';
 import 'package:car_consultant/app/screens/navbar/widgets/current_item_widget.dart';
 import 'package:car_consultant/app/screens/navbar/widgets/list_view_previous_status_appointments_widget.dart';
 import 'package:car_consultant/app/screens/navbar/widgets/previous_item_widget.dart';
@@ -18,21 +19,24 @@ import 'package:get/get.dart';
 
 import '../../../core/widgets/constants_widgets.dart';
 import '../../../core/widgets/no_appointments_widget.dart';
+import '../../controllers/provider_appointments_controller.dart';
 import '../../controllers/user_appointments_controller.dart';
-import 'widgets/list_view_current_status_appointments_widget.dart';
-import 'widgets/list_view_upcoming_status_appointments_widget.dart';
+import '../navbar/widgets/list_view_current_status_appointments_widget.dart';
+import '../navbar/widgets/list_view_upcoming_status_appointments_widget.dart';
 
-class AppointmentsScreen extends StatefulWidget {
-  const AppointmentsScreen({super.key});
+
+class ServiceProviderManageAppointmentsScreen extends StatefulWidget {
+  const ServiceProviderManageAppointmentsScreen({super.key});
 
   @override
-  State<AppointmentsScreen> createState() => _AppointmentsScreenState();
+  State<ServiceProviderManageAppointmentsScreen> createState() => _ServiceProviderManageAppointmentsScreenState();
 }
 
-class _AppointmentsScreenState extends State<AppointmentsScreen> {
-  late UserAppointmentsController controller;
+class _ServiceProviderManageAppointmentsScreenState extends State<ServiceProviderManageAppointmentsScreen> {
+  late ProviderAppointmentsController controller;
   void initState() {
-    controller = Get.put(UserAppointmentsController());
+    controller = Get.put(ProviderAppointmentsController());
+    controller.idProvider=Get.put(ProfileController()).currentUser.value?.uid;
     controller.onInit();
     super.initState();
   }
@@ -82,10 +86,10 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                   }
                   controller.classification();
                   return
-                    GetBuilder<UserAppointmentsController>(
-                        builder: (UserAppointmentsController userAppointmentsController)=>
+                    GetBuilder<ProviderAppointmentsController>(
+                        builder: (ProviderAppointmentsController providerAppointmentsController)=>
 
-                            buildAppointments(context, userAppointmentsController));
+                            buildAppointments(context, providerAppointmentsController));
                 } else {
                   return const Text('Empty data');
                 }
@@ -126,36 +130,38 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
       ),
     );
   }
-  Widget buildAppointments(BuildContext context,UserAppointmentsController userAppointmentsController){
+  Widget buildAppointments(BuildContext context,ProviderAppointmentsController providerAppointmentsController){
     return
       TabBarView(
         children: [
           ListViewUpcomingStatusAppointmentsWidget(
+            isProvider: true,
             list: [
               ColorAppointments.Confirmed,
               ColorAppointments.Rescheduled,
               ColorAppointments.Pending,
             ],
             emptyListText: ConstValueManager.tabs[0],
-            items: userAppointmentsController.upAppointments.items,
+            items: providerAppointmentsController.upAppointments.items,
           ),
           ListViewCurrentStatusAppointmentsWidget(
+            isProvider: true,
             list: [
               ColorAppointments.Ongoing,
               ColorAppointments.StartingSoon,
               ColorAppointments.StartingSoon,
             ],
-            items: userAppointmentsController.currAppointments.items,
+            items: providerAppointmentsController.currAppointments.items,
             emptyListText: ConstValueManager.tabs[1],
           ),
           ListViewPreviousStatusAppointmentsWidget(
+            isProvider: true,
             list: [
               ColorAppointments.Concluded,
               ColorAppointments.Concluded,
               ColorAppointments.Canceled,
-
             ],
-            items: userAppointmentsController.prevAppointments.items,
+            items: providerAppointmentsController.prevAppointments.items,
             emptyListText: ConstValueManager.tabs[2],
           ),
         ],

@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../core/widgets/constants_widgets.dart';
+import '../../../core/widgets/no_appointments_widget.dart';
 import '../../../core/widgets/no_data_found_widget.dart';
 import '../../controllers/manage_request_appointments_controller.dart';
 import 'widgets/service_provider_request_managment_widget.dart';
@@ -63,13 +64,8 @@ class _ServiceProviderManageRequestScreenState extends State<ServiceProviderMana
                           builder: (ManageRequestAppointmentsController manageRequestAppointmentsController)=>
                           (manageRequestAppointmentsController.appointments.items.isEmpty ?? true)
                               ?
-                          SliverToBoxAdapter(
-                            child: Center(
-                              child: NoDataFoundWidget(
-                                // text: tr(LocaleKeys.home_no_faces_available))
-                                // text: StringManager.infoNotFacesYet
-                              ),
-                            ),
+                          SliverFillRemaining(
+                            child: NoAppointmentsWidget(text:"Request" ),
                           )
                               :
 

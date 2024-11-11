@@ -40,8 +40,8 @@ class ServiceProviderRequestManagementWidget extends StatelessWidget {
               leading:
               GetBuilder<ProcessController>(
                   builder: (ProcessController processController) {
-                    processController.fetchUserAsync(context, idUser: appointment?.idProvider??'');
-                    UserModel? user = processController.fetchLocalUser(idUser: appointment?.idProvider??'');
+                    processController.fetchUserAsync(context, idUser: appointment?.idUser??'');
+                    UserModel? user = processController.fetchLocalUser(idUser: appointment?.idUser??'');
                     return
 
                       user?.photoUrl!=null?
@@ -65,7 +65,7 @@ class ServiceProviderRequestManagementWidget extends StatelessWidget {
 
              ,
               title:
-              fetchName(context,appointment?.idProvider??''),
+              fetchName(context,appointment?.idUser??''),
               // Text(
               //   'User 10',
               //   style: StyleManager.font14SemiBold(),

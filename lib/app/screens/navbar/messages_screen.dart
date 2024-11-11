@@ -119,6 +119,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                               (chatController.chats.listChat.isEmpty)
                                   ?  Center(
                                     child: NoDataFoundWidget(
+                                      image: AssetsManager.noMessagesIMG,
                                                                     // text: tr(LocaleKeys.home_no_faces_available))
                                                                     // text: StringManager.infoNotFacesYet
                                     // text: tr(LocaleKeys.chat_no_chats_yet))

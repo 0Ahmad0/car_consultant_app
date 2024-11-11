@@ -7,6 +7,7 @@ class StringManager {
   static const String signUpText = 'Signup';
   static const String submitText = 'Submit';
   static const String continueToPaymentText = 'Continue To Payment';
+  static const String updateAppointmentText = 'Update Appointment';
   static const String continueText = 'Continue';
   static const String errorText = 'Error';
   static const String deleteText = 'Delete';
@@ -372,6 +373,9 @@ You can’t undo this action""";
   //notification
   static const notificationTitleNewAppointment = "Book a new appointment";
   static const notificationSubTitleNewAppointment = "You have a request to book an appointment";
+  static const notificationTitleUpdateAppointment = "Update appointment";
+  static const notificationSubTitleUpdateAppointment = "Appointment booking has been modified";
+
   static const notificationTitleAcceptAppointment = "Requested accepted";
   static const notificationSubTitleAcceptAppointment = "Your requested has been accepted by";
   static const notificationTitleCanceledAppointment = "Requested Canceled";

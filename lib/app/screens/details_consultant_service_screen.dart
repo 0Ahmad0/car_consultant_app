@@ -43,6 +43,7 @@ class DetailsConsultantServiceScreen extends StatelessWidget {
             verticalSpace(10.h),
             ConsultantDetailsCardWidget(
               tag: args['index'],
+              provider: provider,
             ),
             verticalSpace(10.h),
             RateConsultantWidget(

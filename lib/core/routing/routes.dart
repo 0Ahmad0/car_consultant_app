@@ -67,5 +67,6 @@ class Routes {
   static const String serviceProviderControlPanelRoute = '/serviceProviderControlPanelScreen';
   static const String serviceProviderManageRequestRoute = '/serviceProviderManageRequestScreen';
   static const String serviceProviderManageProfileRoute = '/serviceProviderManageProfileScreen';
+  static const String serviceProviderManageAppointmentsRoute = '/serviceProviderManageAppointmentsScreen';
 
 }
