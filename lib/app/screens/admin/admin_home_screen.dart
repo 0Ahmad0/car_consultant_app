@@ -42,11 +42,13 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   void initState() {
     controller = Get.put(StaticsController());
     controller.onInit();
+    Future.delayed(Duration(seconds: 5),()=> setState(() {}));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -206,7 +208,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             if (snapshot.data!.docs.length > 0) {
               controller.accounts.items =
                   Users.fromJson(snapshot.data?.docs).items;
-            }}
+            }
+
+          }
           controller.filterAccounts(term: controller.searchController.value.text);
           return StreamBuilder<QuerySnapshot>(
               stream: controller.getRequestsProviders,
