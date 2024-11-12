@@ -63,7 +63,7 @@ class _ConsultAiBotScreenState extends State<ConsultAiBotScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(StringManager.appName),
+        title: Text(StringManager.aiChatName),
         actions: [
           CircleAvatar(
             backgroundColor: ColorManager.primaryColor,

@@ -12,6 +12,7 @@ import 'package:car_consultant/core/widgets/app_padding.dart';
 import 'package:car_consultant/core/widgets/app_textfield.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -30,19 +31,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final passwordController = TextEditingController();
   late List s;
   late AuthController authController;
+
   @override
   void initState() {
-     authController = Get.put(AuthController());
-     authController.init();
-     s = ConstValueManager.conditionPasswordList;
-     Future.delayed(Duration(seconds: 2),(){
-
-       passwordController.addListener(() {
-         setState(() {
-           s = ConstValueManager.conditionPasswordList;
-         });
-       });
-     });
+    authController = Get.put(AuthController());
+    authController.init();
+    s = ConstValueManager.conditionPasswordList;
+    Future.delayed(Duration(seconds: 2), () {
+      passwordController.addListener(() {
+        setState(() {
+          s = ConstValueManager.conditionPasswordList;
+        });
+      });
+    });
     super.initState();
   }
 
@@ -54,8 +55,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -103,25 +102,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       if (value!.isEmpty) {
                         return StringManager.requiredField;
                       } else {
-
                         s = Validator.validatePassword(value);
                       }
                       return null;
                     },
-                    onChanged:(value)=>  s = Validator.validatePassword(value),
+                    onChanged: (value) => s = Validator.validatePassword(value),
                     hintText: StringManager.enterSetPasswordHintText,
-
                   ),
                   verticalSpace(10.h),
                   Visibility(
                     visible: passwordController.value.text.isNotEmpty,
                     child: Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 20.w),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                          StringManager.conditionPasswordText,
+                            StringManager.conditionPasswordText,
                             style: StyleManager.font14SemiBold(),
                           ),
                           verticalSpace(10.h),
@@ -140,8 +137,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         ),
                                         horizontalSpace(8.w),
                                         Padding(
-                                          padding:
-                                              EdgeInsets.symmetric(vertical: 2.h),
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 2.h),
                                           child: Text(
                                             e.text,
                                             style: StyleManager.font12Regular(
@@ -168,10 +165,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         authController.validatePassword(value ?? ''),
                     hintText: StringManager.enterConfirmPasswordHintText,
                   ),
-                  verticalSpace(40.h),
+                  verticalSpace(10.h),
+                  Html(
+                    data: StringManager.signUpHtmlData,
+
+                  ),
+                  verticalSpace(20.h),
                   AppButton(
                     onPressed: () {
-                      if (authController.formKey.currentState!.validate()&&ConstValueManager.conditionPasswordList.every((element)=>element.isValidate)) {
+                      if (authController.formKey.currentState!.validate() &&
+                          ConstValueManager.conditionPasswordList
+                              .every((element) => element.isValidate)) {
                         authController.signUp(context);
                       }
                     },
