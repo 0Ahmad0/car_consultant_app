@@ -59,6 +59,7 @@ class RequestProviderController extends GetxController{
 
 
   addRequestProvider(BuildContext context,{required String typeUser,bool withUserId=true}) async {
+
     // ConstantsWidgets.showProgress(progress);
     _calculateProgress(provider?.additionalInfo?.files?.length??0);
     Get.dialog(
@@ -114,7 +115,7 @@ class RequestProviderController extends GetxController{
     if(result['status']){
       provider=userModel;
       context.pushNamed(
-          Routes.paymentSuccessfulRoute);
+          Routes.paymentSuccessfulRoute,arguments: {"text": "Request Submitted"});
       // Get.back();
       // Get.back();
     }

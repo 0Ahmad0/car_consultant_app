@@ -111,6 +111,7 @@ class _AdminAppointmentsScreenState extends State<AdminAppointmentsScreen> {
       SliverList.separated(
         itemBuilder: (context, index) =>
             GetBuilder<ProcessController>(
+              init: Get.put(ProcessController()),
                 builder: (ProcessController processController) {
                   processController.fetchUserAsync(context, idUser: items[index].idUser??"");
                   UserModel? user = processController.fetchLocalUser(idUser: items[index].idUser??"");

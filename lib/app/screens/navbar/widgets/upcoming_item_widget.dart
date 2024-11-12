@@ -34,6 +34,12 @@ class UpcomingItemWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+      GetBuilder<ProcessController>(
+        init: Get.put(ProcessController()),
+      builder: (ProcessController processController) {
+    processController.fetchUserAsync(context, idUser: appointment?.idProvider??'');
+    UserModel? user = processController.fetchLocalUser(idUser: appointment?.idProvider??'');
+    return
           ListTile(
             contentPadding: EdgeInsets.zero,
             dense: true,
@@ -55,11 +61,7 @@ class UpcomingItemWidget extends StatelessWidget {
                 color: ColorManager.primaryColor,
                 borderRadius: BorderRadius.circular(8.r),
               ),
-              child:    GetBuilder<ProcessController>(
-                  builder: (ProcessController processController) {
-                    processController.fetchUserAsync(context, idUser: appointment?.idProvider??'');
-                    UserModel? user = processController.fetchLocalUser(idUser: appointment?.idProvider??'');
-                    return
+              child:
 
                       user?.typeUser==AccountType.User.name?
                       ImageUserProvider(
@@ -70,15 +72,19 @@ class UpcomingItemWidget extends StatelessWidget {
                         ),
                       ):
                       Image.asset(AssetsManager.consultantServiceIMG)
-                    ;
-
-                  }),
+                   ,
             ),
-            trailing: status == ColorAppointments.Pending
+            trailing:
+
+            // status == ColorAppointments.Pending
+            user?.isServiceProvider??false
                 ? IconButton(
                     onPressed: () {}, icon: Icon(Icons.location_on_outlined))
                 : null,
-          ),
+          )
+        ;
+
+      }),
           const Divider(
             thickness: .5,
           ),

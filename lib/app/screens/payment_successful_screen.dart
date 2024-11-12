@@ -11,10 +11,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentSuccessfulScreen extends StatelessWidget {
-  const PaymentSuccessfulScreen({super.key});
-
+   PaymentSuccessfulScreen({super.key});
+  String? text;
   @override
   Widget build(BuildContext context) {
+    final args =
+    ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+    text=args?['text'];
     return Scaffold(
       appBar: AppBar(
         title: Text(StringManager.paymentSuccessfulText),
@@ -32,7 +35,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                 ),
                 verticalSpace(10.h),
                 Text(
-                  StringManager.paymentSuccessfulText,
+                  text??StringManager.paymentSuccessfulText,
                   style: StyleManager.font18Medium(),
                 )
               ],
