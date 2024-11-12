@@ -1,6 +1,12 @@
 class StringManager {
   /// Global
   static const String appName = "Car Consultant";
+  static const String aiChatName = "ConsultAI";
+  static const String signUpHtmlData = """
+  <span style='font-size: 12px'>
+  By clicking Sign Up, you agree to our <b>Terms and Conditions</b> and <b>Privacy Policy</b>.
+  </span>
+  """;
   static const String requiredField = "Filed Is Required";
   static const String unCorrectPassword = "UnCorrect Password";
   static const String loginText = 'Login';
