@@ -25,7 +25,9 @@ class AdminHomeUserTypeContainerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     String? uid=(item is UserModel?)?item?.uid:null;
     String? idUser=(item is Appointment?)?item?.idUser:null;
+
     String? id=uid??idUser;
+
     return Container(
       width: double.maxFinite,
       margin: EdgeInsets.symmetric(
@@ -47,7 +49,9 @@ class AdminHomeUserTypeContainerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
       GetBuilder<ProcessController>(
+        init: Get.put(ProcessController()),
       builder: (ProcessController processController) {
+
     processController.fetchUserAsync(context, idUser: id??"");
     UserModel? user = processController.fetchLocalUser(idUser: id??"");
     return

@@ -34,6 +34,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'app/controllers/profile_controller.dart';
 import 'app/screens/admin/admin_request_info_screen.dart';
+import 'app/screens/payment_successful_screen.dart';
 import 'app/screens/service_provider/service_provider_manage_appointments_screen.dart';
 import 'core/routing/app_router.dart';
 import 'core/routing/routes.dart';
@@ -131,6 +132,7 @@ class CarConsultantApp extends StatelessWidget {
               Routes.serviceProviderManageAppointmentsRoute: (_) => ServiceProviderManageAppointmentsScreen(),
               Routes.adminRequestInfoRoute: (_) => RequestInfoScreen(),
               Routes.adminAppointmentsInfoRoute: (_) => AdminAppointmentsInfoScreen(),
+              Routes.paymentSuccessfulRoute: (_) => PaymentSuccessfulScreen(),
 
             },
           );

@@ -80,6 +80,7 @@ class DetailsConsultantServiceScreen extends StatelessWidget {
                 child: AppButton(
                     onPressed: () {
                       Get.put(RequestOrderController()).provider=provider;
+                      Get.put(RequestOrderController()).appointment=null;
                       context.pushNamed(Routes.orderDetailsRoute,
                           arguments: {'provider':provider});
                     }, text: StringManager.continueText))
