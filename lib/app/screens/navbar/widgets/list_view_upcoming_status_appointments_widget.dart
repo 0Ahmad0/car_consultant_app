@@ -5,6 +5,7 @@ import 'package:car_consultant/core/widgets/no_appointments_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/helpers/get_color_status_appointments.dart';
 import '../../../../core/models/appointment.dart';
 
 class ListViewUpcomingStatusAppointmentsWidget extends StatelessWidget {
@@ -28,7 +29,11 @@ class ListViewUpcomingStatusAppointmentsWidget extends StatelessWidget {
             (isProvider==true)?
             ProviderAppointmentItemWidget(status: list.first,appointment: items[index],):
                 UpcomingItemWidget(status:
-                list.first
+                ColorAppointments.values.where((_element)=>
+                items[index].state?.toLowerCase().contains(_element.name.toLowerCase())??false)
+                    .firstOrNull?? ColorAppointments.Pending
+
+                // list.first
                   ,appointment: items[index],),
                 // UpcomingItemWidget(status: list[index],appointment: items[index],),
             separatorBuilder: (_, __) => verticalSpace(4.h),

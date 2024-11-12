@@ -52,7 +52,8 @@ class AdminAppointmentsController extends GetxController{
     appointments.items.forEach((element) {
 
       if((element.idUser?.toLowerCase().contains(term.toLowerCase())??false)||
-          (element.idProvider?.toLowerCase().contains(term.toLowerCase())??false)
+          (element.idProvider?.toLowerCase().contains(term.toLowerCase())??false)||
+          ((element.state??"Pending").toLowerCase().contains(term.toLowerCase())??false)
       )
           appointmentsWithFilter.items.add(element);
 

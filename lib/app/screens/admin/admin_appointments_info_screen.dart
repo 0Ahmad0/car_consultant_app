@@ -1,5 +1,6 @@
 import 'package:car_consultant/core/helpers/get_color_status_appointments.dart';
 import 'package:car_consultant/core/helpers/spacing.dart';
+import 'package:car_consultant/core/models/appointment.dart';
 import 'package:car_consultant/core/utils/assets_manager.dart';
 import 'package:car_consultant/core/utils/color_manager.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
@@ -11,16 +12,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 
-class AdminAppointmentsInfoScreen extends StatelessWidget {
-  const AdminAppointmentsInfoScreen({super.key});
+import '../../../core/models/user_model.dart';
+import '../../../core/widgets/constants_widgets.dart';
+import '../../controllers/process_controller.dart';
 
+class AdminAppointmentsInfoScreen extends StatelessWidget {
+   AdminAppointmentsInfoScreen({super.key});
+  Appointment? appointment;
   @override
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-
+    appointment=args["appointment"];
     return Scaffold(
       appBar: AppBar(
         title: Text(StringManager.appointmentInfoText),
@@ -54,7 +61,7 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
                                 Text(
                                   DateFormat.d()
                                       .add_yMMM()
-                                      .format(DateTime.now()),
+                                      .format(appointment?.selectDate??DateTime.now()),
                                   style: StyleManager.font12Regular(
                                       color: ColorManager.hintTextColor),
                                 ),
@@ -65,7 +72,13 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
                                       color: ColorManager.primaryColor),
                                 ),
                                 Text(
-                                  '9:00-9:30 AM',
+                                  '${DateFormat('h:mm').format(
+                                     appointment?.fromHour??DateTime.now())}'
+                                  // ConstValueManager.timeList[index].fromTime)}'
+                                      ' - '
+                                      '${DateFormat().add_jm().format(
+                                      appointment?.toHour??DateTime.now())}',
+                                  // '9:00-9:30 AM',
                                   style: StyleManager.font12Regular(
                                       color: ColorManager.hintTextColor),
                                 ),
@@ -92,11 +105,16 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
                                   style: StyleManager.font14SemiBold(
                                       color: ColorManager.primaryColor),
                                 ),
-                                Text(
-                                  'Consultation',
-                                  style: StyleManager.font12Regular(
-                                      color: ColorManager.hintTextColor),
-                                ),
+                                GetBuilder<ProcessController>(
+                                    builder: (ProcessController processController) {
+                                      processController.fetchUserAsync(context, idUser: appointment?.idProvider??"");
+                                      UserModel? provider = processController.fetchLocalUser(idUser: appointment?.idProvider??"");
+                                      return
+                                        Text(
+                                          provider?.typeUser?.replaceFirst("Provider", "")??"Loading ..."??'Consultation',
+                                          style: StyleManager.font12Regular(
+                                              color: ColorManager.hintTextColor),
+                                        );}),
                                 verticalSpace(10.h),
                                 Text(
                                   StringManager.statusText,
@@ -121,87 +139,96 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
                     ),
                     verticalSpace(10.h),
                     AppContainerWithShadow(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: ColorManager.whiteColor,
-                            radius: 30.sp,
-                            child: Icon(
-                              Icons.account_circle,
-                              size: 60.sp,
-                            ),
-                          ),
-                          horizontalSpace(20.w),
-                          Expanded(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      child:
+                      GetBuilder<ProcessController>(
+                          builder: (ProcessController processController) {
+                            processController.fetchUserAsync(context, idUser: appointment?.idUser??"");
+                            UserModel? user = processController.fetchLocalUser(idUser: appointment?.idUser??"");
+                            return
+                              (user==null)?
+                              ConstantsWidgets.circularProgress()
+                                  :
+                              Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
+                                CircleAvatar(
+                                  backgroundColor: ColorManager.whiteColor,
+                                  radius: 30.sp,
+                                  child: Icon(
+                                    Icons.account_circle,
+                                    size: 60.sp,
+                                  ),
+                                ),
+                                horizontalSpace(20.w),
                                 Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        StringManager.nameText,
-                                        style: StyleManager.font14SemiBold(
-                                            color: ColorManager.primaryColor),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              StringManager.nameText,
+                                              style: StyleManager.font14SemiBold(
+                                                  color: ColorManager.primaryColor),
+                                            ),
+                                            Text(
+                                              user?.name?? 'User 14',
+                                              style: StyleManager.font12Regular(
+                                                  color: ColorManager.hintTextColor),
+                                            ),
+                                            verticalSpace(10.h),
+                                            Text(
+                                              StringManager.dateOfBirthText,
+                                              style: StyleManager.font14SemiBold(
+                                                  color: ColorManager.primaryColor),
+                                            ),
+                                            Text(
+                                              DateFormat.d()
+                                                  .add_yMMM()
+                                                  .format( user?.birthDate??DateTime.now()),
+                                              style: StyleManager.font12Regular(
+                                                  color: ColorManager.hintTextColor),
+                                            ),
+                                            verticalSpace(10.h),
+                                            Text(
+                                              StringManager.phoneText,
+                                              style: StyleManager.font14SemiBold(
+                                                  color: ColorManager.primaryColor),
+                                            ),
+                                            Text(
+                                              user?.phoneNumber?? '0501882888',
+                                              style: StyleManager.font12Regular(
+                                                  color: ColorManager.hintTextColor),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      Text(
-                                        'User 14',
-                                        style: StyleManager.font12Regular(
-                                            color: ColorManager.hintTextColor),
-                                      ),
-                                      verticalSpace(10.h),
-                                      Text(
-                                        StringManager.dateOfBirthText,
-                                        style: StyleManager.font14SemiBold(
-                                            color: ColorManager.primaryColor),
-                                      ),
-                                      Text(
-                                        DateFormat.d()
-                                            .add_yMMM()
-                                            .format(DateTime.now()),
-                                        style: StyleManager.font12Regular(
-                                            color: ColorManager.hintTextColor),
-                                      ),
-                                      verticalSpace(10.h),
-                                      Text(
-                                        StringManager.phoneText,
-                                        style: StyleManager.font14SemiBold(
-                                            color: ColorManager.primaryColor),
-                                      ),
-                                      Text(
-                                        '0501882888',
-                                        style: StyleManager.font12Regular(
-                                            color: ColorManager.hintTextColor),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              StringManager.emailText,
+                                              style: StyleManager.font14SemiBold(
+                                                  color: ColorManager.primaryColor),
+                                            ),
+                                            Text(
+                                              user?.email??'user14@mail.com',
+                                              style: StyleManager.font12Regular(
+                                                  color: ColorManager.hintTextColor),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        StringManager.emailText,
-                                        style: StyleManager.font14SemiBold(
-                                            color: ColorManager.primaryColor),
-                                      ),
-                                      Text(
-                                        'user14@mail.com',
-                                        style: StyleManager.font12Regular(
-                                            color: ColorManager.hintTextColor),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                )
                               ],
-                            ),
-                          )
-                        ],
-                      ),
+                            );}),
                     ),
                     verticalSpace(20.h),
                     Text(
@@ -210,7 +237,16 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
                     ),
                     verticalSpace(10.h),
                     AppContainerWithShadow(
-                      child: Row(
+                      child:
+                      GetBuilder<ProcessController>(
+                      builder: (ProcessController processController) {
+      processController.fetchUserAsync(context, idUser: appointment?.idProvider??"");
+      UserModel? provider = processController.fetchLocalUser(idUser: appointment?.idProvider??"");
+      return
+        (provider==null)?
+        ConstantsWidgets.circularProgress()
+            :
+                      Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           CircleAvatar(
@@ -236,7 +272,7 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
                                             color: ColorManager.primaryColor),
                                       ),
                                       Text(
-                                        'User 14',
+                                        provider.name??'User 14',
                                         style: StyleManager.font12Regular(
                                             color: ColorManager.hintTextColor),
                                       ),
@@ -249,7 +285,7 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
                                       Text(
                                         DateFormat.d()
                                             .add_yMMM()
-                                            .format(DateTime.now()),
+                                            .format(provider.birthDate??DateTime.now()),
                                         style: StyleManager.font12Regular(
                                             color: ColorManager.hintTextColor),
                                       ),
@@ -260,7 +296,7 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
                                             color: ColorManager.primaryColor),
                                       ),
                                       Text(
-                                        '0501882888',
+                                        provider.phoneNumber??'0501882888',
                                         style: StyleManager.font12Regular(
                                             color: ColorManager.hintTextColor),
                                       ),
@@ -278,7 +314,7 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
                                             color: ColorManager.primaryColor),
                                       ),
                                       Text(
-                                        'user14@mail.com',
+                                        provider.email??'user14@mail.com',
                                         style: StyleManager.font12Regular(
                                             color: ColorManager.hintTextColor),
                                       ),
@@ -289,7 +325,7 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
                             ),
                           )
                         ],
-                      ),
+                      );}),
                     ),
                   ],
                 ),
@@ -297,7 +333,7 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible: args['status'] == ColorAppointments.Pending.name,
+            visible:false&& args['status'] == ColorAppointments.Pending.name,
             child: AppPaddingWidget(
                 child: AppButton(
                     onPressed: () {}, text: StringManager.confirmPaymentText)),
@@ -306,4 +342,7 @@ class AdminAppointmentsInfoScreen extends StatelessWidget {
       ),
     );
   }
+   fetchLocalUser(BuildContext context,String idUser){
+     return Get.put(ProcessController()).fetchUser(context, idUser: idUser);
+   }
 }

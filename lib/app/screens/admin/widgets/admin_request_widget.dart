@@ -8,15 +8,18 @@ import 'package:car_consultant/core/widgets/app_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/models/user_model.dart';
+
 class AdminRequestWidget extends StatelessWidget {
   const AdminRequestWidget({
     super.key,
     required this.title,
-    required this.subTitle,
+    required this.subTitle, this.user,
   });
 
   final String title;
   final String subTitle;
+  final UserModel? user;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,7 @@ class AdminRequestWidget extends StatelessWidget {
             horizontalPadding: 50.w,
             child: AppButton(
               onPressed: () {
-                context.pushNamed(Routes.adminRequestInfoRoute);
+                context.pushNamed(Routes.adminRequestInfoRoute,arguments: {"user":user});
               },
               text: StringManager.viewText,
             ),

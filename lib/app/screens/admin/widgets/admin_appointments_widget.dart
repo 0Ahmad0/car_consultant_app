@@ -1,4 +1,5 @@
 import 'package:car_consultant/core/helpers/extensions.dart';
+import 'package:car_consultant/core/models/appointment.dart';
 import 'package:car_consultant/core/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,20 +14,23 @@ class AppointmentsAdminWidget extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.date,
-    required this.status,
+    required this.status, this.appointment,
   });
 
   final String title;
   final String subTitle;
   final String date;
   final ColorAppointments status;
+  final Appointment? appointment;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         context.pushNamed(Routes.adminAppointmentsInfoRoute,
-            arguments: {'status': status.name});
+            arguments: {'status': status.name,
+              "appointment":appointment
+        });
       },
       child: Row(
         children: [

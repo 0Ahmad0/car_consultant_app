@@ -9,9 +9,10 @@ import '../controllers/request_order_controller.dart';
 
 class OrderDetailsSectionWidget extends StatelessWidget {
   const OrderDetailsSectionWidget({
-    super.key, this.fee,
+    super.key, this.fee, this.typeUser,
   });
   final int? fee;
+  final String? typeUser;
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -29,7 +30,7 @@ class OrderDetailsSectionWidget extends StatelessWidget {
             ),
             ListTile(
               title: Text(
-                StringManager.consultantText,
+                typeUser?? StringManager.consultantText,
                 style: StyleManager.font14Regular(),
               ),
               trailing: Text(

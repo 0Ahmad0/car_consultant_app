@@ -253,7 +253,8 @@ class ConstValueManager {
     'Users',
     'Consultants',
     'Service Providers',
-    'Profit',
+    'Appointments',
+    // 'Profit',
   ];
   static List<DateTime> dateList = [
     DateTime.now(),

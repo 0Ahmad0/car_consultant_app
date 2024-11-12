@@ -71,13 +71,18 @@ class ManageRequestsProviderController extends GetxController{
   acceptOrRejectedRequest(BuildContext context ,AccountRequestStatus? state,UserModel? provider) async {
     var result;
     provider?.additionalInfo?.status=state?.name;
+
     ConstantsWidgets.showLoading();
+
    try {
+
       result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionUser)
-      .doc(provider?.uid??'').update({
+      .doc(provider?.uid??'').update(
+          AccountRequestStatus.Accepted==state?
+          {
         "additionalInfo": provider?.additionalInfo?.toJson()??{},
         "typeUser":provider?.typeUser
-      }).then((value) async {
+      }:{"typeUser":provider?.typeUser}).then((value) async {
         result=await FirebaseFun.updateRequestProvider(provider:provider!);
 
         if(result['status']){

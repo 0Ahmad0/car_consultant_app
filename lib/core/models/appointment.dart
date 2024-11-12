@@ -56,7 +56,7 @@ class Appointment {
   int? get getState{
     DateTime now=DateFormat.yMd().parse(DateFormat.yMd().format(DateTime.now()));
 
-    if(selectDate==null)
+    if(selectDate==null||state==null)
       return 1;
     DateTime? current=DateFormat.yMd().parse(DateFormat.yMd().format(selectDate!));
     if(now.isBefore(current!)

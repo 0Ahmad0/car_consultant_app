@@ -9,9 +9,13 @@ import 'package:car_consultant/core/utils/app_constant.dart';
 import 'package:car_consultant/core/utils/const_value_manager.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import '../../../core/local/storage.dart';
+import '../../../core/widgets/constants_widgets.dart';
 import '../firebase/firebase_constants.dart';
+import '../firebase/firebase_fun.dart';
 
 class ManageUsersController extends GetxController{
 
@@ -66,6 +70,34 @@ class ManageUsersController extends GetxController{
   }
 
 
+  Future<void> deleteAccount(BuildContext context,UserModel? user) async {
+    if(user==null){
+      ConstantsWidgets.closeDialog();
+      return;
+    }
+    try {
+      ConstantsWidgets.showLoading();
+      // await FirebaseAuth.instance
+      //     .currentUser?.delete()
+      //     .timeout(FirebaseFun.timeOut);
+      await FirebaseFirestore.instance
+          .collection(FirebaseConstants.collectionUser)
+          .doc(await AppStorage.storageRead(key: AppConstants.uidKEY))
+          .delete();
+      ConstantsWidgets.closeDialog();
+      ConstantsWidgets.closeDialog();
+      ConstantsWidgets.closeDialog();
+      ConstantsWidgets.TOAST(null, textToast: "Successful Deleted", state: false);
+
+
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = FirebaseFun.findTextToast(e.code);
+      ConstantsWidgets.closeDialog();
+      ConstantsWidgets.TOAST(null, textToast: errorMessage, state: false);
+
+    }
+  }
+  
   // acceptOrRejectedRequest(BuildContext context ,ColorAppointments? state,Appointment? appointment) async {
   //   var result;
   //   appointment?.state=state?.name;

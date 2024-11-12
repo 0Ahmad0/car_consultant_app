@@ -13,16 +13,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/enums/enums.dart';
+import '../../../core/helpers/operation_file.dart';
+import '../../../core/models/user_model.dart';
 import '../../../core/widgets/app_container_with_shadow.dart';
+import '../../controllers/admin/manage_requests_provider_controller.dart';
 import 'widgets/request_info_list_tile_widget.dart';
 
 class RequestInfoScreen extends StatelessWidget {
-  const RequestInfoScreen({super.key});
-
+   RequestInfoScreen({super.key});
+  UserModel? provider;
   @override
   Widget build(BuildContext context) {
+    final args=ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    provider=args['user'];
     return Scaffold(
       appBar: AppBar(
         title: Text(StringManager.requestsInfoText),
@@ -52,11 +60,11 @@ class RequestInfoScreen extends StatelessWidget {
                             children: [
                               RequestInfoListTileWidget(
                                 title: StringManager.name,
-                                subTitle: 'User 18',
+                                subTitle:provider?.name?? 'User 18',
                               ),
                               RequestInfoListTileWidget(
                                 title: StringManager.phoneText,
-                                subTitle: '0501234567',
+                                subTitle:provider?.phoneNumber?? '0501234567',
                               ),
                             ],
                           ),
@@ -66,11 +74,13 @@ class RequestInfoScreen extends StatelessWidget {
                                 title: StringManager.dateOfBirthText,
                                 subTitle: DateFormat.d()
                                     .add_yMMM()
-                                    .format(DateTime.now()),
+                                    .format(
+                                    provider?.birthDate??
+                                    DateTime.now()),
                               ),
                               RequestInfoListTileWidget(
                                 title: StringManager.emailText,
-                                subTitle: 'user18@mail.com',
+                                subTitle:provider?.email?? 'user18@mail.com',
                               ),
                             ],
                           )
@@ -86,7 +96,17 @@ class RequestInfoScreen extends StatelessWidget {
                 style: StyleManager.font16SemiBold(),
               ),
               verticalSpace(10.h),
-              AppContainerWithShadow(),
+              AppContainerWithShadow(
+                child:
+
+                Text(
+                  provider?.additionalInfo?.workShopName?? "",
+                  textAlign: TextAlign.start,
+                  style: StyleManager.font12Regular(
+                    color: ColorManager.hintTextColor,
+                  ).copyWith(height: 1.6),
+                ),
+              ),
               verticalSpace(20.h),
               Text(
                 StringManager.personalBioText,
@@ -94,7 +114,10 @@ class RequestInfoScreen extends StatelessWidget {
               ),
               verticalSpace(10.h),
               AppContainerWithShadow(
-                child: Text(
+                child:
+
+                Text(
+                  provider?.additionalInfo?.about??
                   """User 18 is an experienced automotive consultant with over 8 years of expertise in car maintenance, diagnostics, and repair consultations. He has worked with various brands and models, providing clients with insights on improving vehicle performance and resolving complex issues. His goal is to assist car owners in making informed decisions about vehicle care, ensuring long-term reliability and cost-efficiency.""",
                   textAlign: TextAlign.start,
                   style: StyleManager.font12Regular(
@@ -108,6 +131,7 @@ class RequestInfoScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
+
                       StringManager.uploadedFilesText,
                       style: StyleManager.font16SemiBold(),
                     ),
@@ -115,20 +139,29 @@ class RequestInfoScreen extends StatelessWidget {
                     AppContainerWithShadow(
                       child: Wrap(
                         spacing: 20.w,
-                        children: [File('1'), File('2'), File('3')]
+                        children:
+                        (provider?.additionalInfo?.files??[])
+                        // [File('1'), File('2'), File('3')]
                             .map((e) => FadeInUp(
                                 key: UniqueKey(),
                                 child: Column(
                                   children: [
+                                    ("pdf"==e.subType)?
                                     Image.asset(
                                       AssetsManager.pdfIcon,
                                       width: 60.w,
                                       height: 60.w,
-                                    ),
+                                    ):
+                                    Icon(
+                                      size: 60.w,
+                                      getFileIcon(
+                                getFileType(e.subType).name),),
+
                                     verticalSpace(2.h),
                                     SizedBox(
                                       width: 70.w,
                                       child: Text(
+                                        e.name??
                                         'name_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_filename_file',
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
@@ -149,14 +182,21 @@ class RequestInfoScreen extends StatelessWidget {
                   Flexible(
                     flex: 2,
                     child: AppButton(
-                      onPressed: (){},
+                      onPressed: (){
+
+                        Get.put(ManageRequestsProviderController()).acceptOrRejectedRequest(context, AccountRequestStatus.Accepted, provider);
+
+                      },
                       text: StringManager.acceptText,
                     ),
                   ),
                   horizontalSpace(10.w),
                   Flexible(
                     child: AppOutlinedButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Get.put(ManageRequestsProviderController()).acceptOrRejectedRequest(context, AccountRequestStatus.Rejected, provider);
+
+                      },
                       text: StringManager.rejectText,
                       color: ColorManager.errorColor,
                     ),

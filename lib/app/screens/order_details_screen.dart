@@ -36,6 +36,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   int _currentTimeIndex = 0;
 
   List<TimeHourModel> timeSlots=[];
+  List<DateTime> dateSlots=[];
   int? fee;
   late RequestOrderController controller;
   late ProviderAppointmentsController providerController;
@@ -48,6 +49,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     providerController = Get.put(ProviderAppointmentsController());
     providerController.idProvider=controller.provider?.uid;
     providerController.onInit();
+    dateSlots=   providerController.getDateSlots();
 
     super.initState();
   }
@@ -65,13 +67,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         _currentTimeIndex=time==null?_currentTimeIndex:timeSlots.indexOf(time);
 
 
-        DateTime? dateTime=   ConstValueManager.dateList.where((_element){
+        DateTime? dateTime=   dateSlots.where((_element){
 
           return   DateFormat.yMd().tryParse(_element.toString())?.isSameDate(
               DateFormat.yMd().parse(( controller.appointment?.selectDate??DateTime.now()).toString())
              )??false;
         }).firstOrNull;
-        _currentDateIndex=dateTime==null?_currentDateIndex:  ConstValueManager.dateList.indexOf(dateTime);
+        _currentDateIndex=dateTime==null?_currentDateIndex:  dateSlots.indexOf(dateTime);
 
       }
     }
@@ -106,7 +108,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     providerController.appointments.items =
                         Appointments.fromJson(snapshot.data?.docs).items;
                   }
-                  timeSlots=   providerController.getTimeSlots(ConstValueManager.dateList[_currentDateIndex], null, null, providerController.appointments.items);
+                  timeSlots=   providerController.getTimeSlots(dateSlots[_currentDateIndex], null, null, providerController.appointments.items);
+
                   initData();
                   return
                     GetBuilder<ProviderAppointmentsController>(
@@ -117,6 +120,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               children: [
                                 OrderDetailsSectionWidget(
                                   fee:fee ,
+                                  typeUser: controller.provider?.typeUser,
                                 ),
                                 verticalSpace(10.h),
                                 AppPaddingWidget(
@@ -160,7 +164,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           ),
                                         ),
                                         separatorBuilder: (_, __) => horizontalSpace(10.w),
-                                        itemCount: ConstValueManager.dateList.length),
+                                        itemCount: dateSlots.length),
                                   );
                                 }),
                                 verticalSpace(20.h),
@@ -178,14 +182,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     if(controller.appointment==null){
                                       controller.appointment=Appointment(
                                         fee: fee,
-                                        selectDate: ConstValueManager.dateList[_currentDateIndex],
+                                        // selectDate: ConstValueManager.dateList[_currentDateIndex],
+                                        selectDate: dateSlots[_currentDateIndex],
                                         fromHour: timeSlots[_currentTimeIndex].fromTime,
                                         toHour: timeSlots[_currentTimeIndex].toTime,
                                       );
                                       context.pushNamed(Routes.paymentOptionRoute);
                                     }else{
                                       controller.appointment?.fee=fee??controller.appointment?.fee;
-                                      controller.appointment?.selectDate=_currentDateIndex==null?controller.appointment?.selectDate:ConstValueManager.dateList[_currentDateIndex];
+                                      controller.appointment?.selectDate=_currentDateIndex==null?controller.appointment?.selectDate:dateSlots[_currentDateIndex];
                                       controller.appointment?.fromHour=_currentTimeIndex==null?controller.appointment?.fromHour:timeSlots[_currentTimeIndex].fromTime;
                                       controller.appointment?.toHour=_currentTimeIndex==null?controller.appointment?.toHour:timeSlots[_currentTimeIndex].toTime;
                                       controller.updateAppointment(context);

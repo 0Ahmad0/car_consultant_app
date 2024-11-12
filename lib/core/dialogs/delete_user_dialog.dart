@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:car_consultant/app/controllers/admin/manage_users_controller.dart';
 import 'package:car_consultant/core/helpers/extensions.dart';
 import 'package:car_consultant/core/helpers/spacing.dart';
+import 'package:car_consultant/core/models/user_model.dart';
 import 'package:car_consultant/core/utils/color_manager.dart';
 import 'package:car_consultant/core/utils/string_manager.dart';
 import 'package:car_consultant/core/utils/style_manager.dart';
@@ -11,10 +13,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class DeleteUserDialog extends StatelessWidget {
-  const DeleteUserDialog({super.key});
-
+  const DeleteUserDialog({super.key, this.user});
+  final UserModel? user;
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
@@ -68,6 +72,8 @@ class DeleteUserDialog extends StatelessWidget {
                                 child: AppButton(
                                   color: ColorManager.errorColor,
                               onPressed: () {
+                                Get.put(ManageUsersController()).deleteAccount(context,user );
+
                                     //ToDo Delete User
                               },
                               text: StringManager.deleteText,

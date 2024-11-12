@@ -148,6 +148,20 @@ class ProviderAppointmentsController extends GetxController{
     return timeSlots;
   }
 
+  List<DateTime> getDateSlots(){
+
+    DateTime now = DateTime.now();
+    DateTime lastDayOfMonth = DateTime(now.year, now.month + 1, 0);
+    List<DateTime> dateSlots = [];
+
+    for (DateTime date = now; date.isBefore(lastDayOfMonth.add(Duration(days: 1))); date = date.add(Duration(days: 1))) {
+      if (date.weekday != DateTime.friday) {
+        dateSlots.add(date);
+      }
+    }
+
+    return dateSlots;
+  }
   connectionPerson(BuildContext context ,String? idUser) async {
     var result;
     ConstantsWidgets.showLoading();

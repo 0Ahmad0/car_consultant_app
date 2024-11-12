@@ -11,6 +11,8 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../../core/dialogs/sign_out_dialog.dart';
 import '../../controllers/auth_controller.dart';
+import '../../controllers/profile_controller.dart';
+import '../../widgets/image_user_provider.dart';
 import '../navbar/widgets/profile_item_lIst_tile_widget.dart';
 
 class AdminProfileScreen extends StatelessWidget {
@@ -27,19 +29,51 @@ class AdminProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 34.sp,
-                    child: Icon(Icons.person),
-                  ),
-                  horizontalSpace(10.w),
-                  Flexible(
-                    child: Text(
-                      'User Name',
-                    ),
-                  )
-                ],
+              GetBuilder<ProfileController>(
+                  init: Get.put(ProfileController()),
+                  builder: (controller) {
+                    return Row(
+                      children: [
+                        ImageUserProvider(
+                          url: controller.currentUser.value?.photoUrl,
+                          radius: 34.sp,
+                        ),
+                        // CircleAvatar(
+                        //   radius: 34.sp,
+                        //   child: Icon(Icons.person),
+                        // ),
+                        horizontalSpace(10.w),
+                        Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+
+
+
+                              Text(
+                                controller.currentUser.value?.name ??
+                                    'User Name',
+                              ),
+                              if(controller.currentUser.value!.typeUser!=null)...[
+                                verticalSpace(10.h),
+                                Text(
+                                  controller.currentUser.value!.typeUser!,
+                                  style: StyleManager.font14SemiBold(
+                                      color: ColorManager.hintTextColor),
+                                )
+                              ]
+
+                              ,
+                            ],
+                          ),
+                        ),
+                        // Text(
+                        //   controller.currentUser.value?.name ??
+                        //       'User Name',
+                        // )
+                      ],
+                    );
+                  }
               ),
               //
               verticalSpace(20.h),
