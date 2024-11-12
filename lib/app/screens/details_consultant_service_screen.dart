@@ -76,6 +76,16 @@ class DetailsConsultantServiceScreen extends StatelessWidget {
                   '* Brake Systems'
                   '* Electrical and electronic systems',
             ),
+            if(provider?.isServiceProvider??false)...[
+              verticalSpace(10.h),
+              AboutMeAndExpertiseWidget(
+                title: StringManager.locationText,
+                description:
+                provider?.additionalInfo?.location?.address??
+                    '123, Main Street',
+              ),
+            ],
+
             AppPaddingWidget(
                 child: AppButton(
                     onPressed: () {

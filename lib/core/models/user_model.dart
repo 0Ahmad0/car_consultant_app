@@ -182,6 +182,8 @@ class UserModel {
   AdditionalInfoModel? additionalInfo;
 
   bool get isAdmin=>typeUser?.toLowerCase().contains(AppConstants.collectionAdmin.toLowerCase())??false;
+  bool get isServiceProvider=>typeUser?.toLowerCase().contains(AppConstants.collectionServiceProvider.toLowerCase())??false;
+  bool get isConsultantProvider=>typeUser?.toLowerCase().contains(AppConstants.collectionConsultantProvider.toLowerCase())??false;
 
   UserModel({
     this.id,

@@ -1,5 +1,6 @@
 import 'package:car_consultant/app/widgets/image_consultant_provider.dart';
 import 'package:car_consultant/core/helpers/extensions.dart';
+import 'package:car_consultant/core/utils/app_constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +11,7 @@ import '../../core/routing/routes.dart';
 import '../../core/utils/assets_manager.dart';
 import '../../core/utils/color_manager.dart';
 import '../../core/utils/style_manager.dart';
+import 'image_service_provider.dart';
 
 class ConsultantDetailsCardWidget extends StatelessWidget {
   const ConsultantDetailsCardWidget({
@@ -42,6 +44,11 @@ class ConsultantDetailsCardWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.r),
                 ),
                 child:
+                    AppConstants.collectionServiceProvider==provider?.typeUser?
+                ImageServiceProvider(
+                  url: provider?.photoUrl,
+                  width: 100.w,
+                ):
                 ImageConsultantProvider(
                   url: provider?.photoUrl,
                   width: 100.w,
