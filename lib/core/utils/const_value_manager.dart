@@ -27,6 +27,9 @@ class ConstValueManager {
   /// Duration Delayed Second
   static const int delayedSplash = 3;
 
+  static const String geminiApi = "AIzaSyCDePmxP17rWSPSa_o-420-53dpMxYyZa8";
+
+
   /// Button Size
   static const double heightButtonSize = 44;
 
